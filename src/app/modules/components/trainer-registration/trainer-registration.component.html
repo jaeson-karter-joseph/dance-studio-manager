@@ -58,14 +58,6 @@
               <label htmlFor="emailId">Email ID</label>
             </span>
           </div>
-          <!-- Input for Course -->
-          <div class="col-12 md:col-4 p-inputgroup">
-            <span class="p-float-label">
-              <input type="text" id="course" pInputText placeholder="Enter the Conducting Course"
-                formControlName="course" />
-              <label htmlFor="course">Course</label>
-            </span>
-          </div>
           <!-- Input for Number of Classes -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
@@ -82,20 +74,19 @@
               <label htmlFor="emid/passno">Emirates ID / Passport Number</label>
             </span>
           </div>
+          <!-- DropDown for Course -->
+          <div class="col-12 md:col-4">
+            <form [formGroup]="iecForm">
+              <p-dropdown formControlName="selectedCourse" [options]="course" optionLabel="name"
+                placeholder="Enter the Conducting Course"></p-dropdown>
+            </form>
+          </div>
           <!-- Dropdown for Payment Mode -->
           <div class="col-12 md:col-4">
             <form [formGroup]="iecForm">
               <p-dropdown formControlName="selectedCity" [options]="payment" optionLabel="name"
                 placeholder="Payment Mode"></p-dropdown>
             </form>
-          </div>
-          <!-- Textarea for Residential Address -->
-          <div class="col-12 p-inputgroup">
-            <span class="p-float-label">
-              <textarea id="ResidentialAddress" rows="5" placeholder="Enter the Residential Address" pInputTextarea
-                formControlName="ResidentialAddress"></textarea>
-              <label for="ResidentialAddress">Residential Address</label>
-            </span>
           </div>
           <!-- Calendar input for Date of Joining -->
           <div class="col-12 md:col-4 ">
@@ -109,6 +100,20 @@
             <form [formGroup]="iecForm">
               <p-toggleButton formControlName="checked" onLabel="Active" offLabel="Inactive"></p-toggleButton>
             </form>
+          </div>
+          <div class="col-12 md:col-4 ">
+            <p-toast></p-toast>
+            <p-fileUpload mode="basic" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+              accept="image/*" [maxFileSize]="10000000" (onUpload)="onBasicUploadAuto" [auto]="true"
+              chooseLabel="Browse"></p-fileUpload>
+          </div>
+          <!-- Textarea for Residential Address -->
+          <div class="col-12 p-inputgroup">
+            <span class="p-float-label">
+              <textarea id="ResidentialAddress" rows="5" placeholder="Enter the Residential Address" pInputTextarea
+                formControlName="ResidentialAddress"></textarea>
+              <label for="ResidentialAddress">Residential Address</label>
+            </span>
           </div>
         </div>
       </div>

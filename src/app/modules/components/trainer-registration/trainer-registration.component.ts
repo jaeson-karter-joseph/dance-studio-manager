@@ -1,33 +1,60 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+
 
 interface Payment {
   name: string;
   code: string;
 }
+interface Course {
+  name: string;
+  code: string;
+}
+interface UploadEvent {
+  originalEvent: Event;
+  files: File[];
+}
 @Component({
   selector: 'app-trainer-registration',
   templateUrl: './trainer-registration.component.html',
-  styleUrl: './trainer-registration.component.scss'
+  styleUrl: './trainer-registration.component.scss',
+  providers: [MessageService]
 })
 export class TrainerRegistrationComponent {
   values: string[] | undefined;
   loading: boolean = false;
   date: Date | undefined;
   payment: Payment[] | undefined;
+  course: Course[] | undefined;
   iecForm !: FormGroup;
   isIECFound: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private messageService: MessageService) { }
+
+
+  onBasicUploadAuto(event: UploadEvent) {
+    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded with Auto Mode' });
+  }
 
   ngOnInit() {
 
     this.payment = [
-      { name: 'Google Pay', code: 'GP' },
-      { name: 'Phone Pe', code: 'PP' },
       { name: 'CASH', code: 'CS' },
       { name: 'Bank Transfer', code: 'BT' },
     ];
+
+    this.course = [
+      { name: 'Bollyhop', code: 'bh' },
+      { name: 'Hip Hop', code: 'hh' },
+      { name: 'Indian fusion', code: 'if' },
+      { name: 'Bharatnatyam', code: 'br' },
+      { name: 'Yoga', code: 'yo' },
+      { name: 'Zumba', code: 'zu' },
+      { name: 'Arts', code: 'ar' },
+    ]
 
 
     this.iecForm = this.formBuilder.group({
@@ -46,27 +73,6 @@ export class TrainerRegistrationComponent {
       checked: new FormControl<boolean>(false)
     })
   }
-
-  get branches(): FormArray {
-    return this.iecForm.get("branches") as FormArray
-  }
-
-  newBranch() {
-    this.branches.push(
-      this.formBuilder.group({
-        branchCode: new FormControl<string | null>(null),
-        branchName: new FormControl<string | null>(null),
-        branchAddress: new FormControl<string | null>(null),
-        active: new FormControl<boolean | null>(null)
-      })
-    )
-  }
-
-
-  removeBranch(branchIndex: number) {
-    this.branches.removeAt(branchIndex);
-  }
-
 
 
   load() {
