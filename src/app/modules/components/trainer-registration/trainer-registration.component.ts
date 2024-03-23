@@ -1,83 +1,72 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MessageService } from 'primeng/api';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
-interface Payment {
-  name: string;
-  code: string;
-}
-interface Course {
-  name: string;
-  code: string;
-}
-interface UploadEvent {
-  originalEvent: Event;
-  files: File[];
-}
 @Component({
   selector: 'app-trainer-registration',
   templateUrl: './trainer-registration.component.html',
   styleUrl: './trainer-registration.component.scss',
-  providers: [MessageService]
 })
 export class TrainerRegistrationComponent {
-  values: string[] | undefined;
+  conductedCourse = [
+    { label: 'Bolly Hop', value: 'Bolly Hop' },
+    { label: 'Hip Hop', value: 'Hip Hop' },
+    { label: 'Indian Fusion', value: 'Indian Fusion' },
+    { label: 'Bharatnatyam', value: 'Bharatnatyam' },
+    { label: 'Yoga', value: 'Yoga' },
+    { label: 'Zumba', value: 'Zumba' },
+    { label: 'Arts', value: 'Arts' },
+  ];
+  payment = [
+    { name: 'Cash' },
+    { name: 'Credit Card' },
+    { name: 'Debit Card' },
+    { name: 'Net Banking' },
+    { name: 'Bank Transfer' },
+  ];
+  genderOptions = [
+    { label: 'Male', value: 'male' },
+    { label: 'Female', value: 'female' },
+    { label: 'Other', value: 'other' }
+  ];
   loading: boolean = false;
-  date: Date | undefined;
-  payment: Payment[] | undefined;
-  course: Course[] | undefined;
   iecForm !: FormGroup;
   isIECFound: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private messageService: MessageService) { }
-
-
-  onBasicUploadAuto(event: UploadEvent) {
-    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded with Auto Mode' });
-  }
+  ) { }
 
   ngOnInit() {
-
-    this.payment = [
-      { name: 'CASH', code: 'CS' },
-      { name: 'Bank Transfer', code: 'BT' },
-    ];
-
-    this.course = [
-      { name: 'Bollyhop', code: 'bh' },
-      { name: 'Hip Hop', code: 'hh' },
-      { name: 'Indian fusion', code: 'if' },
-      { name: 'Bharatnatyam', code: 'br' },
-      { name: 'Yoga', code: 'yo' },
-      { name: 'Zumba', code: 'zu' },
-      { name: 'Arts', code: 'ar' },
-    ]
-
-
     this.iecForm = this.formBuilder.group({
       iceNumber: new FormControl<string | null>("IEC1234", [Validators.required]),
-      firstName: new FormControl<string | null>(""),
-      lastName: new FormControl<string | null>(""),
-      phoneNumber: new FormControl<string | null>(""),
-      whatsappNumber: new FormControl<string | null>(""),
-      emailId: new FormControl<string | null>(""),
-      course: new FormControl<string | null>(""),
-      classes: new FormControl<string | null>(""),
-      date: new FormControl<string | null>(""),
-      emidpassno: new FormControl<string | null>(""),
-      ResidentialAddress: new FormControl<string | null>(""),
-      selectedCity: new FormControl<Payment | null>(null),
-      checked: new FormControl<boolean>(false)
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
+      phoneNumber: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
+      whatsappNumber: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
+      importerEmailId: [null, [Validators.required, Validators.email]],
+      emidpassno: [null, Validators.required],
+      selectedConductedCourse: [null, Validators.required],
+      joiningDate: [null, Validators.required],
+      selectedPayment: [null, Validators.required],
+      paymentDate: [null, Validators.required],
+      courseConducted: [null, [Validators.required, Validators.min(0)]],
+      selectedGender: ['', Validators.required],
+      file: [null, Validators.required],
+      ResidentialAddress: [''],
+      checked: [false],
     })
+  }
+
+
+  onUpload(event: any) {
+    const file = event.files[0];
+    this.iecForm.get('file')?.setValue(file);
   }
 
 
   load() {
     this.loading = true;
-
     // const iecFormData: IecMaster = {
     //   iecNumber: this.iecForm.value.iceNumber,
     //   importerName: this.iecForm.value.importerName,
@@ -105,8 +94,9 @@ export class TrainerRegistrationComponent {
 
   }
 
-  resetForm(): void {
+  resetForm() {
     this.iecForm.reset();
+    console.log('Form reset');
   }
 
   get f(): { [key: string]: AbstractControl } {

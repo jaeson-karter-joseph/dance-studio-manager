@@ -17,7 +17,18 @@ export class MenuComponent implements OnInit {
       {
         label: 'Student',
         items: [
-          { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/studentRegistration'] }
+          { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/studentRegistration'] },
+          {
+            label: 'Students Registration', icon: 'pi pi-fw pi-ticket',
+            items: [
+              {
+                label: 'IEC Data', icon: 'pi pi-fw pi-bookmark', routerLink: ['/master/inventoryStatusMaster/IEC'],
+              },
+              {
+                label: 'BOE Data', icon: 'pi pi-fw pi-bookmark', routerLink: ['/master/inventoryStatusMaster/BOE'],
+              },
+            ]
+          },
         ]
       },
       {
@@ -25,13 +36,13 @@ export class MenuComponent implements OnInit {
         items: [
           { label: 'Dashboard', icon: 'pi pi-fw pi-id-card', routerLink: ['trainerRegistration'] },
           {
-            label: 'Registration', icon: 'pi pi-fw pi-ticket',
+            label: 'Trainers Registration', icon: 'pi pi-fw pi-ticket',
             items: [
               {
-                label: 'IEC Data', icon: 'pi pi-fw pi-bookmark', routerLink:['/master/inventoryStatusMaster/IEC'] ,
+                label: 'IEC Data', icon: 'pi pi-fw pi-bookmark', routerLink: ['/master/inventoryStatusMaster/IEC'],
               },
               {
-                label: 'BOE Data', icon: 'pi pi-fw pi-bookmark', routerLink:['/master/inventoryStatusMaster/BOE'] ,
+                label: 'BOE Data', icon: 'pi pi-fw pi-bookmark', routerLink: ['/master/inventoryStatusMaster/BOE'],
               },
             ]
           },
