@@ -22,6 +22,7 @@ import { ChipsModule } from 'primeng/chips';
 import { TooltipModule } from 'primeng/tooltip';
 import { CalendarModule } from 'primeng/calendar';
 import { DividerModule } from 'primeng/divider';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 
 
@@ -52,7 +53,7 @@ import { DividerModule } from 'primeng/divider';
     TooltipModule,
     CalendarModule,
     DividerModule,
-
+    ToggleButtonModule
 
   ]
 })

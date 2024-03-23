@@ -3,18 +3,22 @@
     <div class="flex flex-row mb-3 justify-content-center">
       <div class="p-inputgroup md:w-6 sm:w-full">
         <span class="p-float-label">
-          <input type="text" id="iec" pInputText placeholder="Enter Event ID" formControlName="iceNumber" />
-          <label htmlFor="iec">Event ID</label>
+          <input type="text" id="iec" pInputText placeholder="Enter Register ID" formControlName="iceNumber" />
+          <label htmlFor="iec">Register ID</label>
           <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn" id="iecButton"
             aria-label="search" (click)="searchIEC()"></button>
         </span>
       </div>
     </div>
+
+    <!-- Divider -->
     <p-divider styleClass="mb-5"></p-divider>
+
+    <!-- Details section, shown if IEC is found -->
     <div *ngIf="isIECFound" class="grid nested-grid ">
       <div class="col-12">
         <div class="grid sm:row-gap-3">
-
+          <!-- Input for First Name -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
               <input type="text" id="firstName" pInputText placeholder="Enter the First Name"
@@ -22,6 +26,7 @@
               <label htmlFor="firstName">First Name</label>
             </span>
           </div>
+          <!-- Input for Last Name -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
               <input type="text" id="lastName" pInputText placeholder="Enter the Last Name"
@@ -29,6 +34,7 @@
               <label htmlFor="lastName">Last Name</label>
             </span>
           </div>
+          <!-- Input for Phone Number -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
               <input type="number" id="phoneNumber" pInputText placeholder="Enter the Phone Number"
@@ -36,6 +42,7 @@
               <label htmlFor="phoneNumber">Phone Number</label>
             </span>
           </div>
+          <!-- Input for Whatsapp Number -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
               <input type="number" id="whatsappNumber" pInputText placeholder="Enter the Whatsapp Number"
@@ -43,6 +50,7 @@
               <label htmlFor="whatsappNumber">Whatsapp Number</label>
             </span>
           </div>
+          <!-- Input for Email ID -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
               <input type="email" id="emailId" pInputText placeholder="Enter the Email ID"
@@ -50,6 +58,7 @@
               <label htmlFor="emailId">Email ID</label>
             </span>
           </div>
+          <!-- Input for Course -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
               <input type="text" id="course" pInputText placeholder="Enter the Conducting Course"
@@ -57,6 +66,7 @@
               <label htmlFor="course">Course</label>
             </span>
           </div>
+          <!-- Input for Number of Classes -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
               <input type="number" id="classes" pInputText placeholder="Enter the No of Classes"
@@ -64,12 +74,7 @@
               <label htmlFor="classes">Classes</label>
             </span>
           </div>
-          <div class="col-12 md:col-4 p-inputgroup">
-            <span class="p-float-label">
-            <label for="date" class="font-light block mb-2">Date of Joining</label>
-            <p-calendar [(ngModel)]="date" [iconDisplay]="'input'" [showIcon]="true" inputId="date"></p-calendar>
-            </span>
-          </div>
+          <!-- Input for Emirates ID / Passport Number -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
               <input type="text" id="emid/passno" pInputText placeholder="Enter the Emirates Id / PassportNumber"
@@ -77,6 +82,14 @@
               <label htmlFor="emid/passno">Emirates ID / Passport Number</label>
             </span>
           </div>
+          <!-- Dropdown for Payment Mode -->
+          <div class="col-12 md:col-4">
+            <form [formGroup]="iecForm">
+              <p-dropdown formControlName="selectedCity" [options]="payment" optionLabel="name"
+                placeholder="Payment Mode"></p-dropdown>
+            </form>
+          </div>
+          <!-- Textarea for Residential Address -->
           <div class="col-12 p-inputgroup">
             <span class="p-float-label">
               <textarea id="ResidentialAddress" rows="5" placeholder="Enter the Residential Address" pInputTextarea
@@ -84,20 +97,26 @@
               <label for="ResidentialAddress">Residential Address</label>
             </span>
           </div>
-          <div class="col-12 md:col-4 p-inputgroup">
+          <!-- Calendar input for Date of Joining -->
+          <div class="col-12 md:col-4 ">
             <span class="p-float-label">
-              <input type="text" id="paymentMode" pInputText placeholder="Enter the Payment Mode" formControlName="paymentMode" />
-              <label htmlFor="paymentMode">Payment Mode</label>
+              <label for="date" class="font-light block mb-2" placeholer="Date of Joining"></label>
+              <p-calendar [(ngModel)]="date" [iconDisplay]="'input'" [showIcon]="true" inputId="date"></p-calendar>
             </span>
+          </div>
+          <div class="col-12 md:col-4 ">
+            <form [formGroup]="iecForm">
+              <p-toggleButton formControlName="checked" onLabel="Active" offLabel="Inactive"></p-toggleButton>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- Action buttons for Save, Delete, and Reset -->
   <div *ngIf="isIECFound" class="card flex justify-content-center column-gap-3">
     <p-button label="Save" type="ngSubmit" [loading]="loading"></p-button>
     <p-button label="Delete" type="button" [loading]="loading" (onClick)="load()"></p-button>
     <p-button label="Reset" type="button" [loading]="loading" (onClick)="resetForm()"></p-button>
-
   </div>
 </form>

@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+interface Payment {
+  name: string;
+  code: string;
+}
 @Component({
   selector: 'app-trainer-registration',
   templateUrl: './trainer-registration.component.html',
@@ -10,12 +14,21 @@ export class TrainerRegistrationComponent {
   values: string[] | undefined;
   loading: boolean = false;
   date: Date | undefined;
+  payment: Payment[] | undefined;
   iecForm !: FormGroup;
   isIECFound: boolean = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+
+    this.payment = [
+      { name: 'Google Pay', code: 'GP' },
+      { name: 'Phone Pe', code: 'PP' },
+      { name: 'CASH', code: 'CS' },
+      { name: 'Bank Transfer', code: 'BT' },
+    ];
+
 
     this.iecForm = this.formBuilder.group({
       iceNumber: new FormControl<string | null>("IEC1234", [Validators.required]),
@@ -29,14 +42,8 @@ export class TrainerRegistrationComponent {
       date: new FormControl<string | null>(""),
       emidpassno: new FormControl<string | null>(""),
       ResidentialAddress: new FormControl<string | null>(""),
-      branches: this.formBuilder.array([
-        this.formBuilder.group({
-          branchCode: new FormControl<string | null>(null),
-          branchName: new FormControl<string | null>("Culcutta"),
-          branchAddress: new FormControl<string | null>(null),
-          active: new FormControl<boolean | null>(null)
-        })
-      ])
+      selectedCity: new FormControl<Payment | null>(null),
+      checked: new FormControl<boolean>(false)
     })
   }
 
