@@ -51,7 +51,8 @@ import { DividerModule } from 'primeng/divider';
     ChipsModule,
     TooltipModule,
     CalendarModule,
-    DividerModule
+    DividerModule,
+
 
   ]
 })

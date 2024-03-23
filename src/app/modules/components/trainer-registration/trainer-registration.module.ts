@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { TrainerRegistrationRoutingModule } from './trainer-registration-routing.module';
 import { TrainerRegistrationComponent } from './trainer-registration.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgprimeModule } from '../../shared/ngprime/ngprime.module';
 
 
 @NgModule({
@@ -11,6 +13,9 @@ import { TrainerRegistrationComponent } from './trainer-registration.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgprimeModule,
     TrainerRegistrationRoutingModule
   ]
 })

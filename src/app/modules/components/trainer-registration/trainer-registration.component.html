@@ -1,1 +1,103 @@
-<p>trainer-registration works!</p>
+<form [formGroup]="iecForm" (ngSubmit)="load()">
+  <div class="card">
+    <div class="flex flex-row mb-3 justify-content-center">
+      <div class="p-inputgroup md:w-6 sm:w-full">
+        <span class="p-float-label">
+          <input type="text" id="iec" pInputText placeholder="Enter Event ID" formControlName="iceNumber" />
+          <label htmlFor="iec">Event ID</label>
+          <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn" id="iecButton"
+            aria-label="search" (click)="searchIEC()"></button>
+        </span>
+      </div>
+    </div>
+    <p-divider styleClass="mb-5"></p-divider>
+    <div *ngIf="isIECFound" class="grid nested-grid ">
+      <div class="col-12">
+        <div class="grid sm:row-gap-3">
+
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="text" id="firstName" pInputText placeholder="Enter the First Name"
+                formControlName="firstName" />
+              <label htmlFor="firstName">First Name</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="text" id="lastName" pInputText placeholder="Enter the Last Name"
+                formControlName="lastName" />
+              <label htmlFor="lastName">Last Name</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="number" id="phoneNumber" pInputText placeholder="Enter the Phone Number"
+                formControlName="phoneNumber" />
+              <label htmlFor="phoneNumber">Phone Number</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="number" id="whatsappNumber" pInputText placeholder="Enter the Whatsapp Number"
+                formControlName="whatsappNumber" />
+              <label htmlFor="whatsappNumber">Whatsapp Number</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="email" id="emailId" pInputText placeholder="Enter the Email ID"
+                formControlName="importerEmailId" />
+              <label htmlFor="emailId">Email ID</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="text" id="course" pInputText placeholder="Enter the Conducting Course"
+                formControlName="course" />
+              <label htmlFor="course">Course</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="number" id="classes" pInputText placeholder="Enter the No of Classes"
+                formControlName="classes" />
+              <label htmlFor="classes">Classes</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+            <label for="date" class="font-light block mb-2">Date of Joining</label>
+            <p-calendar [(ngModel)]="date" [iconDisplay]="'input'" [showIcon]="true" inputId="date"></p-calendar>
+            </span>
+          </div>
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="text" id="emid/passno" pInputText placeholder="Enter the Emirates Id / PassportNumber"
+                formControlName="emidpassno" />
+              <label htmlFor="emid/passno">Emirates ID / Passport Number</label>
+            </span>
+          </div>
+          <div class="col-12 p-inputgroup">
+            <span class="p-float-label">
+              <textarea id="ResidentialAddress" rows="5" placeholder="Enter the Residential Address" pInputTextarea
+                formControlName="ResidentialAddress"></textarea>
+              <label for="ResidentialAddress">Residential Address</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="text" id="paymentMode" pInputText placeholder="Enter the Payment Mode" formControlName="paymentMode" />
+              <label htmlFor="paymentMode">Payment Mode</label>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isIECFound" class="card flex justify-content-center column-gap-3">
+    <p-button label="Save" type="ngSubmit" [loading]="loading"></p-button>
+    <p-button label="Delete" type="button" [loading]="loading" (onClick)="load()"></p-button>
+    <p-button label="Reset" type="button" [loading]="loading" (onClick)="resetForm()"></p-button>
+
+  </div>
+</form>
