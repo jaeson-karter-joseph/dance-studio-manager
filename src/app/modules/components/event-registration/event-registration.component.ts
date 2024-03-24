@@ -45,6 +45,7 @@ export class EventRegistrationComponent {
       amountperstudent: [null, [Validators.required, Validators.min(0)]],
       expense: ['', [Validators.required, Validators.min(0)]],
       selectedProfitLoss: ['', Validators.required],
+      halleventbooking: [null, Validators.required],
       remarks: ['', Validators.required],
     })
   }

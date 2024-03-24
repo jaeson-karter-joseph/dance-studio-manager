@@ -66,17 +66,26 @@
               <label for="expense">Expense</label>
             </span>
           </div>
-          <!-- Input for Profit/Loss Event -->
+          <!-- DropDown for Profit/Loss Event -->
           <div class="col-12 md:col-4">
             <div class="p-field">
-              <p-dropdown id="profitLoss" formControlName="selectedProfitLoss" [options]="profitLossOptions" optionLabel="label"
-                placeholder="Select Profit/Loss"></p-dropdown>
+              <p-dropdown id="profitLoss" formControlName="selectedProfitLoss" [options]="profitLossOptions"
+                optionLabel="label" placeholder="Select Profit/Loss"></p-dropdown>
             </div>
+          </div>
+          <!-- Input for Hall Booking -->
+          <div class="col-12 md:col-4">
+            <span class="p-float-label">
+              <input type="text" id="halleventbooking " pInputText placeholder=" Event Hall Booking  "
+                formControlName="halleventbooking " />
+              <label for="halleventbooking ">Event Hall Booking</label>
+            </span>
           </div>
           <!-- Textarea for Remarks -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
-              <textarea id="remarks" rows="5" placeholder="Enter Remarks" pInputTextarea formControlName="remarks"></textarea>
+              <textarea id="remarks" rows="5" placeholder="Enter Remarks" pInputTextarea
+                formControlName="remarks"></textarea>
               <label for="remarks">Remarks</label>
             </span>
           </div>
