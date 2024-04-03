@@ -34,15 +34,15 @@ export class MenuComponent implements OnInit {
       {
         label: 'Trainer',
         items: [
-          { label: 'Dashboard', icon: 'pi pi-fw pi-id-card', routerLink: ['/trainerRegistration'] },
+          { label: 'Dashboard', icon: 'pi pi-fw pi-id-card', routerLink: ['/trainer/trainerRegistration'] },
           {
             label: 'Trainers Registration', icon: 'pi pi-fw pi-ticket',
             items: [
               {
-                label: 'Register Trainer', icon: 'pi pi-fw pi-bookmark', routerLink: ['/trainerRegistration'],
+                label: 'Register Trainer', icon: 'pi pi-fw pi-bookmark', routerLink: ['/trainer/trainerRegistration'],
               },
               {
-                label: 'Trainer Detail', icon: 'pi pi-fw pi-bookmark', routerLink: ['/trainerRegistration'],
+                label: 'Trainer Detail', icon: 'pi pi-fw pi-bookmark', routerLink: ['/trainer/trainerRegistration'],
               },
             ]
           },
