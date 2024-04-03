@@ -53,7 +53,7 @@ export class MenuComponent implements OnInit {
       {
         label: 'Events',
         items: [
-          { label: 'Event Details', icon: 'pi pi-fw pi-wallet', routerLink: ['/eventRegistration'] },
+          { label: 'Event Details', icon: 'pi pi-fw pi-wallet', routerLink: ['/event/eventRegistration'] },
         ]
       },
       // {
