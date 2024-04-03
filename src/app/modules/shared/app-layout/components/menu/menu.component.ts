@@ -15,17 +15,23 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.model = [
       {
+        label: 'Dashboard', items: [
+          {
+            label: 'Overview', icon: 'pi pi-fw pi-ticket', routerLink: ['/dashboard/studio-overview'],
+          },
+        ]
+      },
+      {
         label: 'Student',
         items: [
-          { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/student/studentRegistration'] },
           {
-            label: 'Students Registration', icon: 'pi pi-fw pi-ticket',
+            label: 'Student Registration', icon: 'pi pi-fw pi-ticket',
             items: [
               {
                 label: 'Register Student', icon: 'pi pi-fw pi-bookmark', routerLink: ['/student/studentRegistration'],
               },
               {
-                label: 'Students Detail', icon: 'pi pi-fw pi-bookmark', routerLink: ['/student/studentRegistration'],
+                label: 'Students Detail', icon: 'pi pi-fw pi-bookmark', routerLink: ['/student/studentDetails'],
               },
             ]
           },
@@ -34,15 +40,31 @@ export class MenuComponent implements OnInit {
       {
         label: 'Trainer',
         items: [
-          { label: 'Dashboard', icon: 'pi pi-fw pi-id-card', routerLink: ['/trainer/trainerRegistration'] },
           {
-            label: 'Trainers Registration', icon: 'pi pi-fw pi-ticket',
+            label: 'Trainer Registration', icon: 'pi pi-fw pi-ticket',
             items: [
               {
                 label: 'Register Trainer', icon: 'pi pi-fw pi-bookmark', routerLink: ['/trainer/trainerRegistration'],
               },
               {
-                label: 'Trainer Detail', icon: 'pi pi-fw pi-bookmark', routerLink: ['/trainer/trainerRegistration'],
+                label: 'Trainer Detail', icon: 'pi pi-fw pi-bookmark', routerLink: ['/trainer/trainerDetails'],
+              },
+            ]
+          },
+        ]
+
+      },
+      {
+        label: 'Event',
+        items: [
+          {
+            label: 'Event Registration', icon: 'pi pi-fw pi-ticket',
+            items: [
+              {
+                label: 'Event Registration', icon: 'pi pi-fw pi-bookmark', routerLink: ['/event/eventRegistration'],
+              },
+              {
+                label: 'Event Details', icon: 'pi pi-fw pi-bookmark', routerLink: ['/event/eventDetails'],
               },
             ]
           },
@@ -50,12 +72,6 @@ export class MenuComponent implements OnInit {
 
       },
       //{ label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/master/unitMaster'], routerLinkActiveOptions: { paths: 'subset', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' } },
-      {
-        label: 'Events',
-        items: [
-          { label: 'Event Details', icon: 'pi pi-fw pi-wallet', routerLink: ['/event/eventRegistration'] },
-        ]
-      },
       // {
       //   label: 'Prime Blocks',
       //   items: [
