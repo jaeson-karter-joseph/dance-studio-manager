@@ -1,1 +1,65 @@
-<p>student-details works!</p>
+<p-table #dt [value]="StudentDetailsData" [rows]="5" [paginator]="true"
+  [globalFilterFields]="['id', 'name', 'studentID', 'email', 'gender','emid','birthDate','joiningDate', 'inventoryStatus']"
+  [tableStyle]="{ 'min-width': '110rem' }" [rowHover]="true" dataKey="id"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+      <h5 class="m-0">Total Trainers :
+        <p-tag [value]="this.calculateTotalQty.toString()" styleClass="text-2xl"></p-tag>
+      </h5>
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+
+        <input pInputText type="text" #textInput (input)="dt.filterGlobal(textInput.value, 'contains')"
+          placeholder="Search..." />
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id" style="min-width:6rem">ID<p-sortIcon field="id"></p-sortIcon>
+      </th>
+      <th pSortableColumn="name" style="min-width:9rem">Stu.Name<p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="studentID" style="min-width:6rem">Stu.ID<p-sortIcon field="studentID"></p-sortIcon>
+      </th>
+      <th pSortableColumn="email" style="min-width:12rem">Email.ID <p-sortIcon field="email"></p-sortIcon>
+      </th>
+      <th pSortableColumn="gender" style="min-width:6rem">Gender<p-sortIcon field="gender"></p-sortIcon>
+      </th>
+      <th pSortableColumn="EmID" style="min-width:6rem">E.ID/Pass.ID<p-sortIcon field="EmID"></p-sortIcon>
+      </th>
+      <th pSortableColumn="birthDate" style="min-width:9rem">BrithDate<p-sortIcon field="birthDate"></p-sortIcon>
+      </th>
+      <th pSortableColumn="joiningDate" style="min-width:9rem">JoiningDate<p-sortIcon field="joiningDate">
+        </p-sortIcon>
+      </th>
+      <th pSortableColumn="inventoryStatus" style="min-width:5rem">Status<p-sortIcon field="inventoryStatus">
+        </p-sortIcon>
+      </th>
+      <th></th>
+      <th>Download</th>
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.studentID }}</td>
+      <td>{{ product.email }}</td>
+      <td>{{ product.gender }}</td>
+      <td>{{ product.emId }}</td>
+      <td>{{ product.birthDate | date }}</td>
+      <td>{{ product.joinDate | date }}</td>
+      <td>
+        <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"></p-tag>
+      </td>
+      <td>{{ product.eid }}</td>
+      <td>
+        <button aria-label="downloadBtn" type="button" pButton pRipple icon="pi pi-download" pTooltip="Add Download"
+          class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

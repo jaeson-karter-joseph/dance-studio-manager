@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { StudentDetailsRoutingModule } from './student-details-routing.module';
 import { StudentDetailsComponent } from './student-details.component';
+import { NgprimeModule } from '../../../shared/ngprime/ngprime.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { StudentDetailsComponent } from './student-details.component';
   ],
   imports: [
     CommonModule,
-    StudentDetailsRoutingModule
+    StudentDetailsRoutingModule,
+    NgprimeModule,    
+    FormsModule
   ]
 })
 export class StudentDetailsModule { }
