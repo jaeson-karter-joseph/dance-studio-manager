@@ -9,7 +9,7 @@ export interface TrainerDetailsProduct {
     inventoryStatus?: string;
     eid?: number;
     image?: string;
-    quantity?: number;    
+    quantity?: number;
 }
 
 export interface StudentDetailsProduct {
@@ -24,5 +24,17 @@ export interface StudentDetailsProduct {
     joinDate?: Date;
     inventoryStatus?: String;
     image?: string;
-    quantity?: number;   
-  }
+    quantity?: number;
+}
+
+export interface EventDetailsProduct {
+    id?: number;
+    workshopName?: string;
+    workshopCategory?: string;
+    eventCategory?: string;
+    studentEventRegister?: number;
+    hallBookingID?: string;
+    studentAmount?: number;
+    image?: string;
+    quantity?: number;
+}

@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit {
       {
         label: 'Dashboard', items: [
           {
-            label: 'Overview', icon: 'pi pi-fw pi-ticket', routerLink: ['/dashboard/studio-overview'],
+            label: 'Overview', icon: 'pi pi-fw pi-bookmark-fill', routerLink: ['/dashboard/studio-overview'],
           },
         ]
       },
@@ -25,13 +25,13 @@ export class MenuComponent implements OnInit {
         label: 'Student',
         items: [
           {
-            label: 'Student Registration', icon: 'pi pi-fw pi-ticket',
+            label: 'Student Registration', icon: 'pi pi-fw pi-bookmark-fill',
             items: [
               {
-                label: 'Register Student', icon: 'pi pi-fw pi-bookmark', routerLink: ['/student/studentRegistration'],
+                label: 'Student Register', icon: 'pi pi-fw pi-pencil', routerLink: ['/student/studentRegistration'],
               },
               {
-                label: 'Students Detail', icon: 'pi pi-fw pi-bookmark', routerLink: ['/student/studentDetails'],
+                label: 'Students Details', icon: 'pi pi-fw pi-database', routerLink: ['/student/studentDetails'],
               },
             ]
           },
@@ -41,13 +41,13 @@ export class MenuComponent implements OnInit {
         label: 'Trainer',
         items: [
           {
-            label: 'Trainer Registration', icon: 'pi pi-fw pi-ticket',
+            label: 'Trainer Registration', icon: 'pi pi-fw pi-bookmark-fill',
             items: [
               {
-                label: 'Register Trainer', icon: 'pi pi-fw pi-bookmark', routerLink: ['/trainer/trainerRegistration'],
+                label: 'Trainer Register', icon: 'pi pi-fw pi-pencil', routerLink: ['/trainer/trainerRegistration'],
               },
               {
-                label: 'Trainer Detail', icon: 'pi pi-fw pi-bookmark', routerLink: ['/trainer/trainerDetails'],
+                label: 'Trainer Details', icon: 'pi pi-fw pi-database', routerLink: ['/trainer/trainerDetails'],
               },
             ]
           },
@@ -58,13 +58,13 @@ export class MenuComponent implements OnInit {
         label: 'Event',
         items: [
           {
-            label: 'Event Registration', icon: 'pi pi-fw pi-ticket',
+            label: 'Event Register', icon: 'pi pi-fw pi-bookmark-fill',
             items: [
               {
-                label: 'Event Registration', icon: 'pi pi-fw pi-bookmark', routerLink: ['/event/eventRegistration'],
+                label: 'Event Registration', icon: 'pi pi-fw pi-pencil', routerLink: ['/event/eventRegistration'],
               },
               {
-                label: 'Event Details', icon: 'pi pi-fw pi-bookmark', routerLink: ['/event/eventDetails'],
+                label: 'Event Details', icon: 'pi pi-fw pi-database', routerLink: ['/event/eventDetails'],
               },
             ]
           },
