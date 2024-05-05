@@ -18,6 +18,8 @@ export class MenuComponent implements OnInit {
         label: 'Student',
         items: [
           { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/studentRegistration'] },
+          { label: 'Register', icon: 'pi pi-fw pi-home', routerLink: ['/studentRegistration'] },
+
           {
             label: 'Students Registration', icon: 'pi pi-fw pi-ticket',
             items: [

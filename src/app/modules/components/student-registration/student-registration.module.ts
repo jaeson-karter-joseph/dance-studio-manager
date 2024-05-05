@@ -5,6 +5,7 @@ import { StudentRegistrationRoutingModule } from './student-registration-routing
 import { StudentRegistrationComponent } from './student-registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgprimeModule } from '../../shared/ngprime/ngprime.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { NgprimeModule } from '../../shared/ngprime/ngprime.module';
     FormsModule,
     ReactiveFormsModule,
     NgprimeModule,
-    StudentRegistrationRoutingModule
+    StudentRegistrationRoutingModule,
+    HttpClientModule
   ]
 })
 export class StudentRegistrationModule { }
