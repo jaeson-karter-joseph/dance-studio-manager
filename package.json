@@ -1,6 +1,14 @@
 {
   "name": "dance-studio-manager",
   "version": "0.0.0",
+  "keywords": [
+    "angular",
+    "typescript",
+    "primefaces",
+    "primeng",
+    "ssr",
+    "server-side-rendering"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

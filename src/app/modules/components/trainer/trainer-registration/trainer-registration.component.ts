@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-trainer-registration',
   templateUrl: './trainer-registration.component.html',
-  styleUrl: './trainer-registration.component.scss',
+  styleUrl: './trainer-registration.component.scss'
 })
 export class TrainerRegistrationComponent {
   conductedCourse = [

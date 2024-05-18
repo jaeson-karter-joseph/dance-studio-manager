@@ -11,7 +11,7 @@ interface dropDown {
 @Component({
   selector: 'app-student-registration',
   templateUrl: './student-registration.component.html',
-  styleUrl: './student-registration.component.scss',
+  styleUrl: './student-registration.component.scss'
 })
 export class StudentRegistrationComponent {
   category: dropDown[] = [
@@ -134,3 +134,4 @@ export class StudentRegistrationComponent {
   }
 
 }
+

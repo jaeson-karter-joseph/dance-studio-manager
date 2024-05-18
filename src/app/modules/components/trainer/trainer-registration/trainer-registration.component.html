@@ -15,9 +15,9 @@
     <p-divider styleClass="mb-5"></p-divider>
 
     <!-- Details section, shown if IEC is found -->
-    <div class="grid nested-grid ">
-      <div class="col-12">
-        <div class="grid sm:row-gap-3">
+    <div *ngIf="isIECFound" class="grid nested-grid ">
+      <div class="col-12 g-2">
+        <div class="grid sm:row-gap-3 row-gap-3">
           <!-- Input for First Name -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
@@ -55,21 +55,6 @@
               <label for="emailId">Email ID</label>
             </span>
           </div>
-          <!-- Input for Insta/FB ID -->
-          <div class="col-12 md:col-4 p-inputgroup">
-            <span class="p-float-label">
-              <input type="text" id="instafbID" pInputText placeholder=" Instagram / Facebook ID "
-                formControlName="instafbID" />
-              <label for="instafbID">Instagram / Facebook ID</label>
-            </span>
-          </div>
-          <!-- Input for Number of Student ID -->
-          <div class="col-12 md:col-4 p-inputgroup">
-            <span class="p-float-label">
-              <input type="number" id="studentid" pInputText placeholder=" Student ID " formControlName="studentid" />
-              <label for="studentid">Student ID</label>
-            </span>
-          </div>
           <!-- Input for Emirates ID / Passport Number -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
@@ -78,28 +63,13 @@
               <label for="emid/passno">Emirates ID / Passport Number</label>
             </span>
           </div>
-          <!-- Input for Note of Health Issue -->
-          <div class="col-12 md:col-4 p-inputgroup">
-            <span class="p-float-label">
-              <input type="text" id="healthissue" pInputText placeholder=" Note of Health Issue "
-                formControlName="notehealthissue" />
-              <label for="noteofhealthissue">Note of Health Issue</label>
-            </span>
-          </div>
-          <!-- Date for Birthdate -->
-          <div class="col-12 md:col-4">
-            <span class="p-float-label w-full">
-              <p-calendar formControlName="birthDate" inputId="birth_date" [showIcon]="true"></p-calendar>
-              <label for="birth_date">Date of Birth</label>
-            </span>
-          </div>
-          <!-- DropDown for category -->
+          <!-- DropDown for Select a Conducted Course -->
           <div class="col-12 md:col-4">
             <div class="p-field">
               <span class="p-float-label">
-                <p-dropdown formControlName="selectedCategory" [options]="category" optionLabel="label"
-                  placeholder=" Select a Category "></p-dropdown>
-                <label>Select a Category</label>
+                <p-dropdown formControlName="selectedConductedCourse" [options]="conductedCourse"
+                  placeholder=" Select a Conducted Course "></p-dropdown>
+                <label>Select a Conducted Course</label>
               </span>
             </div>
           </div>
@@ -125,28 +95,12 @@
               <label for="payment_date">Payment Date</label>
             </span>
           </div>
-          <!-- date for Valid Till -->
+          <!-- Input for No of Courses Conducted -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
-              <p-calendar id="validTill" [showIcon]="true" placeholder=" Valid Till "
-                formControlName="validTill"></p-calendar>
-              <label for="validTill">Valid Till</label>
-            </span>
-          </div>
-          <!-- Input for Classes Completed -->
-          <div class="col-12 md:col-4 p-inputgroup">
-            <span class="p-float-label">
-              <input type="number" id="classesCompleted" pInputText placeholder=" Classes Completed "
-                formControlName="classesCompleted" />
-              <label for="classesCompleted">Classes Completed</label>
-            </span>
-          </div>
-          <!-- Input for Classes Remaining -->
-          <div class="col-12 md:col-4 p-inputgroup">
-            <span class="p-float-label">
-              <input type="number" id="classesRemaining" pInputText placeholder=" Classes Remaining "
-                formControlName="classesRemaining" />
-              <label for="classesRemaining">Classes Remaining</label>
+              <input type="number" id="courseConducted" pInputText placeholder="No of Courses Conducted "
+                formControlName="courseConducted" />
+              <label for="classesCompleted">No of Courses Conducted</label>
             </span>
           </div>
           <!-- Input for Gender -->
