@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { StudentDetailsRoutingModule } from './student-details-routing.module';
 import { StudentDetailsComponent } from './student-details.component';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { StudentDetailsComponent } from './student-details.component';
   ],
   imports: [
     CommonModule,
-    StudentDetailsRoutingModule
+    StudentDetailsRoutingModule,
+    ToastModule
   ]
 })
 export class StudentDetailsModule { }

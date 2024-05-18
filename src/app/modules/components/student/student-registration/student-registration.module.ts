@@ -6,11 +6,12 @@ import { StudentRegistrationRoutingModule } from './student-registration-routing
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgprimeModule } from '../../../shared/ngprime/ngprime.module';
 import { HttpClientModule } from '@angular/common/http';
+import { StudentRegistrationComponent } from './student-registration.component';
 
 
 @NgModule({
   declarations: [
-
+    StudentRegistrationComponent
   ],
   imports: [
     CommonModule,

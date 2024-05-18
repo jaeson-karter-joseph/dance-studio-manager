@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { StudentService } from './services/student.service';
-import { Student } from './models/request.model';
+import { StudentService } from '../../student-registration/services/student.service';
+import { Student } from '../../student-registration/models/request.model';
 
 interface dropDown {
   label: string;
