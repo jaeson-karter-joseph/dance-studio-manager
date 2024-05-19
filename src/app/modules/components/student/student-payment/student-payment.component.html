@@ -3,7 +3,7 @@
     <div class="flex flex-row mb-3 justify-content-center">
       <div class="p-inputgroup md:w-6 sm:w-full">
         <span class="p-float-label">
-          <input type="text" id="iec" pInputText placeholder="Enter Register ID" formControlName="iceNumber" />
+          <input type="text" id="iec" pInputText placeholder="Enter Student ID" formControlName="iceNumber" />
           <label htmlFor="iec">Student ID</label>
           <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn" id="iecButton"
             aria-label="search" (click)="searchIEC()"></button>
@@ -18,47 +18,11 @@
     <div *ngIf="isIECFound" class="grid nested-grid ">
       <div class="col-12">
         <div class="grid sm:row-gap-3">
-          <!-- Dropdown for Payment Mode -->
-          <div class="col-12 md:col-4">
-            <div class="p-field">
-              <p-dropdown id="paymentMode" formControlName="selectedPayment" [options]="payment" optionLabel="name"
-                placeholder="Select Payment Mode"></p-dropdown>
-            </div>
-          </div>
-
-
-          <!-- DropDown for category -->
-          <div class="col-12 md:col-4">
-            <div class="p-field">
-              <span class="p-float-label">
-                <p-dropdown formControlName="selectedCategory" [options]="category"
-                  placeholder=" Select a Category "></p-dropdown>
-                <label>Select a Category</label>
-              </span>
-            </div>
-          </div>
-          <!-- Input for Classes Completed -->
+          <!-- Input for VAT  -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
-              <input type="number" id="classesCompleted" pInputText placeholder=" Classes Completed "
-                formControlName="classesCompleted" />
-              <label for="classesCompleted">Classes Completed</label>
-            </span>
-          </div>
-          <!-- Date for Date of Joining -->
-          <div class="col-12 md:col-4">
-            <span class="p-float-label">
-              <p-calendar formControlName="joiningDate" inputId="joining_date" [showIcon]="true"></p-calendar>
-              <label for="joining_date">Date of Joining</label>
-            </span>
-          </div>
-
-          <!-- date for Payment Date -->
-          <div class="col-12 md:col-4">
-            <span class="p-float-label">
-              <p-calendar inputId="payment_date" formControlName="paymentDate" placeholder=" Payment Date "
-                dateFormat="yy-mm-dd" [showIcon]="true"></p-calendar>
-              <label for="payment_date">Payment Date</label>
+              <input type="number" id="vat" pInputText placeholder="VAT" formControlName="vat" />
+              <label for="vat">VAT</label>
             </span>
           </div>
           <!-- Input for Classes Remaining -->
@@ -69,6 +33,14 @@
               <label for="classesRemaining">Classes Remaining</label>
             </span>
           </div>
+          <!-- Input for Classes Completed -->
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="number" id="classesCompleted" pInputText placeholder=" Classes Completed "
+                formControlName="classesCompleted" />
+              <label for="classesCompleted">Classes Completed</label>
+            </span>
+          </div>
           <!-- date for Valid Till -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
@@ -77,6 +49,40 @@
               <label for="validTill">Valid Till</label>
             </span>
           </div>
+          <!-- date for Payment Date -->
+          <div class="col-12 md:col-4">
+            <span class="p-float-label">
+              <p-calendar inputId="payment_date" formControlName="paymentDate" placeholder=" Payment Date "
+                dateFormat="yy-mm-dd" [showIcon]="true"></p-calendar>
+              <label for="payment_date">Payment Date</label>
+            </span>
+          </div>
+          <!-- Date for Date of Joining -->
+          <div class="col-12 md:col-4">
+            <span class="p-float-label">
+              <p-calendar formControlName="joiningDate" inputId="joining_date" [showIcon]="true"></p-calendar>
+              <label for="joining_date">Date of Joining</label>
+            </span>
+          </div>
+          <!-- Dropdown for Payment Mode -->
+          <div class="col-12 md:col-4">
+            <div class="p-field">
+              <p-dropdown id="paymentMode" formControlName="selectedPayment" [options]="payment" optionLabel="name"
+                placeholder="Select Payment Mode"></p-dropdown>
+            </div>
+          </div>
+          <!-- DropDown for category -->
+          <div class="col-12 md:col-4">
+            <div class="p-field">
+              <span class="p-float-label">
+                <p-dropdown formControlName="selectedCategory" [options]="category"
+                  placeholder=" Select a Category "></p-dropdown>
+                <label>Select a Category</label>
+              </span>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </div>

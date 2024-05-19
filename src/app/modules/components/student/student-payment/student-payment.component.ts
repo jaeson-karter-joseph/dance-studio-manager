@@ -42,7 +42,7 @@ export class StudentPaymentComponent {
 
   ngOnInit() {
     this.iecForm = this.formBuilder.group({
-      iceNumber: new FormControl<string | null>('IEC1234', [
+      iceNumber: new FormControl<string | null>('', [
         Validators.required,
       ]),
       firstName: [null, Validators.required],
@@ -69,6 +69,7 @@ export class StudentPaymentComponent {
       file: [null, Validators.required],
       ResidentialAddress: [''],
       checked: [false],
+      vat:[null, Validators.required],
     });
   }
 
@@ -91,6 +92,7 @@ export class StudentPaymentComponent {
       classCompleted: this.f['classesCompleted'].value,
       classRemaining: this.f['classesRemaining'].value,
       studentId: this.f['studentid'].value,
+      vat: this.f['vat'].value,
     };
 
     console.log(paymentData);

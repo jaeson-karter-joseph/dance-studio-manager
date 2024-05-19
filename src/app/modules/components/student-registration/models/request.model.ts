@@ -24,4 +24,5 @@ export interface Student {
     validityDate: string;
     classCompleted: number;
     classRemaining: number;
+    vat: number;
   }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { StudentDetailsProduct } from '../../../../../assets/data/DetailsProducts';
 import { StudentService } from '../../student-registration/services/student.service';
+import { Router } from '@angular/router';
+
 
 export interface StudentDetails {
   id: number;
@@ -67,7 +69,8 @@ export class StudentDetailsComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private studentService: StudentService
+    private studentService: StudentService,
+    private router : Router,
   ) {}
 
   ngOnInit() {
@@ -149,6 +152,10 @@ export class StudentDetailsComponent implements OnInit {
       this.productDialog = false;
       this.studentDetailsproduct = {};
     }
+  }
+
+  redirectOnEdit(id: string) {
+    this.router.navigate(['/student/studentRegistration/' + id]);
   }
 
   findIndexById(id: string): number {

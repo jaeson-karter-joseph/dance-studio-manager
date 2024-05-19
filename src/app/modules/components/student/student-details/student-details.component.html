@@ -54,7 +54,7 @@
         <td>{{ StudentDetails.gender }}</td>
         <td><span [class]="'product-badge status-' + StudentDetails.status">{{StudentDetails.status}}</span></td>
         <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editStudentDetail(StudentDetails)"></button>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="redirectOnEdit(StudentDetails.studentId)"></button>
         </td>
         <td><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteStudentDetails(StudentDetails)"></button></td>
       </tr>
@@ -67,73 +67,5 @@
   </p-table>
 </div>
 
-<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Student Details" [modal]="true" styleClass="p-fluid">
-  <ng-template pTemplate="content">
-    <div class="p-field">
-      <label for="name">First Name</label>
-      <input type="text" pInputText id="name" [(ngModel)]="StudentDetails.firstName" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !StudentDetails.firstName">First Name is required.</small>
-    </div>
-    <br>
-    <div class="p-field">
-      <label for="name">Last Name</label>
-      <input type="text" pInputText id="name" [(ngModel)]="StudentDetails.lastName" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !StudentDetails.lastName">Last Name is required.</small>
-    </div>
-    <br>
-    <div class="p-field">
-      <label for="email">Email ID</label>
-      <textarea id="email" pInputTextarea [(ngModel)]="StudentDetails.email" required rows="3" cols="20"></textarea>
-      <small class="p-invalid" *ngIf="submitted && !StudentDetails.email">Email is required.</small>
-    </div>
-    <br>
-    <div class="p-field">
-      <label for="email">Email ID</label>
-      <textarea id="email" pInputTextarea [(ngModel)]="StudentDetails.mobile" required rows="3" cols="20"></textarea>
-      <small class="p-invalid" *ngIf="submitted && !StudentDetails.mobile">Mobile Number is required.</small>
-    </div>
-    <br>
-    <div class="p-field">
-      <label for="email">Email ID</label>
-      <textarea id="email" pInputTextarea [(ngModel)]="StudentDetails.whatsappNo" required rows="3" cols="20"></textarea>
-      <small class="p-invalid" *ngIf="submitted && !StudentDetails.whatsappNo">Whatsapp No is required.</small>
-    </div>
-    <br>
-    <div class="p-field">
-      <label for="emid">Emirates ID/Passport ID</label>
-      <textarea id="emid" pInputTextarea [(ngModel)]="StudentDetails.emiritesOrPassportNo" required rows="3" cols="20"></textarea>
-      <small class="p-invalid" *ngIf="submitted && !StudentDetails.emiritesOrPassportNo">EmID/Pass is required.</small>
-    </div>
-    <br>
-    <div class="p-field">
-      <label for="studentid">Student ID</label>
-      <input type="text" pInputText id="studentID" [(ngModel)]="StudentDetails.studentId" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !StudentDetails.studentId">StudentID is required.</small>
-    </div>
-    <br>
-    <div class="p-field">
-      <label for="studentid">Social Media</label>
-      <input type="text" pInputText id="studentID" [(ngModel)]="StudentDetails.socialMedia" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !StudentDetails.socialMedia">StudentID is required.</small>
-    </div>
-    <br>
-    <div class="p-field">
-      <label for="gender">Gender</label>
-      <input type="text" pInputText id="gender" [(ngModel)]="StudentDetails.gender" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !StudentDetails.gender">Gender is required.</small>
-    </div>
-    <br>
-    <div class="p-field">
-      <label for="price">Date of Birth</label>
-      <p-calendar id="birthDate" [(ngModel)]="StudentDetails.dob" dateFormat="yy-mm-dd" [showIcon]="true"></p-calendar>
-      <small class="p-invalid" *ngIf="submitted && !StudentDetails.dob">BirthDate is required.</small>
-    </div>
-  </ng-template>
-
-  <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveStudentDetails()"></button>
-  </ng-template>
-</p-dialog>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
