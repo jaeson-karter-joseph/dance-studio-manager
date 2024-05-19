@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { StudentDetailsRoutingModule } from './student-details-routing.module';
 import { StudentDetailsComponent } from './student-details.component';
-import { ToastModule } from 'primeng/toast';
+import { NgprimeModule } from '../../../shared/ngprime/ngprime.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ToastModule } from 'primeng/toast';
   imports: [
     CommonModule,
     StudentDetailsRoutingModule,
-    ToastModule
+    NgprimeModule,
+    FormsModule
   ]
 })
 export class StudentDetailsModule { }

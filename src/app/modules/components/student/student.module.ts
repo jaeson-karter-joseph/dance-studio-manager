@@ -13,3 +13,5 @@ import { StudentRoutingModule } from './student-routing.module';
   ]
 })
 export class StudentModule { }
+
+

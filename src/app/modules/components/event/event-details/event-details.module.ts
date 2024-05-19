@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { EventDetailsRoutingModule } from './event-details-routing.module';
 import { EventDetailsComponent } from './event-details.component';
+import { NgprimeModule } from '../../../shared/ngprime/ngprime.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { EventDetailsComponent } from './event-details.component';
   ],
   imports: [
     CommonModule,
-    EventDetailsRoutingModule
+    EventDetailsRoutingModule,
+    NgprimeModule,    
+    FormsModule
   ]
 })
 export class EventDetailsModule { }

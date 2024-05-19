@@ -1,1 +1,58 @@
-<p>trainer-details works!</p>
+<p-table #dt [value]="TrainerDetailsData" [rows]="5" [paginator]="true"
+  [globalFilterFields]="['trId', 'trName', 'trainers', 'number', 'trDoj', 'inventoryStatus','gender','trEmID']"
+  [tableStyle]="{ 'min-width': '90rem' }" [rowHover]="true" dataKey="id"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+      <h5 class="m-0">Total Trainers :
+        <p-tag [value]="this.calculateTotalQty.toString()" styleClass="text-2xl"></p-tag>
+      </h5>
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+
+        <input pInputText type="text" #textInput (input)="dt.filterGlobal(textInput.value, 'contains')"
+          placeholder="Search..." />
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id" style="min-width:6rem">ID<p-sortIcon field="id"></p-sortIcon>
+      </th>
+      <th pSortableColumn="trID" style="min-width:6rem">Trainer ID<p-sortIcon field="trID"></p-sortIcon>
+      </th>
+      <th pSortableColumn="trName" style="min-width:9rem">Trainer Name<p-sortIcon field="trName"></p-sortIcon>
+      </th>
+      <th pSortableColumn="number" style="min-width:6rem">Phone Number <p-sortIcon field="number"></p-sortIcon>
+      </th>
+      <th pSortableColumn="trDoj" style="min-width:9rem">Date of Joining <p-sortIcon field="trDoj"></p-sortIcon>
+      </th>
+      <th pSortableColumn="gender" style="min-width:6rem">Gender<p-sortIcon field="gender"></p-sortIcon>
+      </th>
+      <th pSortableColumn="inventoryStatus" style="min-width:5rem">Status<p-sortIcon field="inventoryStatus">
+        </p-sortIcon>
+      </th>
+      <th pSortableColumn="trEmID" style="min-width:6rem">EID / Passport ID<p-sortIcon field="trEmID"></p-sortIcon>
+      </th>
+      <th>Download</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.trainerId }}</td>
+      <td>{{ product.trainerName }}</td>
+      <td>{{ product.phoneNumber }}</td>
+      <td>{{ product.doj | date }}</td>
+      <td>{{ product.gender }}</td>
+      <td>
+        <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"></p-tag>
+      </td>
+      <td>{{ product.eid }}</td>
+      <td>
+        <button aria-label="downloadBtn" type="button" pButton pRipple icon="pi pi-download" pTooltip="Add Download"
+          class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

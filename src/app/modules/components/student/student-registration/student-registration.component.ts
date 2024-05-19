@@ -1,12 +1,7 @@
+import { StudentPaymentComponent } from './../student-payment/student-payment.component';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { StudentService } from '../../student-registration/services/student.service';
-import { Student } from '../../student-registration/models/request.model';
-
-interface dropDown {
-  label: string;
-  value: string
-}
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-registration',
@@ -14,18 +9,8 @@ interface dropDown {
   styleUrl: './student-registration.component.scss'
 })
 export class StudentRegistrationComponent {
-  category: dropDown[] = [
-    { label: 'Adult', value: 'Adult' },
-    { label: 'Kids', value: 'Kids' },
-  ];
-  payment: dropDown[] = [
-    { value: 'Cash', label: 'Cash' },
-    { value: 'Credit', label: 'Credit Card' },
-    { value: 'Debit', label: 'Debit Card' },
-    { value: 'Net', label: 'Net Banking' },
-    { value: 'Bank', label: 'Bank Transfer' },
-  ];
-  genderOptions: dropDown[] = [
+
+  genderOptions = [
     { label: 'Male', value: 'male' },
     { label: 'Female', value: 'female' },
     { label: 'Other', value: 'other' }
@@ -36,33 +21,26 @@ export class StudentRegistrationComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private studentService: StudentService
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.iecForm = this.formBuilder.group({
       iceNumber: new FormControl<string | null>("IEC1234", [Validators.required]),
-      firstName: new FormControl<string | null>("IEC1234", [Validators.required]),
-      lastName: new FormControl<string | null>("IEC1234", [Validators.required]),
-      phoneNumber: new FormControl<string | null>("1234", [Validators.required]),
-      whatsappNumber: new FormControl<string | null>("1234", [Validators.required]),
-      importerEmailId: new FormControl<string | null>("john.doe@example.com", [Validators.required]),
-      instafbID: new FormControl<string | null>("IEC1234", [Validators.required]),
-      studentid: new FormControl<string | null>("1234", [Validators.required]),
-      emidpassno: new FormControl<string | null>("IEC1234", [Validators.required]),
-      notehealthissue: new FormControl<string | null>("IEC1234", [Validators.required]),
-      birthDate: new FormControl<Date | null>(new Date(), [Validators.required]),
-      selectedCategory: new FormControl<dropDown | null>({ label: 'Adult', value: 'Adult' }, [Validators.required]),
-      joiningDate: new FormControl<Date | null>(new Date(), [Validators.required]),
-      selectedPayment: new FormControl<dropDown | null>({ value: 'Cash', label: 'Cash' }, [Validators.required]),
-      paymentDate: new FormControl<Date | null>(new Date(), [Validators.required]),
-      validTill: new FormControl<Date | null>(new Date(), [Validators.required]),
-      classesCompleted: new FormControl<number | null>(2, [Validators.required]),
-      classesRemaining: new FormControl<number | null>(50, [Validators.required]),
-      selectedGender: new FormControl<dropDown | null>({ label: 'Male', value: 'male' }, [Validators.required]),
-      file: new FormControl<string | null>(null, [Validators.required]),
-      ResidentialAddress: new FormControl<string | null>("IEC1234", [Validators.required]),
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
+      phoneNumber: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
+      whatsappNumber: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
+      importerEmailId: [null, [Validators.required, Validators.email]],
+      instafbID: [null, Validators.required],
+      studentid: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
+      emidpassno: [null, Validators.required],
+      notehealthissue: [null, Validators.required],
+      birthDate: [null, Validators.required],
+      selectedGender: ['', Validators.required],
       checked: [false],
+      file: [null, Validators.required],
+      ResidentialAddress: [''],
     })
   }
 
@@ -72,7 +50,9 @@ export class StudentRegistrationComponent {
     this.iecForm.get('file')?.setValue(file);
   }
 
-
+  Payment() {
+    this.router.navigate(['/student/studentPayment']);
+  }
   load() {
     this.loading = true;
 
