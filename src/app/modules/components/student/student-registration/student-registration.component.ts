@@ -1,7 +1,9 @@
+import { StudentService } from './../../student-registration/services/student.service';
 import { StudentPaymentComponent } from './../student-payment/student-payment.component';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Student } from '../../student-registration/models/request.model';
 
 @Component({
   selector: 'app-student-registration',
@@ -21,7 +23,8 @@ export class StudentRegistrationComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private studentService: StudentService,
   ) { }
 
   ngOnInit() {
@@ -67,13 +70,6 @@ export class StudentRegistrationComponent {
       emiritesOrPassportNo: this.f['emidpassno'].value,
       healthIssue: this.f['notehealthissue'].value,
       dob: this.formatDate(this.f['birthDate'].value),
-      paymentMode: this.f['selectedPayment'].value.label,
-      paymentDate: this.formatDate(this.f['paymentDate'].value),
-      category: this.f['selectedCategory'].value.label,
-      doj: this.formatDate(this.f['joiningDate'].value),
-      validityDate: this.formatDate(this.f['validTill'].value),
-      classCompleted: this.f['classesCompleted'].value,
-      classRemaining: this.f['classesRemaining'].value,
       gender: this.f['selectedGender'].value.label,
       image: this.f['file'].value,
       address: this.f['ResidentialAddress'].value,
@@ -109,9 +105,11 @@ export class StudentRegistrationComponent {
   }
 
   formatDate(date: Date): string {
-    // Function to format date to 'YYYY-MM-DD' format
     return `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`;
   }
 
 }
+
+
+
 
