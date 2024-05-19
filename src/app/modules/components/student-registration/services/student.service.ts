@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { ResponseData } from '../models/response.model';
 import { Payment, Student } from '../models/request.model';
+import { StudentDetails } from '../../student/student-details/student-details.component';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,8 @@ export class StudentService {
     }))
   }
 
-  getStudent(): Observable<ResponseData<Student[]>> {
-    return this.http.get<ResponseData<Student[]>>(this.studentListURL, this.httpOptions).pipe(map(res => {
+  getStudent(): Observable<ResponseData<StudentDetails[]>> {
+    return this.http.get<ResponseData<StudentDetails[]>>(this.studentListURL, this.httpOptions).pipe(map(res => {
       return res;
     }))
   }

@@ -24,33 +24,40 @@
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="id" style="min-width:6rem">ID<p-sortIcon field="id"></p-sortIcon></th>
-        <th pSortableColumn="name" style="min-width:9rem">Stu.Name<p-sortIcon field="name"></p-sortIcon></th>
-        <th pSortableColumn="studentID" style="min-width:12rem">Stu.ID<p-sortIcon field="studentID"></p-sortIcon></th>
-        <th pSortableColumn="email" style="min-width:12rem">Email.ID <p-sortIcon field="email"></p-sortIcon></th>
-        <th pSortableColumn="gender" style="min-width:6rem">Gender<p-sortIcon field="gender"></p-sortIcon></th>
-        <th pSortableColumn="EmID" style="min-width:12rem">E.ID/Pass.ID<p-sortIcon field="EmID"></p-sortIcon></th>
-        <th pSortableColumn="birthDate" style="min-width:9rem">BrithDate<p-sortIcon field="birthDate"></p-sortIcon></th>
-        <th pSortableColumn="joiningDate" style="min-width:9rem">JoiningDate<p-sortIcon field="joiningDate"></p-sortIcon></th>
-        <th pSortableColumn="inventoryStatus" style="min-width:5rem">Status<p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+        <th pSortableColumn="firstName" style="min-width:9rem">First Name<p-sortIcon field="firstName"></p-sortIcon></th>
+        <th pSortableColumn="lastName" style="min-width:9rem">Last Name<p-sortIcon field="lastName"></p-sortIcon></th>
+        <th pSortableColumn="mobile" style="min-width:9rem">Mobile Number<p-sortIcon field="mobile"></p-sortIcon></th>
+        <th pSortableColumn="whatsappNo" style="min-width:9rem">Whatsapp Number<p-sortIcon field="whatsappNo"></p-sortIcon></th>
+        <th pSortableColumn="email" style="min-width:12rem">Email ID<p-sortIcon field="email"></p-sortIcon></th>
+        <th pSortableColumn="socialMedia" style="min-width:12rem">SocialMedia<p-sortIcon field="socialMedia"></p-sortIcon></th>
+        <th pSortableColumn="studentId" style="min-width:12rem">StudentId<p-sortIcon field="studentId"></p-sortIcon></th>
+        <th pSortableColumn="emiritesOrPassportNo" style="min-width:12rem">EmID/Passport<p-sortIcon field="emiritesOrPassportNo"></p-sortIcon></th>
+        <th pSortableColumn="dob" style="min-width:12rem">Date of Birth<p-sortIcon field="dob"></p-sortIcon></th>
+        <th pSortableColumn="gender" style="min-width:12rem">Gender<p-sortIcon field="gender"></p-sortIcon></th>
+        <th pSortableColumn="email" style="min-width:12rem">Email ID<p-sortIcon field="email"></p-sortIcon></th>
+        <th pSortableColumn="status" style="min-width:5rem">Status<p-sortIcon field="status"></p-sortIcon></th>
         <th pSortableColumn="edit" style="min-width:5rem" field="edit">Edit</th>
         <th pSortableColumn="download" style="min-width:5rem" field="download">Download</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-studentDetailsproduct>
+    <ng-template pTemplate="body" let-StudentDetails>
       <tr>
-        <td>{{ studentDetailsproduct.id }}</td>
-        <td>{{ studentDetailsproduct.name }}</td>
-        <td>{{ studentDetailsproduct.studentID }}</td>
-        <td>{{ studentDetailsproduct.email }}</td>
-        <td>{{ studentDetailsproduct.gender }}</td>
-        <td>{{ studentDetailsproduct.emId }}</td>
-        <td>{{ studentDetailsproduct.birthDate | date }}</td>
-        <td>{{ studentDetailsproduct.joinDate | date }}</td>
-        <td><span [class]="'product-badge status-' + studentDetailsproduct.inventoryStatus.toLowerCase()">{{studentDetailsproduct.inventoryStatus}}</span></td>
+        <td>{{ StudentDetails.id }}</td>
+        <td>{{ StudentDetails.firstName }}</td>
+        <td>{{ StudentDetails.lastName }}</td>
+        <td>{{ StudentDetails.mobile }}</td>
+        <td>{{ StudentDetails.whatsappNo }}</td>
+        <td>{{ StudentDetails.email }}</td>
+        <td>{{ StudentDetails.socialMedia }}</td>
+        <td>{{ StudentDetails.studentId }}</td>
+        <td>{{ StudentDetails.emiritesOrPassportNo }}</td>
+        <td>{{ StudentDetails.dob | date }}</td>
+        <td>{{ StudentDetails.gender }}</td>
+        <td><span [class]="'product-badge status-' + StudentDetails.status">{{StudentDetails.status}}</span></td>
         <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editStudentDetail(studentDetailsproduct)"></button>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editStudentDetail(StudentDetails)"></button>
         </td>
-        <td><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteStudentDetails(studentDetailsproduct)"></button></td>
+        <td><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteStudentDetails(StudentDetails)"></button></td>
       </tr>
     </ng-template>
     <ng-template pTemplate="summary">
@@ -64,45 +71,63 @@
 <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Student Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
     <div class="p-field">
-      <label for="name">Student Name</label>
-      <input type="text" pInputText id="name" [(ngModel)]="studentDetailsproduct.name" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !studentDetailsproduct.name">Name is required.</small>
+      <label for="name">First Name</label>
+      <input type="text" pInputText id="name" [(ngModel)]="StudentDetails.firstName" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !StudentDetails.firstName">First Name is required.</small>
+    </div>
+    <br>
+    <div class="p-field">
+      <label for="name">Last Name</label>
+      <input type="text" pInputText id="name" [(ngModel)]="StudentDetails.lastName" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !StudentDetails.lastName">Last Name is required.</small>
     </div>
     <br>
     <div class="p-field">
       <label for="email">Email ID</label>
-      <textarea id="email" pInputTextarea [(ngModel)]="studentDetailsproduct.email" required rows="3" cols="20"></textarea>
-      <small class="p-invalid" *ngIf="submitted && !studentDetailsproduct.email">Email is required.</small>
+      <textarea id="email" pInputTextarea [(ngModel)]="StudentDetails.email" required rows="3" cols="20"></textarea>
+      <small class="p-invalid" *ngIf="submitted && !StudentDetails.email">Email is required.</small>
+    </div>
+    <br>
+    <div class="p-field">
+      <label for="email">Email ID</label>
+      <textarea id="email" pInputTextarea [(ngModel)]="StudentDetails.mobile" required rows="3" cols="20"></textarea>
+      <small class="p-invalid" *ngIf="submitted && !StudentDetails.mobile">Mobile Number is required.</small>
+    </div>
+    <br>
+    <div class="p-field">
+      <label for="email">Email ID</label>
+      <textarea id="email" pInputTextarea [(ngModel)]="StudentDetails.whatsappNo" required rows="3" cols="20"></textarea>
+      <small class="p-invalid" *ngIf="submitted && !StudentDetails.whatsappNo">Whatsapp No is required.</small>
     </div>
     <br>
     <div class="p-field">
       <label for="emid">Emirates ID/Passport ID</label>
-      <textarea id="emid" pInputTextarea [(ngModel)]="studentDetailsproduct.emId" required rows="3" cols="20"></textarea>
-      <small class="p-invalid" *ngIf="submitted && !studentDetailsproduct.emId">EmID/Pass is required.</small>
+      <textarea id="emid" pInputTextarea [(ngModel)]="StudentDetails.emiritesOrPassportNo" required rows="3" cols="20"></textarea>
+      <small class="p-invalid" *ngIf="submitted && !StudentDetails.emiritesOrPassportNo">EmID/Pass is required.</small>
     </div>
     <br>
     <div class="p-field">
       <label for="studentid">Student ID</label>
-      <input type="text" pInputText id="studentID" [(ngModel)]="studentDetailsproduct.studentID" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !studentDetailsproduct.studentID">StudentID is required.</small>
+      <input type="text" pInputText id="studentID" [(ngModel)]="StudentDetails.studentId" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !StudentDetails.studentId">StudentID is required.</small>
+    </div>
+    <br>
+    <div class="p-field">
+      <label for="studentid">Social Media</label>
+      <input type="text" pInputText id="studentID" [(ngModel)]="StudentDetails.socialMedia" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !StudentDetails.socialMedia">StudentID is required.</small>
     </div>
     <br>
     <div class="p-field">
       <label for="gender">Gender</label>
-      <input type="text" pInputText id="gender" [(ngModel)]="studentDetailsproduct.gender" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !studentDetailsproduct.gender">Gender is required.</small>
-    </div>
-    <br>
-    <div class="p-field">
-      <label for="quantity">Joining Date</label>
-      <p-calendar id="joinDate" [(ngModel)]="studentDetailsproduct.joinDate" dateFormat="yy-mm-dd" [showIcon]="true" rows="3" cols="20"></p-calendar>
-      <small class="p-invalid" *ngIf="submitted && !studentDetailsproduct.joinDate">JoinDate is required.</small>
+      <input type="text" pInputText id="gender" [(ngModel)]="StudentDetails.gender" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !StudentDetails.gender">Gender is required.</small>
     </div>
     <br>
     <div class="p-field">
       <label for="price">Date of Birth</label>
-      <p-calendar id="birthDate" [(ngModel)]="studentDetailsproduct.birthDate" dateFormat="yy-mm-dd" [showIcon]="true"></p-calendar>
-      <small class="p-invalid" *ngIf="submitted && !studentDetailsproduct.birthDate">BirthDate is required.</small>
+      <p-calendar id="birthDate" [(ngModel)]="StudentDetails.dob" dateFormat="yy-mm-dd" [showIcon]="true"></p-calendar>
+      <small class="p-invalid" *ngIf="submitted && !StudentDetails.dob">BirthDate is required.</small>
     </div>
   </ng-template>
 

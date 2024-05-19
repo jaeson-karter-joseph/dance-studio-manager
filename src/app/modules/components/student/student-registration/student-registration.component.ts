@@ -80,6 +80,7 @@ export class StudentRegistrationComponent {
 
     this.studentService.saveStudent(studentData).subscribe({
       next: res => {
+        this.loading = false;
         console.log(res);
       }
     })

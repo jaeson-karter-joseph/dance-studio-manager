@@ -97,6 +97,7 @@ export class StudentPaymentComponent {
 
     this.studentService.savePayment(paymentData).subscribe({
       next: (res) => {
+        this.loading = false;
         console.log(res);
       },
     });
