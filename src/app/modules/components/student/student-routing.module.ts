@@ -8,6 +8,8 @@ const routes: Routes = [
   { path: 'studentDetails', loadChildren: () => import('./student-details/student-details.module').then(m => m.StudentDetailsModule) },
   { path: 'studentPayment', loadChildren: () => import('./student-payment/student-payment.module').then(m => m.StudentPaymentModule) },
 
+
+
 ];
 
 @NgModule({

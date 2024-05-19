@@ -18,6 +18,8 @@ export interface StudentDetails {
   dob: string;
   gender: string;
   status: boolean;
+  healthIssue: string;
+  address: string;
 }
 
 @Component({
@@ -35,36 +37,7 @@ export class StudentDetailsComponent implements OnInit {
   statuses!: any[];
 
   StudentDetails!: StudentDetails;
-  StudentDetailsData: StudentDetails[] = [
-    {
-      id: 1,
-      firstName: 'Randolf',
-      lastName: 'Rafi',
-      mobile: 6287498428,
-      whatsappNo: 6287498428,
-      email: 'rtwitchings0@japanpost.jp',
-      socialMedia: 'rtwitchings0@japanpost.jp',
-      studentId: '9ET8G02KQ02',
-      emiritesOrPassportNo: '377-55-9760',
-      dob: new Date('2023-11-12').toDateString(),
-      gender: 'Male',
-      status: true,
-    },
-    {
-      id: 1,
-      firstName: 'jason',
-      lastName: 'Rafi',
-      mobile: 6287498428,
-      whatsappNo: 6287498428,
-      email: 'rtwitchings0@japanpost.jp',
-      socialMedia: 'rtwitchings0@japanpost.jp',
-      studentId: '9ET8G02KQ02',
-      emiritesOrPassportNo: '377-55-9760',
-      dob: new Date('2023-11-12').toDateString(),
-      gender: 'Male',
-      status: true,
-    },
-  ];
+  StudentDetailsData: StudentDetails[] = [];
 
   constructor(
     private messageService: MessageService,

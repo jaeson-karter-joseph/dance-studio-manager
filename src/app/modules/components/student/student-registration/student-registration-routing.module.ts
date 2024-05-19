@@ -4,6 +4,7 @@ import { StudentRegistrationComponent } from './student-registration.component';
 
 const routes: Routes = [{ path: '', component: StudentRegistrationComponent },
 { path: ':id', component: StudentRegistrationComponent }
+
 ];
 
 @NgModule({

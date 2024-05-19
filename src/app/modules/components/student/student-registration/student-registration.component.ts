@@ -61,6 +61,21 @@ export class StudentRegistrationComponent {
         next: (res) => {
           this.loading = false;
           console.log(res);
+          this.iecForm.patchValue({
+            firstName : res.data?.firstName,
+            lastNmae : res.data?.lastName,
+            phoneNumber : res.data?.mobile,
+            whatsappNumber : res.data?.whatsappNo,
+            importerEmailId : res.data?.email,
+            instafbID : res.data?.socialMedia,
+            studentid : res.data?.studentId,
+            emidpassno : res.data?.emiritesOrPassportNo,
+            notehealthissue : res.data?.healthIssue,
+            birthDate : res.data?.dob,
+            selectedGender : res.data?.gender,
+            checked : res.data?.status,
+            ResidentialAddress : res.data?.address,
+          })
         },
         error: (err) => {
           this.loading = false;
@@ -75,8 +90,8 @@ export class StudentRegistrationComponent {
     this.iecForm.get('file')?.setValue(file);
   }
 
-  Payment() {
-    this.router.navigate(['/student/studentPayment']);
+  Payment(id: string) {
+    this.router.navigate(['/student/studentPayment/' + id]);
   }
 
   load() {
