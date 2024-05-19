@@ -31,6 +31,9 @@ export class MenuComponent implements OnInit {
                 label: 'Student Register', icon: 'pi pi-fw pi-pencil', routerLink: ['/student/studentRegistration'],
               },
               {
+                label: 'Student Payment', icon: 'pi pi-fw pi-wallet', routerLink: ['/student/studentPayment'],
+              },
+              {
                 label: 'Students Details', icon: 'pi pi-fw pi-database', routerLink: ['/student/studentDetails'],
               },
             ]

@@ -1,15 +1,24 @@
-import { StudentPaymentComponent } from './../student-payment/student-payment.component';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
+
 
 @Component({
-  selector: 'app-student-registration',
-  templateUrl: './student-registration.component.html',
-  styleUrl: './student-registration.component.scss'
+  selector: 'app-student-payment',
+  templateUrl: './student-payment.component.html',
+  styleUrl: './student-payment.component.scss',
 })
-export class StudentRegistrationComponent {
-
+export class StudentPaymentComponent {
+  category = [
+    { label: 'Adult', value: 'Adult' },
+    { label: 'Kids', value: 'Kids' },
+  ];
+  payment = [
+    { name: 'Cash' },
+    { name: 'Credit Card' },
+    { name: 'Debit Card' },
+    { name: 'Net Banking' },
+    { name: 'Bank Transfer' },
+  ];
   genderOptions = [
     { label: 'Male', value: 'male' },
     { label: 'Female', value: 'female' },
@@ -21,7 +30,6 @@ export class StudentRegistrationComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
   ) { }
 
   ngOnInit() {
@@ -37,10 +45,17 @@ export class StudentRegistrationComponent {
       emidpassno: [null, Validators.required],
       notehealthissue: [null, Validators.required],
       birthDate: [null, Validators.required],
+      selectedCategory: [null, Validators.required],
+      joiningDate: [null, Validators.required],
+      selectedPayment: [null, Validators.required],
+      paymentDate: [null, Validators.required],
+      validTill: [null, Validators.required],
+      classesCompleted: [null, [Validators.required, Validators.min(0)]],
+      classesRemaining: [null, [Validators.required, Validators.min(0)]],
       selectedGender: ['', Validators.required],
-      checked: [false],
       file: [null, Validators.required],
       ResidentialAddress: [''],
+      checked: [false],
     })
   }
 
@@ -50,9 +65,10 @@ export class StudentRegistrationComponent {
     this.iecForm.get('file')?.setValue(file);
   }
 
-  Payment() {
-    this.router.navigate(['/student/studentPayment']);
+  edit(){
+
   }
+
   load() {
     this.loading = true;
     // const iecFormData: IecMaster = {
@@ -98,6 +114,4 @@ export class StudentRegistrationComponent {
   searchIEC() {
     this.isIECFound = true;
   }
-
 }
-
