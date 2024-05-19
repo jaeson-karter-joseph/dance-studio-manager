@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, withComponentInputBinding } from '@angular/router';
 import { AppLayoutComponent } from './modules/shared/app-layout/components/app-layout/app-layout.component';
 
 const routes: Routes = [
@@ -17,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {bindToComponentInputs: true}),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

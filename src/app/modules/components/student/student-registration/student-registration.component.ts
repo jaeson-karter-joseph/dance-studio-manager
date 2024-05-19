@@ -1,39 +1,50 @@
 import { StudentService } from './../../student-registration/services/student.service';
 import { StudentPaymentComponent } from './../student-payment/student-payment.component';
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Student } from '../../student-registration/models/request.model';
 
 @Component({
   selector: 'app-student-registration',
   templateUrl: './student-registration.component.html',
-  styleUrl: './student-registration.component.scss'
+  styleUrl: './student-registration.component.scss',
 })
 export class StudentRegistrationComponent {
-
+  @Input() id!: string;
   genderOptions = [
     { label: 'Male', value: 'male' },
     { label: 'Female', value: 'female' },
-    { label: 'Other', value: 'other' }
+    { label: 'Other', value: 'other' },
   ];
   loading: boolean = false;
-  iecForm !: FormGroup;
+  iecForm!: FormGroup;
   isIECFound: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private studentService: StudentService,
-  ) { }
+    private studentService: StudentService
+  ) {}
 
   ngOnInit() {
     this.iecForm = this.formBuilder.group({
-      iceNumber: new FormControl<string | null>("IEC1234", [Validators.required]),
+      iceNumber: new FormControl<string | null>('IEC1234', [
+        Validators.required,
+      ]),
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
       phoneNumber: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
-      whatsappNumber: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
+      whatsappNumber: [
+        null,
+        [Validators.required, Validators.pattern(/^\d+$/)],
+      ],
       importerEmailId: [null, [Validators.required, Validators.email]],
       instafbID: [null, Validators.required],
       studentid: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
@@ -44,9 +55,20 @@ export class StudentRegistrationComponent {
       checked: [false],
       file: [null, Validators.required],
       ResidentialAddress: [''],
-    })
+    });
+    if(!!this.id){
+      this.studentService.getStudentId(this.id).subscribe({
+        next: (res) => {
+          this.loading = false;
+          console.log(res);
+        },
+        error: (err) => {
+          this.loading = false;
+          console.log(err);
+        },
+      });
+    }
   }
-
 
   onUpload(event: any) {
     const file = event.files[0];
@@ -56,6 +78,7 @@ export class StudentRegistrationComponent {
   Payment() {
     this.router.navigate(['/student/studentPayment']);
   }
+
   load() {
     this.loading = true;
 
@@ -73,19 +96,17 @@ export class StudentRegistrationComponent {
       gender: this.f['selectedGender'].value.label,
       image: this.f['file'].value,
       address: this.f['ResidentialAddress'].value,
-      status: this.f['checked'].value
+      status: this.f['checked'].value,
     };
 
     console.log(studentData);
 
     this.studentService.saveStudent(studentData).subscribe({
-      next: res => {
+      next: (res) => {
         this.loading = false;
         console.log(res);
-      }
-    })
-
-
+      },
+    });
   }
 
   resetForm() {
@@ -98,19 +119,19 @@ export class StudentRegistrationComponent {
   }
 
   checkError = (controlName: string, errorName: string) => {
-    return this.iecForm.controls[controlName].hasError(errorName) && this.iecForm.controls[controlName].dirty;
-  }
+    return (
+      this.iecForm.controls[controlName].hasError(errorName) &&
+      this.iecForm.controls[controlName].dirty
+    );
+  };
 
   searchIEC() {
     this.isIECFound = true;
   }
 
   formatDate(date: Date): string {
-    return `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`;
+    return `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${(
+      '0' + date.getDate()
+    ).slice(-2)}`;
   }
-
 }
-
-
-
-
