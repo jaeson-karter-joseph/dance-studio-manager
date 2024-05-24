@@ -1,7 +1,7 @@
 <form [formGroup]="iecForm" (ngSubmit)="load()">
   <div class="card">
     <!-- Details section, shown if IEC is found -->
-    <div class="grid nested-grid ">
+    <div class="grid nested-grid">
       <div class="col-12">
         <div class="grid sm:row-gap-3">
           <!-- Input for First Name -->
@@ -21,16 +21,14 @@
           <!-- Input for Phone Number -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
-              <input type="number" id="phoneNumber" pInputText placeholder=" Phone Number "
-                formControlName="phoneNumber" />
+              <input type="number" id="phoneNumber" pInputText placeholder=" Phone Number " formControlName="phoneNumber" />
               <label for="phoneNumber">Phone Number</label>
             </span>
           </div>
           <!-- Input for Whatsapp Number -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
-              <input type="number" id="whatsappNumber" pInputText placeholder=" Whatsapp Number "
-                formControlName="whatsappNumber" />
+              <input type="number" id="whatsappNumber" pInputText placeholder=" Whatsapp Number " formControlName="whatsappNumber" />
               <label for="whatsappNumber">Whatsapp Number</label>
             </span>
           </div>
@@ -41,35 +39,11 @@
               <label for="emailId">Email ID</label>
             </span>
           </div>
-          <!-- Input for Insta/FB ID -->
-          <div class="col-12 md:col-4 p-inputgroup">
-            <span class="p-float-label">
-              <input type="text" id="instafbID" pInputText placeholder=" Instagram / Facebook ID "
-                formControlName="instafbID" />
-              <label for="instafbID">Instagram / Facebook ID</label>
-            </span>
-          </div>
           <!-- Input for Number of Student ID -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
               <input type="number" id="studentid" pInputText placeholder=" Student ID " formControlName="studentid" />
               <label for="studentid">Student ID</label>
-            </span>
-          </div>
-          <!-- Input for Emirates ID / Passport Number -->
-          <div class="col-12 md:col-4 p-inputgroup">
-            <span class="p-float-label">
-              <input type="text" id="emid/passno" pInputText placeholder=" Emirates ID / Passport Number "
-                formControlName="emidpassno" />
-              <label for="emid/passno">Emirates ID / Passport Number</label>
-            </span>
-          </div>
-          <!-- Input for Note of Health Issue -->
-          <div class="col-12 md:col-4 p-inputgroup">
-            <span class="p-float-label">
-              <input type="text" id="healthissue" pInputText placeholder=" Note of Health Issue "
-                formControlName="notehealthissue" />
-              <label for="noteofhealthissue">Note of Health Issue</label>
             </span>
           </div>
           <!-- Date for Birthdate -->
@@ -82,28 +56,19 @@
           <!-- Input for Gender -->
           <div class="col-12 md:col-4">
             <div class="p-field">
-              <p-dropdown id="gender" formControlName="selectedGender" [options]="genderOptions" optionLabel="label"
-                placeholder="Select Gender"></p-dropdown>
+              <p-dropdown id="gender" formControlName="selectedGender" [options]="genderOptions" optionLabel="label" placeholder="Select Gender"></p-dropdown>
             </div>
           </div>
           <!-- ToogleButton for Active/Inactive -->
           <div class="col-12 md:col-4">
             <div class="p-field">
-              <p-toggleButton id="toggleButton" formControlName="checked" onLabel="Active"
-                offLabel="Inactive"></p-toggleButton>
+              <p-toggleButton id="toggleButton" formControlName="checked" onLabel="Active" offLabel="Inactive"></p-toggleButton>
             </div>
           </div>
-          <!-- File Upload -->
-          <div class="col-12 md:col-4">
-            <p-fileUpload name="file" [auto]="true" (onSelect)="onUpload($event)" chooseLabel="Choose"
-              url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*"
-              [maxFileSize]="1000000"></p-fileUpload>
-          </div>
           <!-- Textarea for Residential Address -->
-          <div class="col-12  md:col-4 p-inputgroup">
+          <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
-              <textarea id="ResidentialAddress" rows="5" placeholder="Enter the Residential Address" pInputTextarea
-                formControlName="ResidentialAddress"></textarea>
+              <textarea id="ResidentialAddress" rows="5" placeholder="Enter the Residential Address" pInputTextarea formControlName="ResidentialAddress"></textarea>
               <label for="ResidentialAddress">Residential Address</label>
             </span>
           </div>
@@ -116,6 +81,6 @@
     <p-button label="Save" type="submit" [loading]="loading"></p-button>
     <button pButton type="button" label="Delete" [loading]="loading" (click)="load()"></button>
     <button pButton type="button" label="Reset" [loading]="loading" (click)="resetForm()"></button>
-    <button pButton type="button" label="Go To Payment Page" (click)="Payment(this.iecForm.get('studentid')?.value)" class=""></button>
+    <button pButton type="button" label="Go To Course Page" (click)="Course(this.iecForm.get('studentid')?.value)" class=""></button>
   </div>
 </form>

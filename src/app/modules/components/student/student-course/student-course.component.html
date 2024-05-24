@@ -1,0 +1,39 @@
+<form [formGroup]="iecForm" (ngSubmit)="load()">
+  <div class="card">
+    <!-- Details section, shown if IEC is found -->
+    <div class="grid nested-grid">
+      <div class="col-12">
+        <div class="grid sm:row-gap-3">
+          <!-- Input for Course(s) Enrolled -->
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="text" id="coursesEnrolled" pInputText placeholder=" Course(s) Enrolled " formControlName="coursesEnrolled" />
+              <label for="coursesEnrolled">Course(s) Enrolled</label>
+            </span>
+          </div>
+          <!-- Input for Session Times -->
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="time" id="sessionTimes" pInputText placeholder=" Session Times " formControlName="sessionTimes" />
+              <label for="sessionTimes">Session Times</label>
+            </span>
+          </div>
+          <!-- Input for Instructor/Trainer -->
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="text" id="instructorTrainer" pInputText placeholder=" Instructor/Trainer " formControlName="instructorTrainer" />
+              <label for="instructorTrainer">Instructor/Trainer</label>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Action buttons for Save, Delete, and Reset -->
+  <div class="card flex justify-content-center column-gap-3">
+    <p-button label="Save" type="submit" [loading]="loading"></p-button>
+    <button pButton type="button" label="Delete" [loading]="loading" (click)="load()"></button>
+    <button pButton type="button" label="Reset" [loading]="loading" (click)="resetForm()"></button>
+    <button pButton type="button" label="Go To Payment Page" (click)="Payment(this.iecForm.get('studentid')?.value)" class=""></button>
+  </div>
+</form>

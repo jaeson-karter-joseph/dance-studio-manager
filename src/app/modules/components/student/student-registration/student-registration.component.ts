@@ -46,14 +46,10 @@ export class StudentRegistrationComponent {
         [Validators.required, Validators.pattern(/^\d+$/)],
       ],
       importerEmailId: [null, [Validators.required, Validators.email]],
-      instafbID: [null, Validators.required],
       studentid: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
-      emidpassno: [null, Validators.required],
-      notehealthissue: [null, Validators.required],
       birthDate: [null, Validators.required],
       selectedGender: ['', Validators.required],
       checked: [false],
-      file: [null, Validators.required],
       ResidentialAddress: [''],
     });
     if(!!this.id){
@@ -61,21 +57,8 @@ export class StudentRegistrationComponent {
         next: (res) => {
           this.loading = false;
           console.log(res);
-          this.iecForm.patchValue({
-            firstName : res.data?.firstName,
-            lastNmae : res.data?.lastName,
-            phoneNumber : res.data?.mobile,
-            whatsappNumber : res.data?.whatsappNo,
-            importerEmailId : res.data?.email,
-            instafbID : res.data?.socialMedia,
-            studentid : res.data?.studentId,
-            emidpassno : res.data?.emiritesOrPassportNo,
-            notehealthissue : res.data?.healthIssue,
-            birthDate : res.data?.dob,
-            selectedGender : res.data?.gender,
-            checked : res.data?.status,
-            ResidentialAddress : res.data?.address,
-          })
+
+          this.iecForm.patchValue;
         },
         error: (err) => {
           this.loading = false;
@@ -90,8 +73,8 @@ export class StudentRegistrationComponent {
     this.iecForm.get('file')?.setValue(file);
   }
 
-  Payment(id: string) {
-    this.router.navigate(['/student/studentPayment/' + id]);
+  Course() {
+    this.router.navigate(['/student/studentCourse']);
   }
 
   load() {
@@ -103,13 +86,9 @@ export class StudentRegistrationComponent {
       mobile: parseInt(this.f['phoneNumber'].value),
       whatsappNo: parseInt(this.f['whatsappNumber'].value),
       email: this.f['importerEmailId'].value,
-      socialMedia: this.f['instafbID'].value,
       studentId: this.f['studentid'].value,
-      emiritesOrPassportNo: this.f['emidpassno'].value,
-      healthIssue: this.f['notehealthissue'].value,
       dob: this.formatDate(this.f['birthDate'].value),
       gender: this.f['selectedGender'].value.label,
-      image: this.f['file'].value,
       address: this.f['ResidentialAddress'].value,
       status: this.f['checked'].value,
     };
