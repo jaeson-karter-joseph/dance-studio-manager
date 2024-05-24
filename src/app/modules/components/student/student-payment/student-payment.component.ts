@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import {  StudentPayment } from '../../student-registration/models/request.model';
 import { StudentService } from '../../student-registration/services/student.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-student-payment',
@@ -19,18 +21,18 @@ export class StudentPaymentComponent {
     { name: 'Bank Transfer' },
   ];
   loading: boolean = false;
-  iecForm!: FormGroup;
+  studentPayment!: FormGroup;
   isIECFound: boolean = false;
-  router: any;
+  isFormSubmitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private studentService: StudentService
+    private studentService: StudentService,
+    private router : Router
   ) {}
 
   ngOnInit() {
-    this.iecForm = this.formBuilder.group({
-      iceNumber: new FormControl<string | null>('', [Validators.required]),
+    this.studentPayment = this.formBuilder.group({
       totalFees: [null, Validators.required],
       vat: [null, Validators.required],
       selectedPayment: [null, Validators.required],
@@ -40,7 +42,7 @@ export class StudentPaymentComponent {
   }
 
   AnyInfo() {
-    this.router.navigate(['/student/studentInfo']);
+    this.router.navigate(['/student/studentAdditionalInfo']);
   }
   load() {
     this.loading = true;
@@ -60,18 +62,18 @@ export class StudentPaymentComponent {
   }
 
   resetForm() {
-    this.iecForm.reset();
+    this.studentPayment.reset();
     console.log('Form reset');
   }
 
   get f(): { [key: string]: AbstractControl } {
-    return this.iecForm.controls;
+    return this.studentPayment.controls;
   }
 
   checkError = (controlName: string, errorName: string) => {
     return (
-      this.iecForm.controls[controlName].hasError(errorName) &&
-      this.iecForm.controls[controlName].dirty
+      this.studentPayment.controls[controlName].hasError(errorName) &&
+      this.studentPayment.controls[controlName].dirty
     );
   };
 

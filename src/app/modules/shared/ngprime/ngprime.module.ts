@@ -23,9 +23,9 @@ import { TooltipModule } from 'primeng/tooltip';
 import { CalendarModule } from 'primeng/calendar';
 import { DividerModule } from 'primeng/divider';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-
-
-
+import { StepperModule } from 'primeng/stepper';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { FloatLabelModule } from 'primeng/floatlabel';
 @NgModule({
   declarations: [],
   imports: [
@@ -53,8 +53,10 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
     TooltipModule,
     CalendarModule,
     DividerModule,
-    ToggleButtonModule
-
+    ToggleButtonModule,
+    StepperModule,
+    MultiSelectModule,
+    FloatLabelModule
   ]
 })
 export class NgprimeModule { }

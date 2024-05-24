@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { Router } from 'express';
 import { StudentService } from '../../student-registration/services/student.service';
 import { StudentAdditionalInfo } from '../../student-registration/models/request.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-info',
@@ -21,8 +21,7 @@ export class StudentInfoComponent {
 
   ngOnInit() {
     this.iecForm = this.formBuilder.group({
-      anySpecialRequest: [null, Validators.required],
-      notes: [null, Validators.required],
+      anySpecialRequest: [null],
     });
 
     if (this.id) {

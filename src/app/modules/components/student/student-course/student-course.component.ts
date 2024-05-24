@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { StudentService } from '../../student-registration/services/student.service';
 import { StudentCourse } from '../../student-registration/models/request.model';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-student-course',
@@ -12,26 +13,33 @@ import { Router } from '@angular/router';
 export class StudentCourseComponent {
   @Input() id!: string;
   loading: boolean = false;
-  iecForm!: FormGroup;
+  courseDetails!: FormGroup;
+  danceForms: string[] = ['Ballet', 'Jazz', 'Hip Hop', 'Contemporary', 'Tap', 'Salsa', 'Swing', 'Tango', 'Belly', 'Break'];
+  danceInstructors : string[] = ['Jaeson', 'Joseph', 'Rafi', 'Aakash'];
+  minDate : Date = new Date();
+  isFormSubmitted = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private studentService: StudentService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.iecForm = this.formBuilder.group({
-      coursesEnrolled: [null, Validators.required],
-      sessionTimes: [null, Validators.required],
-      instructorTrainer: [null, Validators.required],
+
+    this.courseDetails = this.formBuilder.group({
+      coursesEnrolled: new FormControl<string[] | null>(null, [Validators.required]),
+      sessionTimes: new FormControl<Date[] | null>(null,[Validators.required]),
+      instructorTrainer: new FormControl<string[] | null>(null, [Validators.required]),
     });
+
 
     if (this.id) {
       this.studentService.getStudentId(this.id).subscribe({
         next: (res) => {
           this.loading = false;
           console.log(res);
-          this.iecForm.patchValue(res);
+          this.courseDetails.patchValue(res);
         },
         error: (err) => {
           this.loading = false;
@@ -58,18 +66,18 @@ export class StudentCourseComponent {
   }
 
   resetForm() {
-    this.iecForm.reset();
+    this.courseDetails.reset();
     console.log('Form reset');
   }
 
   get f(): { [key: string]: AbstractControl } {
-    return this.iecForm.controls;
+    return this.courseDetails.controls;
   }
 
   checkError = (controlName: string, errorName: string) => {
     return (
-      this.iecForm.controls[controlName].hasError(errorName) &&
-      this.iecForm.controls[controlName].dirty
+      this.courseDetails.controls[controlName].hasError(errorName) &&
+      this.courseDetails.controls[controlName].dirty
     );
   };
 
