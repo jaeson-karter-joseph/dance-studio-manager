@@ -1,53 +1,25 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-trainer-registration',
-  templateUrl: './trainer-registration.component.html',
-  styleUrl: './trainer-registration.component.scss'
+  selector: 'app-salary-calculation',
+  templateUrl: './salary-calculation.component.html',
+  styleUrl: './salary-calculation.component.scss',
 })
-export class TrainerRegistrationComponent {
-  conductedCourse = [
-    { label: 'Bolly Hop', value: 'Bolly Hop' },
-    { label: 'Hip Hop', value: 'Hip Hop' },
-    { label: 'Indian Fusion', value: 'Indian Fusion' },
-    { label: 'Bharatnatyam', value: 'Bharatnatyam' },
-    { label: 'Yoga', value: 'Yoga' },
-    { label: 'Zumba', value: 'Zumba' },
-    { label: 'Arts', value: 'Arts' },
-  ];
-  genderOptions = [
-    { label: 'Male', value: 'male' },
-    { label: 'Female', value: 'female' },
-    { label: 'Other', value: 'other' }
-  ];
+export class SalaryCalculationComponent {
   loading: boolean = false;
-  iecForm !: FormGroup;
+  iecForm!: FormGroup;
   isIECFound: boolean = false;
 
-  constructor(
-    private formBuilder: FormBuilder,
-  ) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.iecForm = this.formBuilder.group({
-      firstName: [null, Validators.required],
+      collectedPerTrainer: [null, Validators.required],
       lastName: [null, Validators.required],
       phoneNumber: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
-      whatsappNumber: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
-      importerEmailId: [null, [Validators.required, Validators.email]],
-      selectedConductedCourse: [null, Validators.required],
-      courseConducted: [null, [Validators.required, Validators.min(0)]],
-      birthDate: [null, [Validators.required]],
-      selectedGender: ['', Validators.required],
-      ResidentialAddress: [''],
-      checked: [false],
-    })
+    });
   }
-
-
-
-
   load() {
     this.loading = true;
     // const iecFormData: IecMaster = {

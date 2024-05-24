@@ -1,0 +1,39 @@
+<form [formGroup]="iecForm" (ngSubmit)="load()">
+  <div class="card">
+    <!-- Details section, shown if IEC is found -->
+    <div class="grid nested-grid">
+      <div class="col-12">
+        <div class="grid sm:row-gap-3">
+          <!-- Input for Collected Per Trainer -->
+          <div class="col-12  p-inputgroup">
+            <span class="p-float-label">
+              <input type="text" id="collectedPerTrainer" pInputText placeholder=" Total Amount Collected per Trainer:" formControlName="collectedPerTrainer" />
+              <label for="collectedPerTrainer">Total Amount Collected per Trainer</label>
+            </span>
+          </div>
+                    <!-- Input for Studio Share -->
+                    <div class="col-12 md:col-6 p-inputgroup">
+                      <span class="p-float-label">
+                        <input type="number" id="studioShare" pInputText placeholder=" Studio Share (60%)* "
+                          formControlName="studioShare" />
+                        <label for="studioShare">Studio Share (60%)</label>
+                      </span>
+                    </div>
+          <!-- Input for Trainer Share -->
+          <div class="col-12 md:col-6 p-inputgroup">
+            <span class="p-float-label">
+              <input type="text" id="trainerShare" pInputText placeholder=" Trainer Share(40)* " formControlName="trainerShare" />
+              <label for="trainerShare">Trainer Share(40)</label>
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Action buttons for Save, Delete, Reset, and Go to Course Page -->
+  <div class="card flex justify-content-center column-gap-3">
+    <p-button label="Save" type="submit" [loading]="loading" (click)="load()"></p-button>
+    <button pButton type="button" label="Reset" [loading]="loading" (click)="resetForm()"></button>
+  </div>
+</form>

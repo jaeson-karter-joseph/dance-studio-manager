@@ -1,84 +1,125 @@
 import { Component, OnInit } from '@angular/core';
 import { LayoutService } from '../../services/layout.service';
 
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
   model: any[] = [];
-  constructor(public layoutService: LayoutService) { }
-
+  constructor(public layoutService: LayoutService) {}
 
   ngOnInit() {
     this.model = [
       {
-        label: 'Dashboard', items: [
+        label: 'Dashboard',
+        items: [
           {
-            label: 'Overview', icon: 'pi pi-fw pi-bookmark-fill', routerLink: ['/dashboard/studio-overview'],
+            label: 'Overview',
+            icon: 'pi pi-fw pi-bookmark-fill',
+            routerLink: ['/dashboard/studio-overview'],
           },
-        ]
+        ],
       },
       {
         label: 'Student',
         items: [
           {
-            label: 'Student Registration', icon: 'pi pi-fw pi-bookmark-fill',
+            label: 'Student Registration',
+            icon: 'pi pi-fw pi-bookmark-fill',
             items: [
               {
-                label: 'Student Register', icon: 'pi pi-fw pi-pencil', routerLink: ['/student/studentRegistration'],
+                label: 'Student Register',
+                icon: 'pi pi-fw pi-pencil',
+                routerLink: ['/student/studentRegistration'],
               },
               {
-                label: 'Student Course', icon: 'pi pi-fw pi-book', routerLink: ['/student/studentCourse'],
+                label: 'Student Course',
+                icon: 'pi pi-fw pi-book',
+                routerLink: ['/student/studentCourse'],
               },
               {
-                label: 'Students Payment', icon: 'pi pi-fw pi-wallet', routerLink: ['/student/studentPayment'],
+                label: 'Students Payment',
+                icon: 'pi pi-fw pi-wallet',
+                routerLink: ['/student/studentPayment'],
               },
               {
-                label: 'Students Additional Info', icon: 'pi pi-fw pi-hourglass', routerLink: ['/student/studentAdditionalInfo'],
+                label: 'Students Additional Info',
+                icon: 'pi pi-fw pi-hourglass',
+                routerLink: ['/student/studentAdditionalInfo'],
               },
               {
-                label: 'Students Details', icon: 'pi pi-fw pi-database', routerLink: ['/student/studentDetails'],
+                label: 'Students Details',
+                icon: 'pi pi-fw pi-database',
+                routerLink: ['/student/studentDetails'],
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
       {
         label: 'Trainer',
         items: [
           {
-            label: 'Trainer Registration', icon: 'pi pi-fw pi-bookmark-fill',
+            label: 'Trainer Registration',
+            icon: 'pi pi-fw pi-bookmark-fill',
             items: [
               {
-                label: 'Trainer Register', icon: 'pi pi-fw pi-pencil', routerLink: ['/trainer/trainerRegistration'],
+                label: 'Trainer Register',
+                icon: 'pi pi-fw pi-pencil',
+                routerLink: ['/trainer/trainerRegistration'],
               },
               {
-                label: 'Trainer Details', icon: 'pi pi-fw pi-database', routerLink: ['/trainer/trainerDetails'],
+                label: 'Salary Calculations',
+                icon: 'pi pi-fw pi-sitemap',
+                routerLink: ['/trainer/salaryCalculation'],
               },
-            ]
+              // {
+              //   label: 'Salary Calculation',
+              //   icon: 'pi pi-fw pi-database',
+              //   items: [
+              //     {
+              //       label: 'Total Amount Collected per Trainer',
+              //       icon: 'pi pi-fw pi-pencil',
+              //       routerLink: ['/trainer/salaryCalculation'],
+              //     },
+              //     {
+              //       label: 'Studio Share (60%)',
+              //       icon: 'pi pi-fw pi-pencil',
+              //       routerLink: ['/trainer/salaryCalculation'],
+              //     },
+              //     {
+              //       label: 'Total Amount Collected per Trainer',
+              //       icon: 'pi pi-fw pi-pencil',
+              //       routerLink: ['/trainer/salaryCalculation'],
+              //     },
+              //   ],
+              // },
+            ],
           },
-        ]
-
+        ],
       },
       {
         label: 'Event',
         items: [
           {
-            label: 'Event Register', icon: 'pi pi-fw pi-bookmark-fill',
+            label: 'Event Register',
+            icon: 'pi pi-fw pi-bookmark-fill',
             items: [
               {
-                label: 'Event Registration', icon: 'pi pi-fw pi-pencil', routerLink: ['/event/eventRegistration'],
+                label: 'Event Registration',
+                icon: 'pi pi-fw pi-pencil',
+                routerLink: ['/event/eventRegistration'],
               },
               {
-                label: 'Event Details', icon: 'pi pi-fw pi-database', routerLink: ['/event/eventDetails'],
+                label: 'Event Details',
+                icon: 'pi pi-fw pi-database',
+                routerLink: ['/event/eventDetails'],
               },
-            ]
+            ],
           },
-        ]
-
+        ],
       },
       //{ label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/master/unitMaster'], routerLinkActiveOptions: { paths: 'subset', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' } },
       // {
