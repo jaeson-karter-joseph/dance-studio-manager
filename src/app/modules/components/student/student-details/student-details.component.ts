@@ -51,7 +51,7 @@ export class StudentDetailsComponent implements OnInit {
       { label: 'ACTIVE', value: 'ACTIVE' },
       { label: 'INACTIVE', value: 'INACTIVE' },
     ];
-
+  
     this.studentService.getStudent().subscribe({
       next: (data) => {
         this.StudentDetailsData = data.data as StudentDetails[];
@@ -65,7 +65,6 @@ export class StudentDetailsComponent implements OnInit {
         });
       },
     })
-
   }
 
   editStudentDetail(studentDetailsproduct: StudentDetailsProduct) {

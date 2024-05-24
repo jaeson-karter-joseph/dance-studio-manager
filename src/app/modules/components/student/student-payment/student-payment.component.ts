@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -15,6 +15,7 @@ import { StudentService } from '../../student-registration/services/student.serv
   styleUrl: './student-payment.component.scss',
 })
 export class StudentPaymentComponent {
+  @Input() id!: string;
   category = [
     { label: 'Adult', value: 'Adult' },
     { label: 'Kids', value: 'Kids' },
@@ -45,19 +46,6 @@ export class StudentPaymentComponent {
       iceNumber: new FormControl<string | null>('', [
         Validators.required,
       ]),
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
-      phoneNumber: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
-      whatsappNumber: [
-        null,
-        [Validators.required, Validators.pattern(/^\d+$/)],
-      ],
-      importerEmailId: [null, [Validators.required, Validators.email]],
-      instafbID: [null, Validators.required],
-      studentid: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
-      emidpassno: [null, Validators.required],
-      notehealthissue: [null, Validators.required],
-      birthDate: [null, Validators.required],
       selectedCategory: [null, Validators.required],
       joiningDate: [null, Validators.required],
       selectedPayment: [null, Validators.required],
@@ -65,12 +53,30 @@ export class StudentPaymentComponent {
       validTill: [null, Validators.required],
       classesCompleted: [null, [Validators.required, Validators.min(0)]],
       classesRemaining: [null, [Validators.required, Validators.min(0)]],
-      selectedGender: ['', Validators.required],
-      file: [null, Validators.required],
-      ResidentialAddress: [''],
-      checked: [false],
       vat:[null, Validators.required],
     });
+if(!!this.id){
+  this.studentService.getPaymentId(this.id).subscribe({
+    next: (res) => {
+      this.loading=false;
+      console.log(res);
+    
+      this.iecForm.patchValue({
+        iceNumber: this.id,
+        selectedCategory : res.data?.category,
+        joiningDate: res.data?.doj,
+        selectedPayment: res.data?.paymentMode,
+        paymentDate: res.data?.paymentDate,
+        validTill: res.data?.validityDate,
+        classesCompleted: res.data?.classCompleted,
+        classesRemaining: res.data?.classRemaining,
+        vat: res.data?.vat,
+      })
+      this.isIECFound = true;
+    }
+  })
+}
+
   }
 
   onUpload(event: any) {
@@ -84,18 +90,18 @@ export class StudentPaymentComponent {
     this.loading = true;
 
     const paymentData: Payment = {
-      paymentMode: this.f['selectedPayment'].value.label,
-      paymentDate: this.formatDate(this.f['paymentDate'].value),
-      category: this.f['selectedCategory'].value.label,
-      doj: this.formatDate(this.f['joiningDate'].value),
-      validityDate: this.formatDate(this.f['validTill'].value),
-      classCompleted: this.f['classesCompleted'].value,
-      classRemaining: this.f['classesRemaining'].value,
-      studentId: this.f['studentid'].value,
-      vat: this.f['vat'].value,
+      paymentMode: this.f['selectedPayment'].value.label || '',
+      paymentDate: this.formatDate(this.f['paymentDate'].value)  || '',
+      category: this.f['selectedCategory'].value.label  || '',
+      doj: this.formatDate(this.f['joiningDate'].value)  || '',
+      validityDate: this.formatDate(this.f['validTill'].value)  || '',
+      classCompleted: this.f['classesCompleted'].value  || '',
+      classRemaining: this.f['classesRemaining'].value  || '',
+      studentId: this.id   || '',
+      vat: this.f['vat'].value  || '',
     };
 
-    console.log(paymentData);
+    console.log('rafi',paymentData);
 
     this.studentService.savePayment(paymentData).subscribe({
       next: (res) => {

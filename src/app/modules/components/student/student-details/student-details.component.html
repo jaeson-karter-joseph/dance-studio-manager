@@ -52,7 +52,7 @@
         <td>{{ StudentDetails.emiritesOrPassportNo }}</td>
         <td>{{ StudentDetails.dob | date }}</td>
         <td>{{ StudentDetails.gender }}</td>
-        <td><span [class]="'product-badge status-' + StudentDetails.status">{{StudentDetails.status}}</span></td>
+        <td><span [class]="'product-badge status-' + StudentDetails.status">{{StudentDetails.status == true ? 'ACTIVE' : 'INACTIVE'}}</span></td>
         <td>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="redirectOnEdit(StudentDetails.studentId)"></button>
         </td>
