@@ -53,17 +53,6 @@ export class StudentPaymentComponent {
     };
 
     console.log(StudentPaymentData);
-
-    this.studentService.savePayment(StudentPaymentData).subscribe({
-      next: (res) => {
-        this.loading = false;
-        console.log(res);
-      },
-      error: (err) => {
-        this.loading = false;
-        console.error(err);
-      },
-    });
   }
 
   formatDate(date: Date): string {

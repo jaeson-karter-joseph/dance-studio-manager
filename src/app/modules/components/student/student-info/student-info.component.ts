@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from 'express';
 import { StudentService } from '../../student-registration/services/student.service';
 import { StudentAdditionalInfo } from '../../student-registration/models/request.model';
@@ -50,16 +50,6 @@ export class StudentInfoComponent {
 
     console.log(studentAdditionalInfo);
 
-    this.studentService.saveStudent(studentAdditionalInfo).subscribe({
-      next: (res) => {
-        this.loading = false;
-        console.log(res);
-      },
-      error: (err) => {
-        this.loading = false;
-        console.log(err);
-      },
-    });
   }
 
   resetForm() {

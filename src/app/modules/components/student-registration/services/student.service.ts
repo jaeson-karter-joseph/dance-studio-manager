@@ -3,8 +3,9 @@ import { environment } from '../../../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { ResponseData } from '../models/response.model';
-import { Payment, Student } from '../models/request.model';
+import { Student, StudentPayment } from '../models/request.model';
 import { StudentDetails } from '../../student/student-details/student-details.component';
+import { StudentPaymentComponent } from '../../student/student-payment/student-payment.component';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class StudentService {
     }))
   }
 
-  savePayment(body: Payment): Observable<ResponseData<null>> {
+  savePayment(body: StudentPaymentComponent): Observable<ResponseData<null>> {
     return this.http.post<ResponseData<null>>(this.paymentSaveURL, JSON.stringify(body), this.httpOptions).pipe(map(res => {
       return res;
     }))
@@ -50,8 +51,8 @@ export class StudentService {
     }))
   }
 
-  getPaymentId(id: string) : Observable<ResponseData<Payment>> {
-    return this.http.get<ResponseData<Payment>>(this.paymentGetByIDURL + id, this.httpOptions).pipe(map(res => {
+  getPaymentId(id: string) : Observable<ResponseData<StudentPayment>> {
+    return this.http.get<ResponseData<StudentPayment>>(this.paymentGetByIDURL + id, this.httpOptions).pipe(map(res => {
       return res;
     }))
   }

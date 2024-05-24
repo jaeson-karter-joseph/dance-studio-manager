@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from 'express';
 import { StudentService } from '../../student-registration/services/student.service';
 import { StudentCourse } from '../../student-registration/models/request.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-course',
@@ -55,17 +55,6 @@ export class StudentCourseComponent {
     };
 
     console.log(studentCourseData);
-
-    this.studentService.saveStudent(studentCourseData).subscribe({
-      next: (res) => {
-        this.loading = false;
-        console.log(res);
-      },
-      error: (err) => {
-        this.loading = false;
-        console.log(err);
-      },
-    });
   }
 
   resetForm() {
