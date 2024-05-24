@@ -26,7 +26,7 @@ export class StudentRegistrationComponent {
   loading: boolean = false;
   studentDemog!: FormGroup;
   isIECFound: boolean = false;
-  maxDate : Date = new Date();
+  maxDate: Date = new Date();
 
   formSubmitted = false;
 
@@ -34,7 +34,7 @@ export class StudentRegistrationComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private studentService: StudentService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.studentDemog = this.formBuilder.group({
@@ -54,7 +54,7 @@ export class StudentRegistrationComponent {
       ResidentialAddress: [''],
     });
 
-    if(!!this.id){
+    if (!!this.id) {
       this.studentService.getStudentId(this.id).subscribe({
         next: (res) => {
           this.loading = false;
@@ -88,7 +88,7 @@ export class StudentRegistrationComponent {
       mobile: parseInt(this.f['phoneNumber'].value),
       whatsappNo: parseInt(this.f['whatsappNumber'].value),
       email: this.f['importerEmailId'].value,
-      studentId: this.f['studentid'].value,
+      studentId: this.generateUniqueAndReadableStudentID(this.f['firstName'].value),
       dob: this.formatDate(this.f['birthDate'].value),
       gender: this.f['selectedGender'].value.label,
       address: this.f['ResidentialAddress'].value,
@@ -130,4 +130,20 @@ export class StudentRegistrationComponent {
       '0' + date.getDate()
     ).slice(-2)}`;
   }
+
+  generateUniqueAndReadableStudentID(name: string) {
+    // Convert the name to lowercase and remove spaces for consistency
+    const formattedName = name.toLowerCase().replace(/ /g, '');
+
+    // Create a unique part by combining the first letter of the name,
+    // the current year, and a random number
+    const uniquePart = formattedName[0] + new Date().getFullYear() + Math.floor(Math.random() * 1000);
+
+    // Ensure the unique part is always 5 characters long by padding with zeros if necessary
+    const paddedUniquePart = uniquePart.padEnd(5, '0');
+
+    // Return the formatted name followed by the unique part
+    return `${formattedName}-${paddedUniquePart}`;
+  }
+
 }
