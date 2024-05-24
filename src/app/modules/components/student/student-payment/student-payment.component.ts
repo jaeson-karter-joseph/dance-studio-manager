@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import {  StudentPayment } from '../../student-registration/models/request.model';
 import { StudentService } from '../../student-registration/services/student.service';
@@ -36,28 +36,6 @@ export class StudentPaymentComponent {
       selectedPayment: [null, Validators.required],
       paymentDate: [null, Validators.required],
     });
-    if(!!this.id){
-      this.studentService.getPaymentId(this.id).subscribe({
-        next: (res) => {
-          this.loading=false;
-          console.log(res);
-        
-          this.iecForm.patchValue({
-            iceNumber: this.id,
-            selectedCategory : res.data?.category,
-            joiningDate: res.data?.doj,
-            selectedPayment: res.data?.paymentMode,
-            paymentDate: res.data?.paymentDate,
-            validTill: res.data?.validityDate,
-            classesCompleted: res.data?.classCompleted,
-            classesRemaining: res.data?.classRemaining,
-            vat: res.data?.vat,
-          })
-          this.isIECFound = true;
-        }
-      })
-    }
-  }
     
   }
 
