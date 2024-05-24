@@ -24,8 +24,11 @@ export class StudentRegistrationComponent {
     { label: 'Other', value: 'other' },
   ];
   loading: boolean = false;
-  iecForm!: FormGroup;
+  studentDemog!: FormGroup;
   isIECFound: boolean = false;
+  maxDate : Date = new Date();
+
+  formSubmitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,10 +37,8 @@ export class StudentRegistrationComponent {
   ) {}
 
   ngOnInit() {
-    this.iecForm = this.formBuilder.group({
-      iceNumber: new FormControl<string | null>('IEC1234', [
-        Validators.required,
-      ]),
+    this.studentDemog = this.formBuilder.group({
+
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
       phoneNumber: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
@@ -52,13 +53,14 @@ export class StudentRegistrationComponent {
       checked: [false],
       ResidentialAddress: [''],
     });
+
     if(!!this.id){
       this.studentService.getStudentId(this.id).subscribe({
         next: (res) => {
           this.loading = false;
           console.log(res);
 
-          this.iecForm.patchValue;
+          this.studentDemog.patchValue;
         },
         error: (err) => {
           this.loading = false;
@@ -70,7 +72,7 @@ export class StudentRegistrationComponent {
 
   onUpload(event: any) {
     const file = event.files[0];
-    this.iecForm.get('file')?.setValue(file);
+    this.studentDemog.get('file')?.setValue(file);
   }
 
   Course() {
@@ -104,18 +106,18 @@ export class StudentRegistrationComponent {
   }
 
   resetForm() {
-    this.iecForm.reset();
+    this.studentDemog.reset();
     console.log('Form reset');
   }
 
   get f(): { [key: string]: AbstractControl } {
-    return this.iecForm.controls;
+    return this.studentDemog.controls;
   }
 
   checkError = (controlName: string, errorName: string) => {
     return (
-      this.iecForm.controls[controlName].hasError(errorName) &&
-      this.iecForm.controls[controlName].dirty
+      this.studentDemog.controls[controlName].hasError(errorName) &&
+      this.studentDemog.controls[controlName].dirty
     );
   };
 

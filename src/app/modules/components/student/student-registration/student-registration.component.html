@@ -1,4 +1,4 @@
-<form [formGroup]="iecForm" (ngSubmit)="load()">
+<form [formGroup]="studentDemog" (ngSubmit)="load()">
   <div class="card">
     <!-- Details section, shown if IEC is found -->
     <div class="grid nested-grid">
@@ -18,69 +18,69 @@
               <label for="lastName">Last Name</label>
             </span>
           </div>
+          <!-- Date for Birthdate -->
+          <div class="col-12 md:col-4">
+            <span class="p-float-label">
+              <p-calendar [maxDate]="maxDate" dateFormat="dd/mm/yy" formControlName="birthDate" inputId="birth_date"
+                [showIcon]="true"></p-calendar>
+              <label for="birth_date">Date of Birth</label>
+            </span>
+          </div>
+
+          <!-- Input for Gender -->
+          <div class="col-12 md:col-4">
+            <div class="p-field">
+              <p-dropdown id="gender" formControlName="selectedGender" [options]="genderOptions" optionLabel="label"
+                placeholder="Select Gender"></p-dropdown>
+            </div>
+          </div>
+
           <!-- Input for Phone Number -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
-              <input type="number" id="phoneNumber" pInputText placeholder=" Phone Number " formControlName="phoneNumber" />
+              <input type="tel" id="phoneNumber" pInputText placeholder=" Phone Number " maxlength="10"
+                formControlName="phoneNumber" />
               <label for="phoneNumber">Phone Number</label>
             </span>
           </div>
           <!-- Input for Whatsapp Number -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
-              <input type="number" id="whatsappNumber" pInputText placeholder=" Whatsapp Number " formControlName="whatsappNumber" />
+              <input type="tel" id="whatsappNumber" pInputText placeholder=" Whatsapp Number " maxlength="10"
+                formControlName="whatsappNumber" />
               <label for="whatsappNumber">Whatsapp Number</label>
             </span>
           </div>
+
           <!-- Input for Email ID -->
-          <div class="col-12 md:col-4 p-inputgroup">
+          <div class="col-12 p-inputgroup">
             <span class="p-float-label">
               <input type="email" id="emailId" pInputText placeholder=" Email ID " formControlName="importerEmailId" />
               <label for="emailId">Email ID</label>
             </span>
           </div>
-          <!-- Input for Number of Student ID -->
-          <div class="col-12 md:col-4 p-inputgroup">
-            <span class="p-float-label">
-              <input type="number" id="studentid" pInputText placeholder=" Student ID " formControlName="studentid" />
-              <label for="studentid">Student ID</label>
-            </span>
-          </div>
-          <!-- Date for Birthdate -->
-          <div class="col-12 md:col-4">
-            <span class="p-float-label">
-              <p-calendar formControlName="birthDate" inputId="birth_date" [showIcon]="true"></p-calendar>
-              <label for="birth_date">Date of Birth</label>
-            </span>
-          </div>
-          <!-- Input for Gender -->
-          <div class="col-12 md:col-4">
-            <div class="p-field">
-              <p-dropdown id="gender" formControlName="selectedGender" [options]="genderOptions" optionLabel="label" placeholder="Select Gender"></p-dropdown>
-            </div>
-          </div>
-          <!-- ToogleButton for Active/Inactive -->
-          <div class="col-12 md:col-4">
-            <div class="p-field">
-              <p-toggleButton id="toggleButton" formControlName="checked" onLabel="Active" offLabel="Inactive"></p-toggleButton>
-            </div>
-          </div>
+
           <!-- Textarea for Residential Address -->
-          <div class="col-12 md:col-4 p-inputgroup">
+          <div class="col-12 p-inputgroup">
             <span class="p-float-label">
-              <textarea id="ResidentialAddress" rows="5" placeholder="Enter the Residential Address" pInputTextarea formControlName="ResidentialAddress"></textarea>
+              <input pInputText id="ResidentialAddress" placeholder="Enter the Residential Address"
+                formControlName="ResidentialAddress" />
               <label for="ResidentialAddress">Residential Address</label>
             </span>
           </div>
+
         </div>
       </div>
+
+
+
+
     </div>
   </div>
   <!-- Action buttons for Save, Delete, and Reset -->
   <div class="card flex justify-content-center column-gap-3">
     <p-button label="Save" type="submit" [loading]="loading"></p-button>
-    <button pButton type="button" label="Delete" [loading]="loading" (click)="load()"></button>
-    <button pButton type="button" label="Reset" [loading]="loading" (click)="resetForm()"></button>
-    <button pButton type="button" label="Go To Course Page" (click)="Course()" class=""></button>
+    <button pButton type="button" label="Reset" (click)="resetForm()"></button>
+    <button pButton type="button" label="Go To Course Page" (click)="Course()" class="" [disabled]="!formSubmitted"></button>
   </div>
 </form>
