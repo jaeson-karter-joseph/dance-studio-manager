@@ -4,25 +4,40 @@ export interface Student {
     mobile: number;
     whatsappNo: number;
     email: string;
-    socialMedia: string;
     studentId: string;
-    emiritesOrPassportNo: string;
-    healthIssue: string;
     dob: string;
     gender: string;
-    image: string;
     address: string;
     status: boolean;
   }
 
-  export interface Payment {
-    studentId: string;
-    paymentMode: string;
-    paymentDate: string;
-    category: string;
-    doj: string;
-    validityDate: string;
-    classCompleted: number;
-    classRemaining: number;
-    vat: number;
+  // export interface Payment {
+  //   studentId: string;
+  //   paymentMode: string;
+  //   paymentDate: string;
+  //   category: string;
+  //   doj: string;
+  //   validityDate: string;
+  //   classCompleted: number;
+  //   classRemaining: number;
+  //   vat: number;
+  // }
+
+  export interface StudentCourse {
+    coursesEnrolled: string;
+    sessionTimes: string;
+    instructorTrainer: string;
   }
+
+  export interface StudentPayment {
+    totalFees: number;
+    vat: number;
+    selectedPayment: string;
+    paymentDate: string;
+  }
+
+  export interface StudentAdditionalInfo {
+    anySpecialRequest: string;
+    notes: string;
+  }
+
