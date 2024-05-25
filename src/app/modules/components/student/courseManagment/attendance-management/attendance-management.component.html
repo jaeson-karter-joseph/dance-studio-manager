@@ -1,1 +1,57 @@
-<p>attendance-management works!</p>
+<form [formGroup]="attendanceManage" (ngSubmit)="load()">
+  <div class="card">
+    <!-- Details section, shown if IEC is found -->
+    <div class="grid nested-grid">
+      <div class="col-12">
+        <div class="grid sm:row-gap-3">
+          <!-- Date -->
+          <div class="col-12 md:col-4">
+            <span class="p-float-label">
+              <p-calendar [maxDate]="maxDate" dateFormat="dd/mm/yy" formControlName="date" inputId="birth_date"
+                [showIcon]="true"></p-calendar>
+              <label for="birth_date">Date of Birth</label>
+            </span>
+          </div>
+
+          <!-- Input for Course Name -->
+          <div class="col-12 md:col-4 p-inputgroup">
+            <span class="p-float-label">
+              <input type="text" id="courseName" pInputText placeholder=" Course Name " formControlName="courseName" />
+              <label for="courseName">Course Name</label>
+            </span>
+          </div>
+
+          <!-- Input for Session Times -->
+          <div class="col-12 md:col-4">
+            <p-floatLabel>
+              <p-calendar id="selectDates" formControlName="sessionTimes" selectionMode="multiple" [minDate]="minDate"
+                [showTime]="true" hourFormat="12" [readonlyInput]="true" />
+              <label for="selectDates">Select Class Dates</label>
+            </p-floatLabel>
+          </div>
+          <!-- Input for Student Name -->
+          <div class="col-12 md:col-6 p-inputgroup">
+            <span class="p-float-label">
+              <input type="text" id="studentName" pInputText placeholder=" Student Name "
+                formControlName="studentName" />
+              <label for="studentName">Student Name</label>
+            </span>
+          </div>
+          <!-- ToogleButton for Active/Inactive -->
+          <div class="col-12 md:col-6">
+            <div class="p-field">
+              <p-toggleButton id="toggleButton" formControlName="status" onLabel="Attendance (Present)"
+                offLabel="Attendance (Absent)"></p-toggleButton>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Action buttons for Save, Delete, and Reset -->
+  <div class="card flex justify-content-center column-gap-3">
+    <p-button label="Back" icon="pi pi-arrow-left" type="button" (onClick)="onBack()" />
+    <p-button label="Save" type="submit" [loading]="loading"></p-button>
+    <button pButton type="button" label="Reset" (click)="resetForm()"></button>
+  </div>
+</form>

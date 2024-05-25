@@ -13,7 +13,7 @@ import { CourseManagement, StudentCourse } from '../../../student-registration/m
 export class CourseManagementComponent {
   @Input() id!: string;
   loading: boolean = false;
-  courseDetails!: FormGroup;
+  courseManage!: FormGroup;
   danceForms: string[] = ['Ballet', 'Jazz', 'Hip Hop', 'Contemporary', 'Tap', 'Salsa', 'Swing', 'Tango', 'Belly', 'Break'];
   danceInstructors : string[] = ['Jaeson', 'Joseph', 'Rafi', 'Aakash'];
   minDate : Date = new Date();
@@ -27,7 +27,7 @@ export class CourseManagementComponent {
 
   ngOnInit() {
 
-    this.courseDetails = this.formBuilder.group({
+    this.courseManage = this.formBuilder.group({
       coursesName: new FormControl(this.studentService.student.couresEnrolled, [Validators.required]),
       sessionTimes: new FormControl(this.studentService.student.classDate,[Validators.required]),
       instructorTrainer: new FormControl(this.studentService.student.trainer, [Validators.required]),
@@ -41,7 +41,7 @@ export class CourseManagementComponent {
         next: (res) => {
           this.loading = false;
           console.log(res);
-          this.courseDetails.patchValue(res);
+          this.courseManage.patchValue(res);
         },
         error: (err) => {
           this.loading = false;
@@ -79,18 +79,18 @@ export class CourseManagementComponent {
   }
 
   resetForm() {
-    this.courseDetails.reset();
+    this.courseManage.reset();
     console.log('Form reset');
   }
 
   get f(): { [key: string]: AbstractControl } {
-    return this.courseDetails.controls;
+    return this.courseManage.controls;
   }
 
   checkError = (controlName: string, errorName: string) => {
     return (
-      this.courseDetails.controls[controlName].hasError(errorName) &&
-      this.courseDetails.controls[controlName].dirty
+      this.courseManage.controls[controlName].hasError(errorName) &&
+      this.courseManage.controls[controlName].dirty
     );
   };
 

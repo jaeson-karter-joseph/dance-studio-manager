@@ -20,6 +20,13 @@ export interface Student {
     remarks: string;
   }
 
+  export interface AttendanceManage {
+    date: string;
+    studentName : string;
+    courseName : string;
+    sessionTimes: string;
+    status: boolean;
+  }
   // export interface Payment {
   //   studentId: string;
   //   paymentMode: string;
