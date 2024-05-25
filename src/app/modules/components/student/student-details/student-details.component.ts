@@ -138,7 +138,7 @@ export class StudentDetailsComponent implements OnInit {
   }
 
   redirectAttendance(id: string, studentName: string){
-    this.router.navigate(['/student/attendanceManagement/' + id,studentName]);
+    this.router.navigate(['/student/attendanceManagement'], {queryParams : {id : id , studentName : studentName}});
   }
 
   findIndexById(id: string): number {

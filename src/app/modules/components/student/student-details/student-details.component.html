@@ -54,7 +54,7 @@
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="redirectOnEdit(StudentDetails.studentId)"></button>
         </td>
         <td>
-          <button pButton pRipple icon="pi pi-check-circle" class="p-button-rounded p-button-success mr-2" (click)="redirectAttendance(StudentDetails.studentId, StudentDetails.studentName)"></button>
+          <button pButton pRipple icon="pi pi-check-circle" class="p-button-rounded p-button-success mr-2" (click)="redirectAttendance(StudentDetails.studentId, StudentDetails.firstName + ' ' + StudentDetails.lastName)"></button>
         </td>
         <td><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteStudentDetails(StudentDetails)"></button></td>
       </tr>

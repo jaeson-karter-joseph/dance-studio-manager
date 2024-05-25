@@ -60,16 +60,11 @@ export class FeesCollectionComponent {
     //   });
     // }
 
-    this.route.paramMap.subscribe(params => {
-      const studentId = params.get('id');
-      const studentName = params.get('studentName');
+    this.route.queryParamMap.subscribe(res => {
+      console.log(res);
+    })
 
-      if (studentId && studentName) {
-        this.fessDemog.patchValue({
-          studentName: studentName
-        });
-      }
-    });
+
   }
 
   Course() {
