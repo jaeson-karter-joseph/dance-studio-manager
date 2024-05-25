@@ -138,7 +138,7 @@ export class MenuComponent implements OnInit {
           {
             label: 'Fees Collect',
             icon: 'pi pi-fw pi-bitcoin',
-            routerLink: ['/student/courseManagement'],
+            routerLink: ['/student/feesManagement'],
           },
         ],
       },
