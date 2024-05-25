@@ -85,22 +85,6 @@ export class FeesCollectionComponent {
 
     console.log(feesCollectionData);
 
-    const student: Partial<StudentCompleteDetails> = {
-
-      date: new Date(this.formatDate(this.f['date'].value)),
-      studentName: this.f['studentName'].value,
-      courseName: this.f['courseName'].value,
-      paidFees: this.f['paidFees'].value,
-      paymentMethod: this.f['paymentMethod'].value.name,
-      remarks: this.f['remarks'].value,
-
-
-
-
-    }
-
-    this.studentService.saveStudentDetails(student);
-
     // this.studentService.saveStudent(feesCollectionData).subscribe({
     //   next: (res) => {
     //     this.loading = false;
