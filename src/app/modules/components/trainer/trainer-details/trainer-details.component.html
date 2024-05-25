@@ -1,58 +1,71 @@
-<!-- <p-table #dt [value]="TrainerDetailsData" [rows]="5" [paginator]="true"
-  [globalFilterFields]="['trId', 'trName', 'trainers', 'number', 'trDoj', 'inventoryStatus','gender','trEmID']"
-  [tableStyle]="{ 'min-width': '90rem' }" [rowHover]="true" dataKey="id"
-  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-  <ng-template pTemplate="caption">
-    <div class="flex align-items-center justify-content-between">
-      <h5 class="m-0">Total Trainers :
-        <p-tag [value]="this.calculateTotalQty.toString()" styleClass="text-2xl"></p-tag>
-      </h5>
-      <span class="p-input-icon-left">
-        <i class="pi pi-search"></i>
+<p-toast></p-toast>
 
-        <input pInputText type="text" #textInput (input)="dt.filterGlobal(textInput.value, 'contains')"
-          placeholder="Search..." />
-      </span>
-    </div>
-  </ng-template>
-  <ng-template pTemplate="header">
-    <tr>
-      <th pSortableColumn="id" style="min-width:6rem">ID<p-sortIcon field="id"></p-sortIcon>
-      </th>
-      <th pSortableColumn="trID" style="min-width:6rem">Trainer ID<p-sortIcon field="trID"></p-sortIcon>
-      </th>
-      <th pSortableColumn="trName" style="min-width:9rem">Trainer Name<p-sortIcon field="trName"></p-sortIcon>
-      </th>
-      <th pSortableColumn="number" style="min-width:6rem">Phone Number <p-sortIcon field="number"></p-sortIcon>
-      </th>
-      <th pSortableColumn="trDoj" style="min-width:9rem">Date of Joining <p-sortIcon field="trDoj"></p-sortIcon>
-      </th>
-      <th pSortableColumn="gender" style="min-width:6rem">Gender<p-sortIcon field="gender"></p-sortIcon>
-      </th>
-      <th pSortableColumn="inventoryStatus" style="min-width:5rem">Status<p-sortIcon field="inventoryStatus">
-        </p-sortIcon>
-      </th>
-      <th pSortableColumn="trEmID" style="min-width:6rem">EID / Passport ID<p-sortIcon field="trEmID"></p-sortIcon>
-      </th>
-      <th>Download</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-product>
-    <tr>
-      <td>{{ product.id }}</td>
-      <td>{{ product.trainerId }}</td>
-      <td>{{ product.trainerName }}</td>
-      <td>{{ product.phoneNumber }}</td>
-      <td>{{ product.doj | date }}</td>
-      <td>{{ product.gender }}</td>
-      <td>
-        <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"></p-tag>
-      </td>
-      <td>{{ product.eid }}</td>
-      <td>
-        <button aria-label="downloadBtn" type="button" pButton pRipple icon="pi pi-download" pTooltip="Add Download"
-          class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
-      </td>
-    </tr>
-  </ng-template>
-</p-table> -->
+<div class="card">
+  <p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="right">
+      <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table #dt [value]="TrainerDetailsData" [rows]="5" [paginator]="true"
+    [globalFilterFields]="['id', 'name', 'trainerID', 'email', 'gender','emid','birthDate','joiningDate', 'inventoryStatus']"
+    [tableStyle]="{'min-width': '75rem'}" [(selection)]="trainerDetailsSelectedProducts" [rowHover]="true" dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <h5 class="p-m-0">Total Trainers</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" #textInput (input)="dt.filterGlobal(textInput.value, 'contains')"
+            placeholder="Search..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id" style="min-width:6rem">ID<p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="firstName" style="min-width:9rem">First Name<p-sortIcon field="firstName"></p-sortIcon></th>
+        <th pSortableColumn="lastName" style="min-width:9rem">Last Name<p-sortIcon field="lastName"></p-sortIcon></th>
+        <th pSortableColumn="mobile" style="min-width:12rem">Mobile Number<p-sortIcon field="mobile"></p-sortIcon></th>
+        <th pSortableColumn="courseEnroll" style="min-width:9rem">Enrolled Course(s)<p-sortIcon field="courseEnroll"></p-sortIcon></th>
+        <th pSortableColumn="collectdPerTrainer" style="min-width:13rem">Total Amount Collected per Trainer<p-sortIcon field="collectdPerTrainer"></p-sortIcon></th>
+        <th pSortableColumn="studioShare" style="min-width:5rem">Studio Share<p-sortIcon field="studioShare"></p-sortIcon></th>
+        <th pSortableColumn="trainerShare" style="min-width:5rem">Trainer Share<p-sortIcon field="trainerShare"></p-sortIcon></th>
+        <th pSortableColumn="email" style="min-width:12rem">Email ID<p-sortIcon field="email"></p-sortIcon></th>
+        <th pSortableColumn="trainerID" style="min-width:10rem">Trainer Id<p-sortIcon field="trainerID"></p-sortIcon></th>
+        <th pSortableColumn="gender" style="min-width:8rem">Gender<p-sortIcon field="gender"></p-sortIcon></th>
+        <th pSortableColumn="status" style="min-width:7rem">Status<p-sortIcon field="status"></p-sortIcon></th>
+        <th pSortableColumn="edit" style="min-width:5rem" field="edit">Edit</th>
+        <th pSortableColumn="download" style="min-width:5rem" field="download">Download</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-TrainerDetails>
+      <tr>
+        <td>{{ TrainerDetails.id }}</td>
+        <td>{{ TrainerDetails.firstName }}</td>
+        <td>{{ TrainerDetails.lastName }}</td>
+        <td>{{ TrainerDetails.mobile }}</td>
+        <td>{{ TrainerDetails.courseEnroll }}</td>
+        <td>{{ TrainerDetails.collectdPerTrainer }}</td>
+        <td>{{ TrainerDetails.studioShare }}</td>
+        <td>{{ TrainerDetails.trainerShare }}</td>
+        <td>{{ TrainerDetails.email }}</td>
+        <td>{{ TrainerDetails.trainerID }}</td>
+        <td>{{ TrainerDetails.gender }}</td>
+        <td><span [class]="'product-badge status-' + TrainerDetails.status">{{TrainerDetails.status == true ? 'ACTIVE' : 'INACTIVE'}}</span></td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="redirectOnEdit(TrainerDetails.trainerID)"></button>
+        </td>
+        <td><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteTrainerDetails(TrainerDetails)"></button></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{TrainerDetailsData ? TrainerDetailsData.length : 0 }} trainerDetails.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

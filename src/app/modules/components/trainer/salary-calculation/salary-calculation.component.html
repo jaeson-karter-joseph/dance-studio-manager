@@ -4,25 +4,36 @@
     <div class="grid nested-grid">
       <div class="col-12">
         <div class="grid sm:row-gap-3">
+          <!-- Input for Trainer Name -->
+          <div class="col-12 md:col-6 p-inputgroup">
+            <p-multiSelect [options]="TrainerNameDropDown" formControlName="trainerName" placeholder="Trainer Name" />
+          </div>
+          <!-- Input for Trainer Course(s) Enrolled -->
+          <div class="col-12 md:col-6 p-inputgroup">
+            <p-multiSelect [options]="TrainerCourseForm" formControlName="trainerCoursesEnrolled"
+              placeholder=" Trainer Course(s) Enrollment" />
+          </div>
           <!-- Input for Collected Per Trainer -->
           <div class="col-12  p-inputgroup">
-            <span class="p-float-label">
-              <input type="text" id="collectedPerTrainer" pInputText placeholder=" Total Amount Collected per Trainer:" formControlName="collectedPerTrainer" />
+            <p-floatLabel class="w-full">
+              <p-inputNumber formControlName="collectedPerTrainer" inputId="currency-aed" mode="currency" currency="AED"
+                locale="en-AE" />
               <label for="collectedPerTrainer">Total Amount Collected per Trainer</label>
+            </p-floatLabel>
+          </div>
+          <!-- Input for Studio Share -->
+          <div class="col-12 md:col-6 p-inputgroup">
+            <span class="p-float-label">
+              <input type="number" id="studioShare" pInputText placeholder=" Studio Share (60%)* "
+                formControlName="studioShare" />
+              <label for="studioShare">Studio Share (60%)</label>
             </span>
           </div>
-                    <!-- Input for Studio Share -->
-                    <div class="col-12 md:col-6 p-inputgroup">
-                      <span class="p-float-label">
-                        <input type="number" id="studioShare" pInputText placeholder=" Studio Share (60%)* "
-                          formControlName="studioShare" />
-                        <label for="studioShare">Studio Share (60%)</label>
-                      </span>
-                    </div>
           <!-- Input for Trainer Share -->
           <div class="col-12 md:col-6 p-inputgroup">
             <span class="p-float-label">
-              <input type="text" id="trainerShare" pInputText placeholder=" Trainer Share(40)* " formControlName="trainerShare" />
+              <input type="text" id="trainerShare" pInputText placeholder=" Trainer Share(40)* "
+                formControlName="trainerShare" />
               <label for="trainerShare">Trainer Share(40)</label>
             </span>
           </div>

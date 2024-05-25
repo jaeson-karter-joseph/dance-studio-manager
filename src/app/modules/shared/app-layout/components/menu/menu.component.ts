@@ -75,6 +75,11 @@ export class MenuComponent implements OnInit {
                 icon: 'pi pi-fw pi-sitemap',
                 routerLink: ['/trainer/salaryCalculation'],
               },
+              {
+                label: 'Trainer Details',
+                icon: 'pi pi-fw pi-database',
+                routerLink: ['/trainer/trainerDetails'],
+              },
               // {
               //   label: 'Salary Calculation',
               //   icon: 'pi pi-fw pi-database',

@@ -12,13 +12,10 @@ export interface StudentDetails {
   mobile: number;
   whatsappNo: number;
   email: string;
-  socialMedia: string;
   studentId: string;
-  emiritesOrPassportNo: string;
   dob: string;
   gender: string;
   status: boolean;
-  healthIssue: string;
   address: string;
 }
 
@@ -51,7 +48,7 @@ export class StudentDetailsComponent implements OnInit {
       { label: 'ACTIVE', value: 'ACTIVE' },
       { label: 'INACTIVE', value: 'INACTIVE' },
     ];
-  
+
     this.studentService.getStudent().subscribe({
       next: (data) => {
         this.StudentDetailsData = data.data as StudentDetails[];

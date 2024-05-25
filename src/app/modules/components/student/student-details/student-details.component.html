@@ -29,9 +29,7 @@
         <th pSortableColumn="mobile" style="min-width:12rem">Mobile Number<p-sortIcon field="mobile"></p-sortIcon></th>
         <th pSortableColumn="whatsappNo" style="min-width:13rem">Whatsapp Number<p-sortIcon field="whatsappNo"></p-sortIcon></th>
         <th pSortableColumn="email" style="min-width:12rem">Email ID<p-sortIcon field="email"></p-sortIcon></th>
-        <th pSortableColumn="socialMedia" style="min-width:10rem">SocialMedia<p-sortIcon field="socialMedia"></p-sortIcon></th>
         <th pSortableColumn="studentId" style="min-width:10rem">StudentId<p-sortIcon field="studentId"></p-sortIcon></th>
-        <th pSortableColumn="emiritesOrPassportNo" style="min-width:11rem">EmID/Passport<p-sortIcon field="emiritesOrPassportNo"></p-sortIcon></th>
         <th pSortableColumn="dob" style="min-width:10rem">Date of Birth<p-sortIcon field="dob"></p-sortIcon></th>
         <th pSortableColumn="gender" style="min-width:8rem">Gender<p-sortIcon field="gender"></p-sortIcon></th>
         <th pSortableColumn="status" style="min-width:7rem">Status<p-sortIcon field="status"></p-sortIcon></th>
@@ -47,9 +45,7 @@
         <td>{{ StudentDetails.mobile }}</td>
         <td>{{ StudentDetails.whatsappNo }}</td>
         <td>{{ StudentDetails.email }}</td>
-        <td>{{ StudentDetails.socialMedia }}</td>
         <td>{{ StudentDetails.studentId }}</td>
-        <td>{{ StudentDetails.emiritesOrPassportNo }}</td>
         <td>{{ StudentDetails.dob | date }}</td>
         <td>{{ StudentDetails.gender }}</td>
         <td><span [class]="'product-badge status-' + StudentDetails.status">{{StudentDetails.status == true ? 'ACTIVE' : 'INACTIVE'}}</span></td>
