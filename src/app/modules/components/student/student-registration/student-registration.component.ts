@@ -50,6 +50,7 @@ export class StudentRegistrationComponent {
           this.loading = false;
           console.log(res);
           this.patchValues();
+          this.formSubmitted = true
         },
         error: (err) => {
           this.loading = false;
