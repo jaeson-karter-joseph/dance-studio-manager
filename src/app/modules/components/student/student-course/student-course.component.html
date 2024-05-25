@@ -30,8 +30,8 @@
   <!-- Action buttons for Save, Delete, and Reset -->
   <div class="card flex justify-content-center column-gap-3">
     <p-button label="Back" icon="pi pi-arrow-left"  type="button" (onClick)="onBack()"/>
-    <p-button label="Save" type="submit" [loading]="loading"></p-button>
+
     <button pButton type="button" label="Reset" (click)="resetForm()"></button>
-    <button pButton type="button" label="Go To Payment Page" (click)="Payment()" class="" [disabled]="!isFormSubmitted"></button>
+    <button pButton type="submit" label="Save & Go To Payment Page" (click)="Payment()" class="" [loading]="loading"></button>
   </div>
 </form>

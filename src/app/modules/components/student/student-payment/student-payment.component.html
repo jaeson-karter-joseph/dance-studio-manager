@@ -32,7 +32,7 @@
           <div class="col-12 md:col-4">
             <div class="p-field">
               <p-dropdown id="paymentMode" formControlName="selectedPayment" [options]="paymentMethods"
-                optionLabel="name" placeholder="Select Payment Mode"></p-dropdown>
+               placeholder="Select Payment Mode"></p-dropdown>
             </div>
           </div>
         </div>
@@ -42,9 +42,9 @@
   <!-- Action buttons for Save, Delete, and Reset -->
   <div class="card flex justify-content-center column-gap-3">
     <p-button label="Back" icon="pi pi-arrow-left" type="button" (onClick)="onBack()" />
-    <p-button label="Save" type="submit" [loading]="loading"></p-button>
+
     <button pButton type="button" label="Reset" (click)="resetForm()"></button>
-    <button pButton type="button" label="Additional Info Page" (click)="AnyInfo()"
-      [disabled]="!isFormSubmitted"></button>
+    <button pButton type="submit" label="Save & Additional Info Page" (click)="AnyInfo()"
+      [loading]="loading"></button>
   </div>
 </form>

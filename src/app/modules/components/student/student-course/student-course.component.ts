@@ -30,7 +30,7 @@ export class StudentCourseComponent {
 
     this.courseDetails = this.formBuilder.group({
       coursesEnrolled: new FormControl(this.studentService.student.couresEnrolled, [Validators.required]),
-      sessionTimes: new FormControl(this.studentService.student.classDate,[Validators.required]),
+      sessionTimes: new FormControl(this.studentService.student.classDate?.map(e => new Date(e)),[Validators.required]),
       instructorTrainer: new FormControl(this.studentService.student.trainer, [Validators.required]),
     });
 
@@ -75,6 +75,7 @@ export class StudentCourseComponent {
 
     this.isFormSubmitted=true;
     this.loading = false;
+    this.Payment()
 
   }
 

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
-import {  StudentPayment } from '../../student-registration/models/request.model';
+import { StudentPayment } from '../../student-registration/models/request.model';
 import { StudentService } from '../../student-registration/services/student.service';
 import { Router } from '@angular/router';
 import { StudentCompleteDetails } from '../../../../models/student.model';
@@ -12,14 +12,14 @@ import { StudentCompleteDetails } from '../../../../models/student.model';
   styleUrls: ['./student-payment.component.scss'],
 })
 export class StudentPaymentComponent {
-  
+
   @Input() id!: string;
   paymentMethods = [
-    { name: 'Cash' },
-    { name: 'Credit Card' },
-    { name: 'Debit Card' },
-    { name: 'Net Banking' },
-    { name: 'Bank Transfer' },
+    'Cash',
+    'Credit Card',
+    'Debit Card',
+    'Net Banking',
+    'Bank Transfer',
   ];
   loading: boolean = false;
   studentPayment!: FormGroup;
@@ -29,8 +29,8 @@ export class StudentPaymentComponent {
   constructor(
     private formBuilder: FormBuilder,
     private studentService: StudentService,
-    private router : Router
-  ) {}
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.studentPayment = this.formBuilder.group({
@@ -39,7 +39,7 @@ export class StudentPaymentComponent {
       selectedPayment: [this.studentService.student.paymentMode, Validators.required],
       paymentDate: [this.studentService.student.paymentDate, Validators.required],
     });
-    
+
   }
 
   AnyInfo() {
@@ -55,7 +55,7 @@ export class StudentPaymentComponent {
       paymentDate: this.formatDate(this.f['paymentDate'].value),
     };
 
-    const student : Partial<StudentCompleteDetails> = {
+    const student: Partial<StudentCompleteDetails> = {
       fees: this.f['totalFees'].value,
       vat: this.f['vat'].value,
       paymentMode: this.f['selectedPayment'].value.name,
@@ -66,6 +66,7 @@ export class StudentPaymentComponent {
 
     this.isFormSubmitted = true;
     this.loading = false;
+    this.AnyInfo()
 
 
   }
@@ -94,7 +95,7 @@ export class StudentPaymentComponent {
     this.isIECFound = true;
   }
 
-  onBack(){
+  onBack() {
     this.router.navigate(['/student/studentCourse']);
   }
 

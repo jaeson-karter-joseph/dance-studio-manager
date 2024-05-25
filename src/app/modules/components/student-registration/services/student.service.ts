@@ -56,12 +56,22 @@ export class StudentService {
       const student : Partial<StudentCompleteDetails> = {
         firstName : data?.firstName,
         lastName : data?.lastName,
-        dob : new Date(data?.dob as string),
+        dob : data?.dob,
         gender : data?.gender,
         phoneNumber : data?.mobile,
         whatsappNumber : data?.whatsappNo,
         email : data?.email,
-        address : data?.address
+        address : data?.address,
+        id : data.studentId,
+        couresEnrolled : data.couresEnrolled,
+        classDate : data.classDate,
+        trainer : data.trainer,
+        fees : data.fees,
+        paymentMode : data.paymentMode,
+        paymentDate : new Date(data.paymentDate as Date),
+        vat : data.vat,
+        addNotes : data.addNotes
+        
       }
 
       this.saveStudentDetails(student).subscribe({

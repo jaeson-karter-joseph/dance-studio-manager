@@ -128,6 +128,8 @@ export class StudentRegistrationComponent {
 
     this.formSubmitted = true
 
+    this.Course();
+
   }
 
   resetForm() {
@@ -150,10 +152,8 @@ export class StudentRegistrationComponent {
     this.isIECFound = true;
   }
 
-  formatDate(date: Date): string {
-    return `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${(
-      '0' + date.getDate()
-    ).slice(-2)}`;
+  formatDate(date: Date): Date {
+    return date
   }
 
   generateUniqueAndReadableStudentID(name: string) {

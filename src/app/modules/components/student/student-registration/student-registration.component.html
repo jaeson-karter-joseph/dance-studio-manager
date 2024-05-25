@@ -79,9 +79,7 @@
   </div>
   <!-- Action buttons for Save, Delete, and Reset -->
   <div class="card flex justify-content-center column-gap-3">
-    <p-button label="Save" type="submit" [loading]="loading"></p-button>
     <button pButton type="button" label="Reset" (click)="resetForm()"></button>
-    <button pButton type="button" label="Go To Course Page" (click)="Course()" class=""
-      [disabled]="!formSubmitted"></button>
+    <button [loading]="loading" pButton type="submit" label="Save & Go To Course Page" (click)="Course()"></button>
   </div>
 </form>

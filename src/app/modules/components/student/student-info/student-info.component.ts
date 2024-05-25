@@ -102,11 +102,13 @@ export class StudentInfoComponent {
       paymentMode : this.studentService.student.paymentMode,
       paymentDate : this.studentService.student.paymentDate,
       status : true,
+      addNotes : this.studentService.student.addNotes
     }
 
     this.studentService.saveStudent(student).subscribe({
       next : res =>{
         console.log(res);
+        this.loading = false;
       },
       error : (err) => {
         console.error(err);

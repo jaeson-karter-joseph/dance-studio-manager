@@ -13,10 +13,20 @@ export interface StudentDetails {
   whatsappNo: number;
   email: string;
   studentId: string;
-  dob: string;
-  gender: string;
   status: boolean;
   address: string;
+  dob?: Date;
+  gender?: string;
+  phoneNumber?: number;
+  whatsappNumber?: number;
+  couresEnrolled?: string[];
+  classDate?: Date[];
+  trainer?: string[];
+  fees?: number;
+  vat?: number;
+  paymentDate?: Date;
+  paymentMode?: { name: string };
+  addNotes?: string;
 }
 
 @Component({
