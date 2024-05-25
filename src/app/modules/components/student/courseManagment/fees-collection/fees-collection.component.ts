@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Fees } from '../../../student-registration/models/request.model';
 import { StudentService } from '../../../student-registration/services/student.service';
 
@@ -29,7 +29,8 @@ export class FeesCollectionComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private studentService: StudentService
+    private studentService: StudentService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -44,24 +45,35 @@ export class FeesCollectionComponent {
 
     });
 
-    if (!!this.id) {
-      this.studentService.getStudentId(this.id).subscribe({
-        next: (res) => {
-          this.loading = false;
-          //res);
+    // if (!!this.id) {
+    //   this.studentService.getStudentId(this.id).subscribe({
+    //     next: (res) => {
+    //       this.loading = false;
+    //       //res);
 
-          this.fessDemog.patchValue;
-        },
-        error: (err) => {
-          this.loading = false;
-          //err);
-        },
-      });
-    }
+    //       this.fessDemog.patchValue;
+    //     },
+    //     error: (err) => {
+    //       this.loading = false;
+    //       //err);
+    //     },
+    //   });
+    // }
+
+    this.route.paramMap.subscribe(params => {
+      const studentId = params.get('id');
+      const studentName = params.get('studentName');
+
+      if (studentId && studentName) {
+        this.fessDemog.patchValue({
+          studentName: studentName
+        });
+      }
+    });
   }
 
   Course() {
-    this.router.navigate(['/student/studentCourse']);
+    this.router.navigate(['/student/courseManagement']);
   }
 
   load() {

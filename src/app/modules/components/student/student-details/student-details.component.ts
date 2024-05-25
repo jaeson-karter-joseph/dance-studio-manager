@@ -137,6 +137,10 @@ export class StudentDetailsComponent implements OnInit {
     this.router.navigate(['/student/studentRegistration/' + id]);
   }
 
+  redirectAttendance(id: string, studentName: string){
+    this.router.navigate(['/student/attendanceManagement/' + id,studentName]);
+  }
+
   findIndexById(id: string): number {
     let index = -1;
     for (let i = 0; i < this.studentDetailsProducts.length; i++) {
