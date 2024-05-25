@@ -38,6 +38,5 @@ export interface Student {
 
   export interface StudentAdditionalInfo {
     anySpecialRequest: string;
-    notes: string;
   }
 

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { StudentService } from '../../student-registration/services/student.service';
 import { StudentAdditionalInfo } from '../../student-registration/models/request.model';
 import { Router } from '@angular/router';
+import { StudentCompleteDetails } from '../../../../models/student.model';
 
 @Component({
   selector: 'app-student-info',
@@ -21,7 +22,7 @@ export class StudentInfoComponent {
 
   ngOnInit() {
     this.iecForm = this.formBuilder.group({
-      anySpecialRequest: [null],
+      anySpecialRequest: [this.studentService.student.addNotes],
     });
 
     if (this.id) {
@@ -43,11 +44,17 @@ export class StudentInfoComponent {
     this.loading = true;
 
     const studentAdditionalInfo: StudentAdditionalInfo = {
-      anySpecialRequest: this.f['coursesEnrolled'].value,
-      notes: this.f['sessionTimes'].value,
+      anySpecialRequest: this.f['anySpecialRequest'].value,
     };
 
-    console.log(studentAdditionalInfo);
+    const student : Partial<StudentCompleteDetails> = {
+      addNotes: this.f['anySpecialRequest'].value,
+    }
+
+    this.studentService.saveStudentDetails(student);
+
+    this.loading = false;
+
 
   }
 
@@ -66,4 +73,9 @@ export class StudentInfoComponent {
       this.iecForm.controls[controlName].dirty
     );
   };
+
+  onBack(){
+    this.router.navigate(['/student/studentCourse']);
+  }
+
 }
