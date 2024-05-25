@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { TrainerRoutingModule } from './trainer-routing.module';
 import { SharedModule } from 'primeng/api';
+import { NgprimeModule } from '../../shared/ngprime/ngprime.module';
 
 
 
@@ -13,7 +14,8 @@ import { SharedModule } from 'primeng/api';
   imports: [
     CommonModule,
     TrainerRoutingModule,
-    SharedModule
+    SharedModule,
+    NgprimeModule
   ]
 })
 export class TrainerModule { }
