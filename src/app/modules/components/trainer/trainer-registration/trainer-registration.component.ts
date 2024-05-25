@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trainer-registration',
@@ -24,9 +25,13 @@ export class TrainerRegistrationComponent {
   loading: boolean = false;
   iecForm !: FormGroup;
   isIECFound: boolean = false;
+  maxDate: Date = new Date();
+  formSubmitted = false;
+
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -77,6 +82,9 @@ export class TrainerRegistrationComponent {
 
   }
 
+  salaryPage() {
+    this.router.navigate(['/trainer/salaryCalculation']);
+  }
   resetForm() {
     this.iecForm.reset();
     console.log('Form reset');

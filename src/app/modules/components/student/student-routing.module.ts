@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'studentPayment', loadChildren: () => import('./student-payment/student-payment.module').then(m => m.StudentPaymentModule) },
   { path: 'studentCourse', loadChildren: () => import('./student-course/student-course.module').then(m => m.StudentCourseModule) },
   { path: 'studentAdditionalInfo', loadChildren: () => import('./student-info/student-info.module').then(m => m.StudentInfoModule) },
+  { path: 'feesCollection', loadChildren: () => import('./fees-collection/fees-collection.module').then(m => m.FeesCollectionModule) },
 
 
 ];

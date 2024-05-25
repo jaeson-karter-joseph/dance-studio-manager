@@ -21,19 +21,28 @@
           <!-- Input for Phone Number -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
-              <input type="number" id="phoneNumber" pInputText placeholder=" Phone Number " formControlName="phoneNumber" />
+              <input type="tel" id="phoneNumber" pInputText placeholder=" Phone Number " maxlength="10"
+                formControlName="phoneNumber" />
               <label for="phoneNumber">Phone Number</label>
             </span>
           </div>
           <!-- Input for Whatsapp Number -->
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
-              <input type="number" id="whatsappNumber" pInputText placeholder=" Whatsapp Number " formControlName="whatsappNumber" />
+              <input type="tel" id="whatsappNumber" pInputText placeholder=" Whatsapp Number " maxlength="10"
+                formControlName="whatsappNumber" />
               <label for="whatsappNumber">Whatsapp Number</label>
             </span>
           </div>
+          <!-- Input for Gender -->
+          <div class="col-12 md:col-4">
+            <div class="p-field">
+              <p-dropdown id="gender" formControlName="selectedGender" [options]="genderOptions"
+                placeholder="Select Gender"></p-dropdown>
+            </div>
+          </div>
           <!-- Input for Email ID -->
-          <div class="col-12 md:col-4 p-inputgroup">
+          <div class="col-12   md:col-4 p-inputgroup">
             <span class="p-float-label">
               <input type="email" id="emailId" pInputText placeholder=" Email ID " formControlName="importerEmailId" />
               <label for="emailId">Email ID</label>
@@ -44,34 +53,33 @@
           <div class="col-12 md:col-4">
             <div class="p-field">
               <span class="p-float-label">
-                <p-dropdown formControlName="selectedConductedCourse" [options]="conductedCourse" placeholder=" Select a Conducted Course "></p-dropdown>
+                <p-dropdown formControlName="selectedConductedCourse" [options]="conductedCourse"
+                  placeholder=" Select a Conducted Course "></p-dropdown>
                 <label>Select a Conducted Course</label>
               </span>
             </div>
           </div>
           <div class="col-12 md:col-4 p-inputgroup">
             <span class="p-float-label">
-              <input type="number" id="courseConducted" pInputText placeholder="No of Courses Conducted " formControlName="courseConducted" />
+              <input type="number" id="courseConducted" pInputText placeholder="No of Courses Conducted "
+                formControlName="courseConducted" />
               <label for="classesCompleted">No of Courses Conducted</label>
             </span>
           </div>
           <!-- Date for Birthdate -->
           <div class="col-12 md:col-4">
             <span class="p-float-label">
-              <p-calendar formControlName="birthDate" inputId="birth_date" [showIcon]="true"></p-calendar>
+              <p-calendar [maxDate]="maxDate" dateFormat="dd/mm/yy" formControlName="birthDate" inputId="birth_date"
+                [showIcon]="true"></p-calendar>
               <label for="birth_date">Date of Birth</label>
             </span>
           </div>
-          <!-- Input for Gender -->
-          <div class="col-12 md:col-4">
-            <div class="p-field">
-              <p-dropdown id="gender" formControlName="selectedGender" [options]="genderOptions" optionLabel="label" placeholder="Select Gender"></p-dropdown>
-            </div>
-          </div>
+
           <!-- Textarea for Residential Address -->
-          <div class="col-12 md:col-4 p-inputgroup">
+          <div class="col-12 p-inputgroup">
             <span class="p-float-label">
-              <textarea id="ResidentialAddress" rows="5" placeholder="Enter the Residential Address" pInputTextarea formControlName="ResidentialAddress"></textarea>
+              <input pInputText id="ResidentialAddress" placeholder="Enter the Residential Address"
+                formControlName="ResidentialAddress" />
               <label for="ResidentialAddress">Residential Address</label>
             </span>
           </div>
@@ -84,6 +92,7 @@
     <p-button label="Save" type="submit" [loading]="loading"></p-button>
     <button pButton type="button" label="Delete" [loading]="loading" (click)="load()"></button>
     <button pButton type="button" label="Reset" [loading]="loading" (click)="resetForm()"></button>
-    <!-- <button pButton type="button" label="Go To Course Page" (click)="Course()" class=""></button> -->
+    <button pButton type="button" label="Go To Salary Page" (click)="salaryPage()" class=""
+      [disabled]="!formSubmitted"></button>
   </div>
 </form>

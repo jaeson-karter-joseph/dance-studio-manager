@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-salary-calculation',
@@ -15,7 +16,9 @@ export class SalaryCalculationComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.iecForm = this.formBuilder.group({
@@ -29,6 +32,10 @@ export class SalaryCalculationComponent implements OnInit {
     this.iecForm.get('collectedPerTrainer')?.valueChanges.subscribe(value => {
       this.calculateShares();
     });
+  }
+
+  onBack(){
+    this.router.navigate(['/trainer/trainerRegistration']);
   }
 
   calculateShares() {

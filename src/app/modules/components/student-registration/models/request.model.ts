@@ -11,6 +11,15 @@ export interface Student {
     status: boolean;
   }
 
+  export interface Fees {
+    date: string;
+    studentName : string;
+    courseName : string;
+    paidFees : number;
+    paymentMethod: string;
+    remarks: string;
+  }
+
   // export interface Payment {
   //   studentId: string;
   //   paymentMode: string;
