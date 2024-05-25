@@ -34,21 +34,21 @@ export class MenuComponent implements OnInit {
                 icon: 'pi pi-fw pi-pencil',
                 routerLink: ['/student/studentRegistration'],
               },
-              {
-                label: 'Student Course',
-                icon: 'pi pi-fw pi-book',
-                routerLink: ['/student/studentCourse'],
-              },
-              {
-                label: 'Students Payment',
-                icon: 'pi pi-fw pi-wallet',
-                routerLink: ['/student/studentPayment'],
-              },
-              {
-                label: 'Students Additional Info',
-                icon: 'pi pi-fw pi-hourglass',
-                routerLink: ['/student/studentAdditionalInfo'],
-              },
+              // {
+              //   label: 'Student Course',
+              //   icon: 'pi pi-fw pi-book',
+              //   routerLink: ['/student/studentCourse'],
+              // },
+              // {
+              //   label: 'Students Payment',
+              //   icon: 'pi pi-fw pi-wallet',
+              //   routerLink: ['/student/studentPayment'],
+              // },
+              // {
+              //   label: 'Students Additional Info',
+              //   icon: 'pi pi-fw pi-hourglass',
+              //   routerLink: ['/student/studentAdditionalInfo'],
+              // },
               {
                 label: 'Students Details',
                 icon: 'pi pi-fw pi-database',

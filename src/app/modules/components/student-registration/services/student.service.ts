@@ -6,11 +6,13 @@ import { ResponseData } from '../models/response.model';
 import { Student, StudentPayment } from '../models/request.model';
 import { StudentDetails } from '../../student/student-details/student-details.component';
 import { StudentPaymentComponent } from '../../student/student-payment/student-payment.component';
+import { StudentCompleteDetails } from '../../../../models/student.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
+  student = new StudentCompleteDetails();
 
   get studentSaveURL() { return environment.apiUrl + 'student/saveStudent' };
   get paymentSaveURL() { return environment.apiUrl + 'payment/savePayment' };
@@ -26,6 +28,7 @@ export class StudentService {
 
 
   constructor(private http: HttpClient) { }
+
 
   saveStudent(body: Student): Observable<ResponseData<null>> {
     return this.http.post<ResponseData<null>>(this.studentSaveURL, JSON.stringify(body), this.httpOptions).pipe(map(res => {
@@ -45,16 +48,21 @@ export class StudentService {
     }))
   }
 
-  getStudentId(id: string) : Observable<ResponseData<StudentDetails>> {
+  getStudentId(id: string): Observable<ResponseData<StudentDetails>> {
     return this.http.get<ResponseData<StudentDetails>>(this.studentGetByIDURL + id, this.httpOptions).pipe(map(res => {
       return res;
     }))
   }
 
-  getPaymentId(id: string) : Observable<ResponseData<StudentPayment>> {
+  getPaymentId(id: string): Observable<ResponseData<StudentPayment>> {
     return this.http.get<ResponseData<StudentPayment>>(this.paymentGetByIDURL + id, this.httpOptions).pipe(map(res => {
       return res;
     }))
+  }
+
+  saveStudentDetails(studentDetails: Partial<StudentCompleteDetails>) {
+    this.student = { ...this.student, ...studentDetails };
+    console.log(this.student);
   }
 
 }

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from
 import {  StudentPayment } from '../../student-registration/models/request.model';
 import { StudentService } from '../../student-registration/services/student.service';
 import { Router } from '@angular/router';
+import { StudentCompleteDetails } from '../../../../models/student.model';
 
 
 @Component({
@@ -33,10 +34,10 @@ export class StudentPaymentComponent {
 
   ngOnInit() {
     this.studentPayment = this.formBuilder.group({
-      totalFees: [null, Validators.required],
-      vat: [null, Validators.required],
-      selectedPayment: [null, Validators.required],
-      paymentDate: [null, Validators.required],
+      totalFees: [this.studentService.student.fees, Validators.required],
+      vat: [this.studentService.student.vat, Validators.required],
+      selectedPayment: [this.studentService.student.paymentMode, Validators.required],
+      paymentDate: [this.studentService.student.paymentDate, Validators.required],
     });
     
   }
@@ -54,7 +55,19 @@ export class StudentPaymentComponent {
       paymentDate: this.formatDate(this.f['paymentDate'].value),
     };
 
-    console.log(StudentPaymentData);
+    const student : Partial<StudentCompleteDetails> = {
+      fees: this.f['totalFees'].value,
+      vat: this.f['vat'].value,
+      paymentMode: this.f['selectedPayment'].value.name,
+      paymentDate: new Date(this.formatDate(this.f['paymentDate'].value)),
+    }
+
+    this.studentService.saveStudentDetails(student);
+
+    this.isFormSubmitted = true;
+    this.loading = false;
+
+
   }
 
   formatDate(date: Date): string {
@@ -80,4 +93,9 @@ export class StudentPaymentComponent {
   searchIEC() {
     this.isIECFound = true;
   }
+
+  onBack(){
+    this.router.navigate(['/student/studentCourse']);
+  }
+
 }

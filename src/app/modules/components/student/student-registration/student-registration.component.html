@@ -30,7 +30,7 @@
           <!-- Input for Gender -->
           <div class="col-12 md:col-4">
             <div class="p-field">
-              <p-dropdown id="gender" formControlName="selectedGender" [options]="genderOptions" optionLabel="label"
+              <p-dropdown id="gender" formControlName="selectedGender" [options]="genderOptions"
                 placeholder="Select Gender"></p-dropdown>
             </div>
           </div>
@@ -81,6 +81,7 @@
   <div class="card flex justify-content-center column-gap-3">
     <p-button label="Save" type="submit" [loading]="loading"></p-button>
     <button pButton type="button" label="Reset" (click)="resetForm()"></button>
-    <button pButton type="button" label="Go To Course Page" (click)="Course()" class="" [disabled]="!formSubmitted"></button>
+    <button pButton type="button" label="Go To Course Page" (click)="Course()" class=""
+      [disabled]="!formSubmitted"></button>
   </div>
 </form>
