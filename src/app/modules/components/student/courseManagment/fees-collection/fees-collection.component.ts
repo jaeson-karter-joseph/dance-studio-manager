@@ -1,15 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StudentCompleteDetails } from '../../../../models/student.model';
-import { Fees, Student } from '../../student-registration/models/request.model';
-import { StudentService } from '../../student-registration/services/student.service';
 import { Router } from '@angular/router';
+import { Fees } from '../../../student-registration/models/request.model';
+import { StudentService } from '../../../student-registration/services/student.service';
 
 @Component({
   selector: 'app-fees-collection',
   templateUrl: './fees-collection.component.html',
   styleUrl: './fees-collection.component.scss'
 })
+
+
 export class FeesCollectionComponent {
   @Input() id!: string;
   loading: boolean = false;
