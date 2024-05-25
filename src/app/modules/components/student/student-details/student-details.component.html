@@ -34,6 +34,7 @@
         <th pSortableColumn="gender" style="min-width:8rem">Gender<p-sortIcon field="gender"></p-sortIcon></th>
         <th pSortableColumn="status" style="min-width:7rem">Status<p-sortIcon field="status"></p-sortIcon></th>
         <th pSortableColumn="edit" style="min-width:5rem" field="edit">Edit</th>
+        <th pSortableColumn="attendance" style="min-width:5rem" field="attendance">Attendance</th>
         <th pSortableColumn="download" style="min-width:5rem" field="download">Download</th>
       </tr>
     </ng-template>
@@ -51,6 +52,9 @@
         <td><span [class]="'product-badge status-' + StudentDetails.status">{{StudentDetails.status == true ? 'ACTIVE' : 'INACTIVE'}}</span></td>
         <td>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="redirectOnEdit(StudentDetails.studentId)"></button>
+        </td>
+        <td>
+          <button pButton pRipple icon="pi pi-check-circle" class="p-button-rounded p-button-success mr-2" (click)="redirectAttendance(StudentDetails.studentId, StudentDetails.studentName)"></button>
         </td>
         <td><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteStudentDetails(StudentDetails)"></button></td>
       </tr>
