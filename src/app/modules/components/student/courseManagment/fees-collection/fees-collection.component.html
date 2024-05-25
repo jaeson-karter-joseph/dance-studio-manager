@@ -22,11 +22,9 @@
             </span>
           </div>
           <!-- Input for Course Name -->
+          <!-- Input for Course Name -->
           <div class="col-12 md:col-4 p-inputgroup">
-            <span class="p-float-label">
-              <input type="text" id="courseName" pInputText placeholder=" Course Name " formControlName="courseName" />
-              <label for="courseName">Course Name</label>
-            </span>
+            <p-multiSelect [options]="danceForms" formControlName="courseName" placeholder=" Course(s) Name" />
           </div>
           <!-- Input for Paid Fees -->
           <div class="col-12 md:col-4 p-inputgroup">

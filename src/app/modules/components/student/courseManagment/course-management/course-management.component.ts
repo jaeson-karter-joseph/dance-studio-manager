@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { StudentService } from '../../../student-registration/services/student.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentCompleteDetails } from '../../../../../models/student.model';
 import { CourseManagement, StudentCourse } from '../../../student-registration/models/request.model';
 
@@ -22,7 +22,8 @@ export class CourseManagementComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private studentService: StudentService
+    private studentService: StudentService,
+    private route : ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -49,6 +50,23 @@ export class CourseManagementComponent {
         },
       });
     }
+    this.route.queryParamMap.subscribe(res => {
+      console.log(res);
+      console.log(res.get('id'));
+      console.log(res.get('studentName'));
+      console.log(res.get('date'));
+      console.log(res.get('courseName'));
+      console.log(res.get('sessionTimes'));
+
+
+      this.courseManage.patchValue({
+        courseName : res.get('courseName'),
+        sessionTimes : res.get('sessionTimes'),
+        instructorTrainer : res.get('instructorTrainer'),
+        totalFees : res.get('totalFees'),
+        attendanceStatus : res.get('attendanceStatus'),
+      })
+    })
   }
 
   attendance() {

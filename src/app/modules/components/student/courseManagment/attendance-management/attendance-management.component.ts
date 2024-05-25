@@ -17,6 +17,8 @@ export class AttendanceManagementComponent {
   maxDate: Date = new Date();
   formSubmitted = false;
   minDate : Date = new Date();
+  danceForms: string[] = ['Ballet', 'Jazz', 'Hip Hop', 'Contemporary', 'Tap', 'Salsa', 'Swing', 'Tango', 'Belly', 'Break'];
+
 
 
   constructor(
@@ -57,9 +59,16 @@ export class AttendanceManagementComponent {
       console.log(res);
       console.log(res.get('id'));
       console.log(res.get('studentName'));
+      console.log(res.get('date'));
+      console.log(res.get('courseName'));
+      console.log(res.get('sessionTimes'));
+
 
       this.attendanceManage.patchValue({
-        studentName : res.get('studentName')
+        studentName : res.get('studentName'),
+        date : res.get('date'),
+        courseName : res.get('courseName'),
+        sessionTimes : res.get('sessionTimes'),
       })
     })
   }

@@ -25,6 +25,8 @@ export class FeesCollectionComponent {
     { name: 'Net Banking' },
     { name: 'Bank Transfer' },
   ];
+  danceForms: string[] = ['Ballet', 'Jazz', 'Hip Hop', 'Contemporary', 'Tap', 'Salsa', 'Swing', 'Tango', 'Belly', 'Break'];
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -63,7 +65,24 @@ export class FeesCollectionComponent {
     this.route.queryParamMap.subscribe(res => {
       console.log(res);
     })
+    this.route.queryParamMap.subscribe(res => {
+      console.log(res);
+      console.log(res.get('id'));
+      console.log(res.get('studentName'));
+      console.log(res.get('paidFees'));
+      console.log(res.get('paymentMethod'));
+      console.log(res.get('courseName'));
+      console.log(res.get('date'));
 
+
+      this.fessDemog.patchValue({
+        studentName : res.get('studentName'),
+        paidFees : res.get('paidFees'),
+        paymentMethod : res.get('paymentMethod'),
+        courseName : res.get('courseName'),
+        date : res.get('date'),
+      })
+    })
 
   }
 
