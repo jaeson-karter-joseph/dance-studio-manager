@@ -110,6 +110,7 @@ export class MenuComponent implements OnInit {
           },
         ],
       },
+
       {
         label: 'Event',
         items: [
@@ -128,6 +129,36 @@ export class MenuComponent implements OnInit {
                 routerLink: ['/event/eventDetails'],
               },
             ],
+          },
+        ],
+      },
+      {
+        label: 'Fees Collection Section',
+        items: [
+          {
+            label: 'Fees Collect',
+            icon: 'pi pi-fw pi-bitcoin',
+            routerLink: ['/student/courseManagement'],
+          },
+        ],
+      },
+      {
+        label: 'Course Management Section',
+        items: [
+          {
+            label: 'Course Manage',
+            icon: 'pi pi-fw pi-cloud',
+            routerLink: ['/student/courseManagement'],
+          },
+        ],
+      },
+      {
+        label: 'Attendance Tracking',
+        items: [
+          {
+            label: 'Attendance Tracker',
+            icon: 'pi pi-fw pi-chart-line',
+            routerLink: ['/student/attendanceManagement'],
           },
         ],
       },
