@@ -71,16 +71,16 @@ export class SalaryCalculationComponent implements OnInit {
       active: true,
       iecmasters: this.iecForm.value.branches
     }
-    console.log(this.iecForm.value, iecFormData);
+    //this.iecForm.value, iecFormData);
 
     this.iecService.newIecData(iecFormData).subscribe({
       next: (response) => {
-        console.log(response);
+        //response);
         this.loading = false;
         this.resetForm();
       },
       error: (error) => {
-        console.log(error);
+        //error);
         this.loading = false;
       }
     })
@@ -89,7 +89,7 @@ export class SalaryCalculationComponent implements OnInit {
 
   resetForm() {
     this.iecForm.reset();
-    console.log('Form reset');
+    //'Form reset');
   }
 
   get f(): { [key: string]: AbstractControl } {

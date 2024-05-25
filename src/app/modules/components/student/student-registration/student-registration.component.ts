@@ -39,6 +39,30 @@ export class StudentRegistrationComponent {
   ) { }
 
   ngOnInit() {
+
+    if (!this.id) {
+      this.studentService.clearStudentDetails();
+    }
+
+    if (!!this.id) {
+      this.studentService.getStudentId(this.id).subscribe({
+        next: (res) => {
+          this.loading = false;
+          console.log(res);
+          this.patchValues();
+        },
+        error: (err) => {
+          this.loading = false;
+        },
+      });
+    }
+
+    this.patchValues();
+
+
+  }
+
+  patchValues() {
     this.studentDemog = this.formBuilder.group({
 
       firstName: [this.studentService.student.firstName, Validators.required],
@@ -54,22 +78,8 @@ export class StudentRegistrationComponent {
       selectedGender: [this.studentService.student.gender, Validators.required],
       checked: [false],
       ResidentialAddress: [this.studentService.student.address],
+
     });
-
-    if (!!this.id) {
-      this.studentService.getStudentId(this.id).subscribe({
-        next: (res) => {
-          this.loading = false;
-          console.log(res);
-
-          this.studentDemog.patchValue;
-        },
-        error: (err) => {
-          this.loading = false;
-          console.log(err);
-        },
-      });
-    }
   }
 
   onUpload(event: any) {
@@ -97,7 +107,7 @@ export class StudentRegistrationComponent {
       status: this.f['checked'].value,
     };
 
-    console.log(studentData);
+    //studentData);
 
     const student: Partial<StudentCompleteDetails> = {
       firstName: this.f['firstName'].value,
@@ -107,7 +117,7 @@ export class StudentRegistrationComponent {
       email: this.f['importerEmailId'].value,
       id: this.generateUniqueAndReadableStudentID(this.f['firstName'].value),
       dob: new Date(this.formatDate(this.f['birthDate'].value)),
-      gender: this.f['selectedGender'].value.label,
+      gender: this.f['selectedGender'].value,
       address: this.f['ResidentialAddress'].value,
     }
 
@@ -116,7 +126,7 @@ export class StudentRegistrationComponent {
     this.studentService.saveStudent(studentData).subscribe({
       next: (res) => {
         this.loading = false;
-        console.log(res);
+        //res);
         this.formSubmitted = true
       },
     });
@@ -124,7 +134,7 @@ export class StudentRegistrationComponent {
 
   resetForm() {
     this.studentDemog.reset();
-    console.log('Form reset');
+    //'Form reset');
   }
 
   get f(): { [key: string]: AbstractControl } {

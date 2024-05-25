@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { ResponseData } from '../models/response.model';
 import { Student, StudentPayment } from '../models/request.model';
 import { StudentDetails } from '../../student/student-details/student-details.component';
@@ -50,6 +50,24 @@ export class StudentService {
 
   getStudentId(id: string): Observable<ResponseData<StudentDetails>> {
     return this.http.get<ResponseData<StudentDetails>>(this.studentGetByIDURL + id, this.httpOptions).pipe(map(res => {
+
+      var data = res.data;
+      const student : Partial<StudentCompleteDetails> = {
+        firstName : data?.firstName,
+        lastName : data?.lastName,
+        dob : new Date(data?.dob as string),
+        gender : data?.gender,
+        phoneNumber : data?.mobile,
+        whatsappNumber : data?.whatsappNo,
+        email : data?.email,
+        address : data?.address
+      }
+      this.saveStudentDetails(student).subscribe({
+        next : res => {
+          return res;
+        }
+      })
+
       return res;
     }))
   }
@@ -60,9 +78,13 @@ export class StudentService {
     }))
   }
 
-  saveStudentDetails(studentDetails: Partial<StudentCompleteDetails>) {
+  saveStudentDetails(studentDetails: Partial<StudentCompleteDetails>): Observable<void> {
     this.student = { ...this.student, ...studentDetails };
-    console.log(this.student);
+    return of();
+  }
+
+  clearStudentDetails(): void {
+    this.student = new StudentCompleteDetails();
   }
 
 }

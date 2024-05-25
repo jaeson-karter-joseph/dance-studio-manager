@@ -76,7 +76,7 @@ export class StudentPaymentComponent {
 
   resetForm() {
     this.studentPayment.reset();
-    console.log('Form reset');
+    //'Form reset');
   }
 
   get f(): { [key: string]: AbstractControl } {

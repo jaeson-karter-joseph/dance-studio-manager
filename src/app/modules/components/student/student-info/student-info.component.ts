@@ -29,12 +29,12 @@ export class StudentInfoComponent {
       this.studentService.getStudentId(this.id).subscribe({
         next: (res) => {
           this.loading = false;
-          console.log(res);
+          //res);
           this.iecForm.patchValue(res);
         },
         error: (err) => {
           this.loading = false;
-          console.log(err);
+          //err);
         },
       });
     }
@@ -60,7 +60,7 @@ export class StudentInfoComponent {
 
   resetForm() {
     this.iecForm.reset();
-    console.log('Form reset');
+    //'Form reset');
   }
 
   get f(): { [key: string]: AbstractControl } {
