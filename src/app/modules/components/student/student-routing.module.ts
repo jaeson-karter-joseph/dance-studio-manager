@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CourseManagementComponent } from './courseManagment/course-management/course-management.component';
+import { AttendanceManagementComponent } from './courseManagment/attendance-management/attendance-management.component';
 
 
 const routes: Routes = [
@@ -9,6 +11,11 @@ const routes: Routes = [
   { path: 'studentCourse', loadChildren: () => import('./student-course/student-course.module').then(m => m.StudentCourseModule) },
   { path: 'studentAdditionalInfo', loadChildren: () => import('./student-info/student-info.module').then(m => m.StudentInfoModule) },
   { path: 'feesCollection', loadChildren: () => import('./fees-collection/fees-collection.module').then(m => m.FeesCollectionModule) },
+  //routing for CM
+  { path: 'course', component : CourseManagementComponent},
+  { path: 'attandace', component : AttendanceManagementComponent},
+
+
 
 
 ];
