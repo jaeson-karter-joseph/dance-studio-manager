@@ -3,7 +3,7 @@ export class StudentCompleteDetails {
     firstName?: string;
     lastName?: string;
     dob?: Date;
-    gender?: { label: string, value: string };
+    gender?: string;
     phoneNumber?: number;
     whatsappNumber?: number;
     email?: string;

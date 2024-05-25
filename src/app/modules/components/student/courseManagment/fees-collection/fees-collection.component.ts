@@ -48,13 +48,13 @@ export class FeesCollectionComponent {
       this.studentService.getStudentId(this.id).subscribe({
         next: (res) => {
           this.loading = false;
-          console.log(res);
+          //res);
 
           this.fessDemog.patchValue;
         },
         error: (err) => {
           this.loading = false;
-          console.log(err);
+          //err);
         },
       });
     }
@@ -81,12 +81,12 @@ export class FeesCollectionComponent {
 
     };
 
-    console.log(feesCollectionData);
+    //feesCollectionData);
 
     // this.studentService.saveStudent(feesCollectionData).subscribe({
     //   next: (res) => {
     //     this.loading = false;
-    //     console.log(res);
+    //     //res);
     //     this.formSubmitted = true
     //   },
     // });
@@ -94,7 +94,7 @@ export class FeesCollectionComponent {
 
   resetForm() {
     this.fessDemog.reset();
-    console.log('Form reset');
+    //'Form reset');
   }
 
   get f(): { [key: string]: AbstractControl } {

@@ -39,12 +39,12 @@ export class StudentCourseComponent {
       this.studentService.getStudentId(this.id).subscribe({
         next: (res) => {
           this.loading = false;
-          console.log(res);
+          //res);
           this.courseDetails.patchValue(res);
         },
         error: (err) => {
           this.loading = false;
-          console.log(err);
+          //err);
         },
       });
     }
@@ -63,7 +63,7 @@ export class StudentCourseComponent {
       instructorTrainer: this.f['instructorTrainer'].value,
     };
 
-    console.log(studentCourseData);
+    //studentCourseData);
 
     const student : Partial<StudentCompleteDetails> = {
       couresEnrolled: this.f['coursesEnrolled'].value,
@@ -80,7 +80,7 @@ export class StudentCourseComponent {
 
   resetForm() {
     this.courseDetails.reset();
-    console.log('Form reset');
+    //'Form reset');
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -95,7 +95,7 @@ export class StudentCourseComponent {
   };
 
   onBack(){
-    this.router.navigate(['/student/studentRegistration']);
+    this.router.navigate(['/student/studentRegistration/' + this.studentService.student.id]);
   }
 
 }

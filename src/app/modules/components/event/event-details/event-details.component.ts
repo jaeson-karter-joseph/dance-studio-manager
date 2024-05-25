@@ -278,7 +278,6 @@ export class EventDetailsComponent {
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   editProduct(eventDetailsProduct: EventDetails) {
-    console.log({ ...eventDetailsProduct });
     this.EventDetails = { ...eventDetailsProduct };
     this.productDialog = true;
   }
