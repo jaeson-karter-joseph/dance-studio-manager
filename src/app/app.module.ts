@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppLayoutModule } from './modules/shared/app-layout/app-layout.module';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { withViewTransitions } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch())
     
   ],
   bootstrap: [AppComponent]

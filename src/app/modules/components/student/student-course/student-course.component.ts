@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { StudentService } from '../../student-registration/services/student.service';
 import { StudentCourse } from '../../student-registration/models/request.model';
 import { Router } from '@angular/router';
+import { StudentCompleteDetails } from '../../../../models/student.model';
 
 
 @Component({
@@ -28,9 +29,9 @@ export class StudentCourseComponent {
   ngOnInit() {
 
     this.courseDetails = this.formBuilder.group({
-      coursesEnrolled: new FormControl<string[] | null>(null, [Validators.required]),
-      sessionTimes: new FormControl<Date[] | null>(null,[Validators.required]),
-      instructorTrainer: new FormControl<string[] | null>(null, [Validators.required]),
+      coursesEnrolled: new FormControl(this.studentService.student.couresEnrolled, [Validators.required]),
+      sessionTimes: new FormControl(this.studentService.student.classDate,[Validators.required]),
+      instructorTrainer: new FormControl(this.studentService.student.trainer, [Validators.required]),
     });
 
 
@@ -63,6 +64,18 @@ export class StudentCourseComponent {
     };
 
     console.log(studentCourseData);
+
+    const student : Partial<StudentCompleteDetails> = {
+      couresEnrolled: this.f['coursesEnrolled'].value,
+      classDate: this.f['sessionTimes'].value,
+      trainer: this.f['instructorTrainer'].value,
+    }
+
+    this.studentService.saveStudentDetails(student);
+
+    this.isFormSubmitted=true;
+    this.loading = false;
+
   }
 
   resetForm() {
@@ -80,5 +93,9 @@ export class StudentCourseComponent {
       this.courseDetails.controls[controlName].dirty
     );
   };
+
+  onBack(){
+    this.router.navigate(['/student/studentRegistration']);
+  }
 
 }

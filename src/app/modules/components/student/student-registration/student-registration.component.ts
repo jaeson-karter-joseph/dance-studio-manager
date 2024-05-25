@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Student } from '../../student-registration/models/request.model';
+import { StudentCompleteDetails } from '../../../../models/student.model';
 
 @Component({
   selector: 'app-student-registration',
@@ -19,10 +20,11 @@ import { Student } from '../../student-registration/models/request.model';
 export class StudentRegistrationComponent {
   @Input() id!: string;
   genderOptions = [
-    { label: 'Male', value: 'male' },
-    { label: 'Female', value: 'female' },
-    { label: 'Other', value: 'other' },
+    'Male',
+    'Female',
+    'Other'
   ];
+
   loading: boolean = false;
   studentDemog!: FormGroup;
   isIECFound: boolean = false;
@@ -39,19 +41,19 @@ export class StudentRegistrationComponent {
   ngOnInit() {
     this.studentDemog = this.formBuilder.group({
 
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
-      phoneNumber: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
+      firstName: [this.studentService.student.firstName, Validators.required],
+      lastName: [this.studentService.student.lastName, Validators.required],
+      phoneNumber: [this.studentService.student.phoneNumber, [Validators.required, Validators.pattern(/^\d+$/)]],
       whatsappNumber: [
-        null,
+        this.studentService.student.whatsappNumber,
         [Validators.required, Validators.pattern(/^\d+$/)],
       ],
-      importerEmailId: [null, [Validators.required, Validators.email]],
-      studentid: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
-      birthDate: [null, Validators.required],
-      selectedGender: ['', Validators.required],
+      importerEmailId: [this.studentService.student.email, [Validators.required, Validators.email]],
+      studentid: [this.studentService.student.id, [Validators.required, Validators.pattern(/^\d+$/)]],
+      birthDate: [this.studentService.student.dob, Validators.required],
+      selectedGender: [this.studentService.student.gender, Validators.required],
       checked: [false],
-      ResidentialAddress: [''],
+      ResidentialAddress: [this.studentService.student.address],
     });
 
     if (!!this.id) {
@@ -97,10 +99,25 @@ export class StudentRegistrationComponent {
 
     console.log(studentData);
 
+    const student: Partial<StudentCompleteDetails> = {
+      firstName: this.f['firstName'].value,
+      lastName: this.f['lastName'].value,
+      phoneNumber: parseInt(this.f['phoneNumber'].value),
+      whatsappNumber: parseInt(this.f['whatsappNumber'].value),
+      email: this.f['importerEmailId'].value,
+      id: this.generateUniqueAndReadableStudentID(this.f['firstName'].value),
+      dob: new Date(this.formatDate(this.f['birthDate'].value)),
+      gender: this.f['selectedGender'].value.label,
+      address: this.f['ResidentialAddress'].value,
+    }
+
+    this.studentService.saveStudentDetails(student);
+
     this.studentService.saveStudent(studentData).subscribe({
       next: (res) => {
         this.loading = false;
         console.log(res);
+        this.formSubmitted = true
       },
     });
   }
