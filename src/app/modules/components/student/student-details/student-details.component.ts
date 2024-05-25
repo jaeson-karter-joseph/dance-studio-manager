@@ -137,9 +137,25 @@ export class StudentDetailsComponent implements OnInit {
     this.router.navigate(['/student/studentRegistration/' + id]);
   }
 
-  redirectAttendance(id: string, studentName: string){
-    this.router.navigate(['/student/attendanceManagement'], {queryParams : {id : id , studentName : studentName}});
+  redirectAttendance(id: string, studentName: string, dob: Date, couresEnrolled: string[], classDate: Date[]): void {
+    console.log('Redirecting with the following details:');
+    console.log('ID:', id);
+    console.log('Student Name:', studentName);
+    console.log('Date of Birth:', dob);
+    console.log('Courses Enrolled:', couresEnrolled);
+    console.log('Class Dates:', classDate);
+  
+    this.router.navigate(['/student/attendanceManagement'], {
+      queryParams: {
+        id: id,
+        studentName: studentName,
+        dob: dob,
+        couresEnrolled: couresEnrolled,
+        classDate: classDate
+      }
+    });
   }
+  
 
   findIndexById(id: string): number {
     let index = -1;

@@ -66,9 +66,7 @@ export class AttendanceManagementComponent {
 
       this.attendanceManage.patchValue({
         studentName : res.get('studentName'),
-        date : res.get('date'),
-        courseName : res.get('courseName'),
-        sessionTimes : res.get('sessionTimes'),
+        date : new Date(res.get('dob') as string),
       })
     })
   }
