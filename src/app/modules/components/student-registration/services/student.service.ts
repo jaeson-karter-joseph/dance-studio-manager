@@ -52,6 +52,7 @@ export class StudentService {
     return this.http.get<ResponseData<StudentDetails>>(this.studentGetByIDURL + id, this.httpOptions).pipe(map(res => {
 
       var data = res.data;
+      if(!!data){
       const student : Partial<StudentCompleteDetails> = {
         firstName : data?.firstName,
         lastName : data?.lastName,
@@ -62,11 +63,13 @@ export class StudentService {
         email : data?.email,
         address : data?.address
       }
+
       this.saveStudentDetails(student).subscribe({
         next : res => {
           return res;
         }
       })
+    }
 
       return res;
     }))

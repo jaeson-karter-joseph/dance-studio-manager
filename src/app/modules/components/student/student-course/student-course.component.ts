@@ -95,7 +95,7 @@ export class StudentCourseComponent {
   };
 
   onBack(){
-    this.router.navigate(['/student/studentRegistration']);
+    this.router.navigate(['/student/studentRegistration/' + this.studentService.student.id]);
   }
 
 }

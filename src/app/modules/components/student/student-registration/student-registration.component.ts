@@ -102,7 +102,7 @@ export class StudentRegistrationComponent {
       whatsappNo: parseInt(this.f['whatsappNumber'].value),
       email: this.f['importerEmailId'].value,
       studentId: this.generateUniqueAndReadableStudentID(this.f['firstName'].value),
-      dob: this.formatDate(this.f['birthDate'].value),
+      dob: new Date(this.formatDate(this.f['birthDate'].value)),
       gender: this.f['selectedGender'].value.label,
       address: this.f['ResidentialAddress'].value,
       status: this.f['checked'].value,
@@ -124,13 +124,10 @@ export class StudentRegistrationComponent {
 
     this.studentService.saveStudentDetails(student);
 
-    this.studentService.saveStudent(studentData).subscribe({
-      next: (res) => {
-        this.loading = false;
-        //res);
-        this.formSubmitted = true
-      },
-    });
+    this.loading = false;
+
+    this.formSubmitted = true
+
   }
 
   resetForm() {
