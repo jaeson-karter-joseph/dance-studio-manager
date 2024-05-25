@@ -54,6 +54,7 @@ export class MenuComponent implements OnInit {
                 icon: 'pi pi-fw pi-database',
                 routerLink: ['/student/studentDetails'],
               },
+
             ],
           },
         ],
