@@ -34,15 +34,12 @@ export class FeesCollectionComponent {
   ngOnInit() {
     this.fessDemog = this.formBuilder.group({
 
-      // date: [this.studentService.student.date, Validators.required],
-      // studentName: [this.studentService.student.studentName, Validators.required],
-      // courseName: [this.studentService.student.courseName, Validators.required],
-      // paidFees: [this.studentService.student.paidFees, Validators.required],
-      // paymentMethod: [this.studentService.student.paymentMethod, Validators.required],
-      // remarks: this.f['remarks'].value,
-
-
-
+      date: [null, Validators.required],
+      studentName: [null, Validators.required],
+      courseName: [null, Validators.required],
+      paidFees: [null, Validators.required],
+      paymentMethod: [null, Validators.required],
+      remarks: [null]
 
     });
 

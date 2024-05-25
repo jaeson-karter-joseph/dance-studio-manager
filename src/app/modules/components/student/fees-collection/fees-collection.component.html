@@ -31,7 +31,7 @@
           <!-- Input for Paid Fees -->
           <div class="col-12 md:col-4 p-inputgroup">
             <p-floatLabel class="w-full">
-              <p-inputNumber formControlName="paidFess" inputId="currency-aed" mode="currency" currency="AED"
+              <p-inputNumber formControlName="paidFees" inputId="currency-aed" mode="currency" currency="AED"
                 locale="en-AE" />
               <label for="number-input">Paid Fees</label>
             </p-floatLabel>
@@ -39,7 +39,7 @@
           <!-- Dropdown for Payment Method -->
           <div class="col-12 md:col-4">
             <div class="p-field">
-              <p-dropdown id="paymentMode" formControlName="selectedPayment" [options]="paymentMethods"
+              <p-dropdown id="paymentMode" formControlName="paymentMethod" [options]="paymentMethods"
                 optionLabel="name" placeholder="Select Payment Mode"></p-dropdown>
             </div>
           </div>
