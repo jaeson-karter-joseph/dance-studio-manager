@@ -38,6 +38,14 @@ export interface Student {
     instructorTrainer: string;
   }
 
+  export interface CourseManagement {
+    coursesName: string;
+    sessionTimes: string;
+    instructorTrainer: string;
+    totalFees: number;
+    attendanceStatus: string;
+  }
+
   export interface StudentPayment {
     totalFees: number;
     vat: number;

@@ -61,7 +61,7 @@ export class FeesCollectionComponent {
   }
 
   Course() {
-    this.router.navigate(['/student/studentCourse']);
+    this.router.navigate(['/student/courseManagement']);
   }
 
   load() {

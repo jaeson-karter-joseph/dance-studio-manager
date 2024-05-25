@@ -1,1 +1,52 @@
-<p>course-management works!</p>
+<form [formGroup]="courseDetails" (ngSubmit)="load()">
+  <div class="card">
+    <!-- Details section, shown if IEC is found -->
+    <div class="grid nested-grid">
+      <div class="col-12">
+        <div class="grid sm:row-gap-3">
+          <!-- Input for Course(s) Enrolled -->
+          <div class="col-12 md:col-4 p-inputgroup">
+            <p-multiSelect [options]="danceForms" formControlName="coursesName" placeholder=" Course(s) Name" />
+          </div>
+          <!-- Input for Instructor/Trainer -->
+          <div class="col-12 md:col-4 p-inputgroup">
+            <p-multiSelect [options]="danceInstructors" formControlName="instructorTrainer"
+              placeholder="Instructor/Trainer" />
+          </div>
+          <!-- Input for Session Times -->
+          <div class="col-12 md:col-4">
+            <p-floatLabel>
+              <p-calendar id="selectDates" formControlName="sessionTimes" selectionMode="multiple" [minDate]="minDate"
+                [showTime]="true" hourFormat="12" [readonlyInput]="true" />
+              <label for="selectDates">Select Class Dates</label>
+            </p-floatLabel>
+          </div>
+          <!-- Input for Total Fees -->
+          <div class="col-12 md:col-6 p-inputgroup">
+            <p-floatLabel class="w-full">
+              <p-inputNumber formControlName="totalFees" inputId="currency-aed" mode="currency" currency="AED"
+                locale="en-AE" />
+              <label for="number-input">Fees</label>
+            </p-floatLabel>
+          </div>
+          <!-- Input for Session Times -->
+          <div class="col-12 md:col-6">
+            <p-floatLabel>
+              <p-calendar id="selectDates" formControlName="attendanceStatus" selectionMode="multiple" [minDate]="minDate"
+                [showTime]="true" hourFormat="12" [readonlyInput]="true" />
+              <label for="selectDates">Select Attendance Status</label>
+            </p-floatLabel>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Action buttons for Save, Delete, and Reset -->
+  <div class="card flex justify-content-center column-gap-3">
+    <p-button label="Back" icon="pi pi-arrow-left" type="button" (onClick)="onBack()" />
+    <p-button label="Save" type="submit" [loading]="loading"></p-button>
+    <button pButton type="button" label="Reset" (click)="resetForm()"></button>
+    <button pButton type="button" label="Go To Attendance Page" (click)="attendance()" class=""
+      [disabled]="!isFormSubmitted"></button>
+  </div>
+</form>
