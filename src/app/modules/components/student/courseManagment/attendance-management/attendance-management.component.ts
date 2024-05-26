@@ -81,8 +81,8 @@ export class AttendanceManagementComponent {
 
       date: this.formatDate(this.f['date'].value),
       studentName: this.f['studentName'].value,
-      courseName: this.f['courseName'].value,
-      sessionTimes: this.f['sessionTimes'].value,
+      courseName: this.f['couresEnrolled'].value,
+      sessionTimes: this.f['classDate'].value,
       status: this.f['checked'].value,
 
 

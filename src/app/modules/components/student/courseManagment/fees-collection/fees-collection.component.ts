@@ -79,8 +79,8 @@ export class FeesCollectionComponent {
         studentName : res.get('studentName'),
         paidFees : res.get('paidFees'),
         paymentMethod : res.get('paymentMethod'),
-        courseName : res.get('courseName'),
-        date : res.get('date'),
+        courseName : res.get('couresEnrolled'),
+        date : new Date(res.get('dob') as string),
       })
     })
 

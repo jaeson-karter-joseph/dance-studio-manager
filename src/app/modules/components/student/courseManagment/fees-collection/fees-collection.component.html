@@ -22,7 +22,6 @@
             </span>
           </div>
           <!-- Input for Course Name -->
-          <!-- Input for Course Name -->
           <div class="col-12 md:col-4 p-inputgroup">
             <p-multiSelect [options]="danceForms" formControlName="courseName" placeholder=" Course(s) Name" />
           </div>
@@ -58,4 +57,6 @@
     <button pButton type="button" label="Go To Course Management" (click)="Course()" class=""
       [disabled]="!formSubmitted"></button>
   </div>
+
+
 </form>

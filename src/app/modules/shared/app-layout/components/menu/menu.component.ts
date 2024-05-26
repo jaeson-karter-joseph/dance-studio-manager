@@ -34,11 +34,11 @@ export class MenuComponent implements OnInit {
                 icon: 'pi pi-fw pi-pencil',
                 routerLink: ['/student/studentRegistration'],
               },
-              {
-                label: 'Fee(s) Collection',
-                icon: 'pi pi-fw pi-book',
-                routerLink: ['/student/feesCollection'],
-              },
+              // {
+              //   label: 'Fee(s) Collection',
+              //   icon: 'pi pi-fw pi-book',
+              //   routerLink: ['/student/feesCollection'],
+              // },
               // {
               //   label: 'Student Course',
               //   icon: 'pi pi-fw pi-book',
@@ -133,10 +133,10 @@ export class MenuComponent implements OnInit {
         ],
       },
       {
-        label: 'Fees Collection Section',
+        label: 'Fee(s) Collection Section',
         items: [
           {
-            label: 'Fees Collect',
+            label: 'Fee(s) Collect',
             icon: 'pi pi-fw pi-bitcoin',
             routerLink: ['/student/feesManagement'],
           },
