@@ -17,6 +17,7 @@ export class AttendanceManagementComponent {
   maxDate: Date = new Date();
   formSubmitted = false;
   minDate : Date = new Date();
+  attendanceManageData : AttendanceManage[] = [];
   danceForms: string[] = ['Ballet', 'Jazz', 'Hip Hop', 'Contemporary', 'Tap', 'Salsa', 'Swing', 'Tango', 'Belly', 'Break'];
 
 
