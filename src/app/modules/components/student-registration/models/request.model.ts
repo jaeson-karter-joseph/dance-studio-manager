@@ -32,13 +32,12 @@ export interface Fees {
 }
 
 
-  export interface AttendanceManage {
-    date: string;
-    studentName : string;
-    courseName : string;
-    sessionTimes: string;
-    status: boolean;
-  }
+export interface AttendanceManage {
+  date: string[];
+  studentName: string;
+  course: string;
+  studentId: string;
+}
 
 
 export interface StudentCourse {
@@ -48,20 +47,20 @@ export interface StudentCourse {
 }
 
 
-  export interface CourseManagement {
-    coursesName: string;
-    sessionTimes: string;
-    instructorTrainer: string;
-    totalFees: number;
-    attendanceStatus: string;
-  }
+export interface CourseManagement {
+  coursesName: string;
+  sessionTimes: string;
+  instructorTrainer: string;
+  totalFees: number;
+  attendanceStatus: string;
+}
 
-  export interface StudentPayment {
-    totalFees: number;
-    vat: number;
-    selectedPayment: string;
-    paymentDate: string;
-  }
+export interface StudentPayment {
+  totalFees: number;
+  vat: number;
+  selectedPayment: string;
+  paymentDate: string;
+}
 
 
 export interface StudentAdditionalInfo {

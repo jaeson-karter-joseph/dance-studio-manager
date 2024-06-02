@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AttendanceManage, Fees } from '../../../student-registration/models/request.model';
 import { StudentService } from '../../../student-registration/services/student.service';
@@ -16,7 +16,7 @@ export class AttendanceManagementComponent {
   isIECFound: boolean = false;
   maxDate: Date = new Date();
   formSubmitted = false;
-  minDate : Date = new Date();
+
   danceForms: string[] = ['Ballet', 'Jazz', 'Hip Hop', 'Contemporary', 'Tap', 'Salsa', 'Swing', 'Tango', 'Belly', 'Break'];
 
 
@@ -25,19 +25,15 @@ export class AttendanceManagementComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private studentService: StudentService,
-    private route : ActivatedRoute
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.attendanceManage = this.formBuilder.group({
-
-      date: [null, Validators.required],
-      studentName: [null, Validators.required],
-      courseName: [null, Validators.required],
-      sessionTimes: [null, Validators.required],
-      status: [false],
-
-
+      studentName: new FormControl<string | null>(null, [Validators.required]),
+      studentId: new FormControl<string | null>(null, [Validators.required]),
+      course: new FormControl<string | null>(null, [Validators.required]),
+      date: new FormControl<string[] | null>(null, [Validators.required]),
     });
 
     if (!!this.id) {
@@ -56,42 +52,31 @@ export class AttendanceManagementComponent {
     }
 
     this.route.queryParamMap.subscribe(res => {
-      console.log(res);
-      console.log(res.get('id'));
-      console.log(res.get('studentName'));
-      console.log(res.get('date'));
-      console.log(res.get('courseName'));
-      console.log(res.get('sessionTimes'));
+
 
 
       this.attendanceManage.patchValue({
-        studentName : res.get('studentName'),
-        date : new Date(res.get('dob') as string),
+        studentName: res.get('studentName'),
+        studentId: res.get('id')
       })
     })
   }
 
-  onBack(){
+  onBack() {
     this.router.navigate(['/student/courseManagement']);
   }
   load() {
     this.loading = true;
 
-    const feesCollectionData: AttendanceManage = {
+    const attendanceData: AttendanceManage = {
 
-      date: this.formatDate(this.f['date'].value),
+      date: (this.f['date'].value),
       studentName: this.f['studentName'].value,
-      courseName: this.f['couresEnrolled'].value,
-      sessionTimes: this.f['classDate'].value,
-      status: this.f['checked'].value,
-
-
-
-
-
+      course: this.f['course'].value,
+      studentId: this.f['studentId'].value,
     };
 
-    console.log(feesCollectionData);
+    console.log(attendanceData);
 
     // this.studentService.saveStudent(feesCollectionData).subscribe({
     //   next: (res) => {

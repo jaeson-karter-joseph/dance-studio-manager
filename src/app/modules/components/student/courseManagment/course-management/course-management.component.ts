@@ -15,24 +15,24 @@ export class CourseManagementComponent {
   loading: boolean = false;
   courseManage!: FormGroup;
   danceForms: string[] = ['Ballet', 'Jazz', 'Hip Hop', 'Contemporary', 'Tap', 'Salsa', 'Swing', 'Tango', 'Belly', 'Break'];
-  danceInstructors : string[] = ['Jaeson', 'Joseph', 'Rafi', 'Aakash'];
-  minDate : Date = new Date();
+  danceInstructors: string[] = ['Jaeson', 'Joseph', 'Rafi', 'Aakash'];
+  minDate: Date = new Date();
   isFormSubmitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private studentService: StudentService,
-    private route : ActivatedRoute,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
 
     this.courseManage = this.formBuilder.group({
       coursesName: new FormControl(this.studentService.student.couresEnrolled, [Validators.required]),
-      sessionTimes: new FormControl(this.studentService.student.classDate,[Validators.required]),
+      sessionTimes: new FormControl(this.studentService.student.classDate, [Validators.required]),
       instructorTrainer: new FormControl(this.studentService.student.trainer, [Validators.required]),
-      attendanceStatus: new FormControl(this.studentService.student.classDate,[Validators.required]),
+      attendanceStatus: new FormControl(this.studentService.student.classDate, [Validators.required]),
       totalFees: [this.studentService.student.fees, Validators.required],
 
     });
@@ -51,20 +51,15 @@ export class CourseManagementComponent {
       });
     }
     this.route.queryParamMap.subscribe(res => {
-      console.log(res);
-      console.log(res.get('id'));
-      console.log(res.get('studentName'));
-      console.log(res.get('date'));
-      console.log(res.get('courseName'));
-      console.log(res.get('sessionTimes'));
+
 
 
       this.courseManage.patchValue({
-        courseName : res.get('courseName'),
-        sessionTimes : res.get('sessionTimes'),
-        instructorTrainer : res.get('instructorTrainer'),
-        totalFees : res.get('totalFees'),
-        attendanceStatus : res.get('attendanceStatus'),
+        courseName: res.get('courseName'),
+        sessionTimes: res.get('sessionTimes'),
+        instructorTrainer: res.get('instructorTrainer'),
+        totalFees: res.get('totalFees'),
+        attendanceStatus: res.get('attendanceStatus'),
       })
     })
   }
@@ -78,12 +73,12 @@ export class CourseManagementComponent {
 
 
     console.log({
-        coursesName: this.f['coursesEnrolled'].value,
-        sessionTimes: this.f['sessionTimes'].value,
-        instructorTrainer: this.f['instructorTrainer'].value,
-      });
+      coursesName: this.f['coursesEnrolled'].value,
+      sessionTimes: this.f['sessionTimes'].value,
+      instructorTrainer: this.f['instructorTrainer'].value,
+    });
 
-    const student : Partial<StudentCompleteDetails> = {
+    const student: Partial<StudentCompleteDetails> = {
       couresEnrolled: this.f['coursesEnrolled'].value,
       classDate: this.f['sessionTimes'].value,
       trainer: this.f['instructorTrainer'].value,
@@ -91,7 +86,7 @@ export class CourseManagementComponent {
 
     this.studentService.saveStudentDetails(student);
 
-    this.isFormSubmitted=true;
+    this.isFormSubmitted = true;
     this.loading = false;
 
   }
@@ -112,7 +107,7 @@ export class CourseManagementComponent {
     );
   };
 
-  onBack(){
+  onBack() {
     this.router.navigate(['/student/feesManagement']);
   }
 
