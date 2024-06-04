@@ -12,16 +12,16 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.model = [
-      {
-        label: 'Dashboard',
-        items: [
-          {
-            label: 'Overview',
-            icon: 'pi pi-fw pi-bookmark-fill',
-            routerLink: ['/dashboard/studio-overview'],
-          },
-        ],
-      },
+      // {
+      //   label: 'Dashboard',
+      //   items: [
+      //     {
+      //       label: 'Overview',
+      //       icon: 'pi pi-fw pi-bookmark-fill',
+      //       routerLink: ['/dashboard/studio-overview'],
+      //     },
+      //   ],
+      // },
       {
         label: 'Student',
         items: [
@@ -75,11 +75,11 @@ export class MenuComponent implements OnInit {
                 icon: 'pi pi-fw pi-pencil',
                 routerLink: ['/trainer/trainerRegistration'],
               },
-              {
-                label: 'Salary Calculations',
-                icon: 'pi pi-fw pi-sitemap',
-                routerLink: ['/trainer/salaryCalculation'],
-              },
+                {
+                  label: 'Salary Calculations',
+                  icon: 'pi pi-fw pi-sitemap',
+                  routerLink: ['/trainer/salaryCalculation'],
+                },
               {
                 label: 'Trainer Details',
                 icon: 'pi pi-fw pi-database',
@@ -111,27 +111,27 @@ export class MenuComponent implements OnInit {
         ],
       },
 
-      {
-        label: 'Event',
-        items: [
-          {
-            label: 'Event Register',
-            icon: 'pi pi-fw pi-bookmark-fill',
-            items: [
-              {
-                label: 'Event Registration',
-                icon: 'pi pi-fw pi-pencil',
-                routerLink: ['/event/eventRegistration'],
-              },
-              {
-                label: 'Event Details',
-                icon: 'pi pi-fw pi-database',
-                routerLink: ['/event/eventDetails'],
-              },
-            ],
-          },
-        ],
-      },
+      // {
+      //   label: 'Event',
+      //   items: [
+      //     {
+      //       label: 'Event Register',
+      //       icon: 'pi pi-fw pi-bookmark-fill',
+      //       items: [
+      //         {
+      //           label: 'Event Registration',
+      //           icon: 'pi pi-fw pi-pencil',
+      //           routerLink: ['/event/eventRegistration'],
+      //         },
+      //         {
+      //           label: 'Event Details',
+      //           icon: 'pi pi-fw pi-database',
+      //           routerLink: ['/event/eventDetails'],
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
       {
         label: 'Fee(s) Collection Section',
         items: [

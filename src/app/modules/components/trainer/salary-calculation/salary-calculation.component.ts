@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Trainer } from '../../student-registration/models/request.model';
+import { StudentService } from '../../student-registration/services/student.service';
 
 @Component({
   selector: 'app-salary-calculation',
@@ -18,6 +20,7 @@ export class SalaryCalculationComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
+    private trainerService: StudentService
   ) {}
 
   ngOnInit() {
@@ -85,6 +88,39 @@ export class SalaryCalculationComponent implements OnInit {
       }
     })
     */
+  }
+
+
+
+  registerTrainer(){
+    this.loading = true;
+
+    const trainer : Trainer = {
+      firstName : this.trainerService.trainer.firstName as string,
+      lastName : this.trainerService.trainer.lastName as string,
+      email : this.trainerService.trainer.email as string,
+      trainerId : this.trainerService.trainer.id as string,
+      gender : this.trainerService.trainer.gender as string,
+      address : this.trainerService.trainer.address as string,
+      mobile : this.trainerService.trainer.phoneNumber as number,
+      whatsappNo : this.trainerService.trainer.whatsappNumber as number,
+      id : this.trainerService.trainer.id as string,
+      dob : this.trainerService.trainer.dob as Date,
+      couresEnrolled : this.trainerService.trainer.couresEnrolled as string[],
+      conductedCourse : this.trainerService.trainer.conductedCourse as number,
+      trainerSalary : this.trainerService.trainer.trainerSalary as number,
+      status : true,
+    }
+
+    this.trainerService.saveTrainer(trainer).subscribe({
+      next : res =>{
+        console.log(res);
+        this.loading = false;
+      },
+      error : (err) => {
+        console.error(err);
+      }
+    })
   }
 
   resetForm() {

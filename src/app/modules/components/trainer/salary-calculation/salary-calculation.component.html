@@ -37,7 +37,6 @@
               <label for="trainerShare">Trainer Share(40)</label>
             </span>
           </div>
-
         </div>
       </div>
     </div>
@@ -45,7 +44,7 @@
   <!-- Action buttons for Save, Delete, Reset, and Go to Course Page -->
   <div class="card flex justify-content-center column-gap-3">
     <p-button label="Back" icon="pi pi-arrow-left"  type="button" (onClick)="onBack()"/>
-    <p-button label="Save" type="submit" [loading]="loading" (click)="load()"></p-button>
+    <p-button label="Register Trainer" type="submit" [loading]="loading" (onClick)="registerTrainer()"></p-button>
     <button pButton type="button" label="Reset" [loading]="loading" (click)="resetForm()"></button>
   </div>
 </form>

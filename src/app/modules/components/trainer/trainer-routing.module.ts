@@ -16,8 +16,14 @@ const routes: Routes = [
         (m) => m.SalaryCalculationModule
       ),
   },
+  {
+    path: 'trainerDetails',
+    loadChildren: () =>
+      import('./trainer-details/trainer-details.module').then(
+        (m) => m.TrainerDetailsModule
+      ),
+  },
 ];
-// { path: 'trainerDetails', loadChildren: () => import('./trainer-details/trainer-details.module').then(m => m.TrainerDetailsModule)}
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

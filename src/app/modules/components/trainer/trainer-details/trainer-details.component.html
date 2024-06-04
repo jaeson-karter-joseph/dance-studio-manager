@@ -1,4 +1,4 @@
-<!-- <p-toast></p-toast>
+<p-toast></p-toast>
 
 <div class="card">
   <p-toolbar styleClass="mb-4 gap-2">
@@ -24,19 +24,22 @@
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="id" style="min-width:6rem">ID<p-sortIcon field="id"></p-sortIcon></th>
-        <th pSortableColumn="firstName" style="min-width:9rem">First Name<p-sortIcon field="firstName"></p-sortIcon></th>
+        <th pSortableColumn="firstName" style="min-width:9rem">First Name<p-sortIcon field="firstName"></p-sortIcon>
+        </th>
         <th pSortableColumn="lastName" style="min-width:9rem">Last Name<p-sortIcon field="lastName"></p-sortIcon></th>
         <th pSortableColumn="mobile" style="min-width:12rem">Mobile Number<p-sortIcon field="mobile"></p-sortIcon></th>
-        <th pSortableColumn="courseEnroll" style="min-width:9rem">Enrolled Course(s)<p-sortIcon field="courseEnroll"></p-sortIcon></th>
-        <th pSortableColumn="collectdPerTrainer" style="min-width:13rem">Total Amount Collected per Trainer<p-sortIcon field="collectdPerTrainer"></p-sortIcon></th>
-        <th pSortableColumn="studioShare" style="min-width:5rem">Studio Share<p-sortIcon field="studioShare"></p-sortIcon></th>
-        <th pSortableColumn="trainerShare" style="min-width:5rem">Trainer Share<p-sortIcon field="trainerShare"></p-sortIcon></th>
+        <th pSortableColumn="courseEnroll" style="min-width:9rem">Enrolled Course(s)<p-sortIcon
+            field="courseEnroll"></p-sortIcon></th>
+        <th pSortableColumn="collectdPerTrainer" style="min-width:13rem">Total Amount Collected per Trainer<p-sortIcon
+            field="collectdPerTrainer"></p-sortIcon></th>
+        <th pSortableColumn="conductedCourse" style="min-width:5rem">Conducted Course<p-sortIcon
+            field="conductedCourse"></p-sortIcon></th>
         <th pSortableColumn="email" style="min-width:12rem">Email ID<p-sortIcon field="email"></p-sortIcon></th>
-        <th pSortableColumn="trainerID" style="min-width:10rem">Trainer Id<p-sortIcon field="trainerID"></p-sortIcon></th>
+        <th pSortableColumn="trainerID" style="min-width:10rem">Trainer Id<p-sortIcon field="trainerID"></p-sortIcon>
+        </th>
         <th pSortableColumn="gender" style="min-width:8rem">Gender<p-sortIcon field="gender"></p-sortIcon></th>
         <th pSortableColumn="status" style="min-width:7rem">Status<p-sortIcon field="status"></p-sortIcon></th>
         <th pSortableColumn="edit" style="min-width:5rem" field="edit">Edit</th>
-        <th pSortableColumn="download" style="min-width:5rem" field="download">Download</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-TrainerDetails>
@@ -45,18 +48,18 @@
         <td>{{ TrainerDetails.firstName }}</td>
         <td>{{ TrainerDetails.lastName }}</td>
         <td>{{ TrainerDetails.mobile }}</td>
-        <td>{{ TrainerDetails.courseEnroll }}</td>
-        <td>{{ TrainerDetails.collectdPerTrainer }}</td>
-        <td>{{ TrainerDetails.studioShare }}</td>
-        <td>{{ TrainerDetails.trainerShare }}</td>
+        <td>{{ TrainerDetails.couresEnrolled }}</td>
+        <td>{{ TrainerDetails.trainerSalary }}</td>
+        <td>{{ TrainerDetails.conductedCourse }}</td>
         <td>{{ TrainerDetails.email }}</td>
-        <td>{{ TrainerDetails.trainerID }}</td>
+        <td>{{ TrainerDetails.trainerId }}</td>
         <td>{{ TrainerDetails.gender }}</td>
-        <td><span [class]="'product-badge status-' + TrainerDetails.status">{{TrainerDetails.status == true ? 'ACTIVE' : 'INACTIVE'}}</span></td>
+        <td><span [class]="'product-badge status-' + TrainerDetails.status">{{TrainerDetails.status == true ? 'ACTIVE' :
+            'INACTIVE'}}</span></td>
         <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="redirectOnEdit(TrainerDetails.trainerID)"></button>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+            (click)="redirectOnEdit(TrainerDetails.trainerId)"></button>
         </td>
-        <td><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteTrainerDetails(TrainerDetails)"></button></td>
       </tr>
     </ng-template>
     <ng-template pTemplate="summary">
@@ -68,4 +71,4 @@
 </div>
 
 
-<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog> -->
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
