@@ -1,13 +1,22 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AttendanceManage, Fees } from '../../../student-registration/models/request.model';
+import {
+  AttendanceManage,
+  Fees,
+} from '../../../student-registration/models/request.model';
 import { StudentService } from '../../../student-registration/services/student.service';
 
 @Component({
   selector: 'app-attendance-management',
   templateUrl: './attendance-management.component.html',
-  styleUrl: './attendance-management.component.scss'
+  styleUrl: './attendance-management.component.scss',
 })
 export class AttendanceManagementComponent {
   @Input() id!: string;
@@ -17,16 +26,28 @@ export class AttendanceManagementComponent {
   maxDate: Date = new Date();
   formSubmitted = false;
 
-  danceForms: string[] = ['Ballet', 'Jazz', 'Hip Hop', 'Contemporary', 'Tap', 'Salsa', 'Swing', 'Tango', 'Belly', 'Break'];
+  minDate: Date = new Date();
+  attendanceManageData: AttendanceManage[] = [];
 
-
+  danceForms: string[] = [
+    'Ballet',
+    'Jazz',
+    'Hip Hop',
+    'Contemporary',
+    'Tap',
+    'Salsa',
+    'Swing',
+    'Tango',
+    'Belly',
+    'Break',
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private studentService: StudentService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.attendanceManage = this.formBuilder.group({
@@ -51,15 +72,12 @@ export class AttendanceManagementComponent {
       });
     }
 
-    this.route.queryParamMap.subscribe(res => {
-
-
-
+    this.route.queryParamMap.subscribe((res) => {
       this.attendanceManage.patchValue({
         studentName: res.get('studentName'),
-        studentId: res.get('id')
-      })
-    })
+        studentId: res.get('id'),
+      });
+    });
   }
 
   onBack() {
@@ -69,8 +87,7 @@ export class AttendanceManagementComponent {
     this.loading = true;
 
     const attendanceData: AttendanceManage = {
-
-      date: (this.f['date'].value),
+      date: this.f['date'].value,
       studentName: this.f['studentName'].value,
       course: this.f['course'].value,
       studentId: this.f['studentId'].value,
@@ -119,7 +136,10 @@ export class AttendanceManagementComponent {
 
     // Create a unique part by combining the first letter of the name,
     // the current year, and a random number
-    const uniquePart = formattedName[0] + new Date().getFullYear() + Math.floor(Math.random() * 1000);
+    const uniquePart =
+      formattedName[0] +
+      new Date().getFullYear() +
+      Math.floor(Math.random() * 1000);
 
     // Ensure the unique part is always 5 characters long by padding with zeros if necessary
     const paddedUniquePart = uniquePart.padEnd(5, '0');
@@ -127,5 +147,4 @@ export class AttendanceManagementComponent {
     // Return the formatted name followed by the unique part
     return `${formattedName}-${paddedUniquePart}`;
   }
-
 }

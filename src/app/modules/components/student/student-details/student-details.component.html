@@ -1,70 +1,73 @@
 <p-toast></p-toast>
 
 <div class="card">
-  <p-toolbar styleClass="mb-4 gap-2">
-    <ng-template pTemplate="right">
-      <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
-    </ng-template>
-  </p-toolbar>
 
-  <p-table #dt [value]="StudentDetailsData" [rows]="5" [paginator]="true"
-    [globalFilterFields]="['id', 'name', 'studentID', 'email', 'gender','emid','birthDate','joiningDate', 'inventoryStatus']"
-    [tableStyle]="{'min-width': '75rem'}" [(selection)]="studentDetailsSelectedProducts" [rowHover]="true" dataKey="id"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-    <ng-template pTemplate="caption">
-      <div class="flex align-items-center justify-content-between">
-        <h5 class="p-m-0">Total Trainers</h5>
-        <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
-          <input pInputText type="text" #textInput (input)="dt.filterGlobal(textInput.value, 'contains')"
-            placeholder="Search..." />
-        </span>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="header">
-      <tr>
-        <th pSortableColumn="id" style="min-width:6rem">ID<p-sortIcon field="id"></p-sortIcon></th>
-        <th pSortableColumn="firstName" style="min-width:9rem">First Name<p-sortIcon field="firstName"></p-sortIcon></th>
-        <th pSortableColumn="lastName" style="min-width:9rem">Last Name<p-sortIcon field="lastName"></p-sortIcon></th>
-        <th pSortableColumn="mobile" style="min-width:12rem">Mobile Number<p-sortIcon field="mobile"></p-sortIcon></th>
-        <th pSortableColumn="whatsappNo" style="min-width:13rem">Whatsapp Number<p-sortIcon field="whatsappNo"></p-sortIcon></th>
-        <th pSortableColumn="email" style="min-width:12rem">Email ID<p-sortIcon field="email"></p-sortIcon></th>
-        <th pSortableColumn="studentId" style="min-width:10rem">StudentId<p-sortIcon field="studentId"></p-sortIcon></th>
-        <th pSortableColumn="dob" style="min-width:10rem">Date of Birth<p-sortIcon field="dob"></p-sortIcon></th>
-        <th pSortableColumn="gender" style="min-width:8rem">Gender<p-sortIcon field="gender"></p-sortIcon></th>
-        <th pSortableColumn="status" style="min-width:7rem">Status<p-sortIcon field="status"></p-sortIcon></th>
-        <th pSortableColumn="edit" style="min-width:5rem" field="edit">Edit</th>
-        <th pSortableColumn="attendance" style="min-width:5rem" field="attendance">Attendance</th>
-        <th pSortableColumn="download" style="min-width:5rem" field="download">Download</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-StudentDetails>
-      <tr>
-        <td>{{ StudentDetails.id }}</td>
-        <td>{{ StudentDetails.firstName }}</td>
-        <td>{{ StudentDetails.lastName }}</td>
-        <td>{{ StudentDetails.mobile }}</td>
-        <td>{{ StudentDetails.whatsappNo }}</td>
-        <td>{{ StudentDetails.email }}</td>
-        <td>{{ StudentDetails.studentId }}</td>
-        <td>{{ StudentDetails.dob | date }}</td>
-        <td>{{ StudentDetails.gender }}</td>
-        <td><span [class]="'product-badge status-' + StudentDetails.status">{{StudentDetails.status == true ? 'ACTIVE' : 'INACTIVE'}}</span></td>
-        <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="redirectOnEdit(StudentDetails.studentId)"></button>
-        </td>
-        <td>
-          <button pButton pRipple icon="pi pi-check-circle" class="p-button-rounded p-button-success mr-2" (click)="redirectAttendance(StudentDetails.studentId, StudentDetails.firstName + ' ' + StudentDetails.lastName, StudentDetails.dob, StudentDetails.couresEnrolled, StudentDetails.classDate)"></button>
-        </td>
-        <td><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteStudentDetails(StudentDetails)"></button></td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="summary">
-      <div class="flex align-items-center justify-content-between">
-        In total there are {{StudentDetailsData ? StudentDetailsData.length : 0 }} studentDetails.
-      </div>
-    </ng-template>
-  </p-table>
+    <p-table #dt [value]="StudentDetailsData" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,20]" [autoLayout]="true" [sortMode]="'multiple'" [reorderableColumns]="true" [resizableColumns]="true" 
+      [globalFilterFields]="['id', 'name', 'studentID', 'email', 'gender','emid','birthDate','joiningDate', 'inventoryStatus']" padding="5"
+      [tableStyle]="{'min-width': '75rem'}" [(selection)]="studentDetailsSelectedProducts" [rowHover]="true"
+      dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [showCurrentPageReport]="true">
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+          <h5 class="p-m-0">Total Students</h5>
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" #textInput (input)="dt.filterGlobal(textInput.value, 'contains')"
+              placeholder="Search..." />
+              
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id" style="min-width:14rem">ID<p-sortIcon field="id"></p-sortIcon></th>
+          <th pSortableColumn="firstName" style="min-width:9rem">First Name<p-sortIcon field="firstName"></p-sortIcon>
+          </th>
+          <th pSortableColumn="lastName" style="min-width:9rem">Last Name<p-sortIcon field="lastName"></p-sortIcon></th>
+          <th pSortableColumn="mobile" style="min-width:12rem">Mobile Number<p-sortIcon field="mobile"></p-sortIcon>
+          </th>
+          <th pSortableColumn="whatsappNo" style="min-width:13rem">Whatsapp Number<p-sortIcon
+              field="whatsappNo"></p-sortIcon></th>
+          <th pSortableColumn="email" style="min-width:12rem">Email ID<p-sortIcon field="email"></p-sortIcon></th>
+          <th pSortableColumn="studentId" style="min-width:20rem">StudentId<p-sortIcon field="studentId"></p-sortIcon>
+          </th>
+          <th pSortableColumn="dob" style="min-width:10rem">Date of Birth<p-sortIcon field="dob"></p-sortIcon></th>
+          <th pSortableColumn="gender" style="min-width:8rem">Gender<p-sortIcon field="gender"></p-sortIcon></th>
+          <th pSortableColumn="status" style="min-width:7rem">Status<p-sortIcon field="status"></p-sortIcon></th>
+          <th pSortableColumn="edit" style="min-width:5rem" field="edit">Edit</th>
+          <th pSortableColumn="attendance" style="min-width:5rem" field="attendance">Attendance</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-StudentDetails>
+        <tr>
+          <td>{{ StudentDetails.id }}</td>
+          <td>{{ StudentDetails.firstName }}</td>
+          <td>{{ StudentDetails.lastName }}</td>
+          <td>{{ StudentDetails.mobile }}</td>
+          <td>{{ StudentDetails.whatsappNo }}</td>
+          <td>{{ StudentDetails.email }}</td>
+          <td>{{ StudentDetails.studentId }}</td>
+          <td>{{ StudentDetails.dob | date }}</td>
+          <td>{{ StudentDetails.gender }}</td>
+          <td><span [class]="'product-badge status-' + StudentDetails.status">{{StudentDetails.status == true ? 'ACTIVE'
+              : 'INACTIVE'}}</span></td>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+              (click)="redirectOnEdit(StudentDetails.studentId)"></button>
+          </td>
+          <td>
+            <button pButton pRipple icon="pi pi-check-circle" class="p-button-rounded p-button-success mr-2"
+              (click)="redirectAttendance(StudentDetails.studentId, StudentDetails.firstName + ' ' + StudentDetails.lastName, StudentDetails.dob, StudentDetails.couresEnrolled, StudentDetails.classDate)"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          In total there are {{StudentDetailsData ? StudentDetailsData.length : 0 }} studentDetails.
+        </div>
+      </ng-template>
+    </p-table>
+
 </div>
 
 

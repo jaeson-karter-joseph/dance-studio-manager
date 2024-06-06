@@ -51,16 +51,17 @@ export class StudentPaymentComponent {
     const StudentPaymentData: StudentPayment = {
       totalFees: this.f['totalFees'].value,
       vat: this.f['vat'].value,
-      selectedPayment: this.f['selectedPayment'].value.name,
+      selectedPayment: this.f['selectedPayment'].value,
       paymentDate: this.formatDate(this.f['paymentDate'].value),
     };
 
     const student: Partial<StudentCompleteDetails> = {
       fees: this.f['totalFees'].value,
       vat: this.f['vat'].value,
-      paymentMode: this.f['selectedPayment'].value.name,
+      paymentMode: this.f['selectedPayment'].value,
       paymentDate: new Date(this.formatDate(this.f['paymentDate'].value)),
     }
+    console.log('selectedPayment', this.f['selectedPayment'].value);
 
     this.studentService.saveStudentDetails(student);
 

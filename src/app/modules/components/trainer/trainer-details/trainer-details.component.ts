@@ -6,21 +6,21 @@ import { Router } from '@angular/router';
 
 
 export interface TrainerDetails {
-  id : number;
-  firstName : string;
-  lastName : string;
-  mobile : number;
-  courseEnroll : string;
-  collectdPerTrainer : number;
-  studioShare : number;
-  trainerShare : number;
-  email : string;
-  trainerID : string;
-  gender : string;
-  status : boolean;
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  trainerId: string;
+  status: boolean;
+  address: string;
+  dob?: Date;
+  gender?: string;
+  phoneNumber?: number;
+  whatsappNumber?: number;
+  couresEnrolled?: string[];
+  conductedCourse?: number;
+  trainerSalary?: number;
 }
-
-
 
 @Component({
   selector: 'app-trainer-details',
@@ -29,7 +29,8 @@ export interface TrainerDetails {
   providers: [MessageService, ConfirmationService],
 })
 export class TrainerDetailsComponent implements OnInit {
-  productDialog: boolean = false;
+
+ productDialog: boolean = false;
   trainerDetailsProducts!: TrainerDetailsProduct[];
   trainerDetailsproduct!: TrainerDetailsProduct;
   trainerDetailsSelectedProducts!: TrainerDetailsProduct[] | null;
@@ -42,7 +43,7 @@ export class TrainerDetailsComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private studentService: StudentService,
+    private trainerService: StudentService,
     private router : Router,
   ) {}
 
@@ -52,19 +53,19 @@ export class TrainerDetailsComponent implements OnInit {
       { label: 'INACTIVE', value: 'INACTIVE' },
     ];
 
-    // this.trainerService.getTrainer().subscribe({
-    //   next: (data) => {
-    //     this.TrainerDetailsData = data.data as TrainerDetails[];
-    //   },
-    //   error: (err) => {
-    //     this.messageService.add({
-    //       severity: 'error',
-    //       summary: 'Error',
-    //       detail: err.message,
-    //       life: 3000,
-    //     });
-    //   },
-    // })
+    this.trainerService.getTrainer().subscribe({
+      next: (data) => {
+        this.TrainerDetailsData = data.data as TrainerDetails[];
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.message,
+          life: 3000,
+        });
+      },
+    })
   }
 
   editTrainerDetail(trainerDetailsproduct: TrainerDetailsProduct) {
@@ -72,25 +73,6 @@ export class TrainerDetailsComponent implements OnInit {
     this.productDialog = true;
   }
 
-  deleteTrainerDetails(trainerDetailsproduct: TrainerDetailsProduct) {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + trainerDetailsproduct.firstName + '?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.trainerDetailsProducts = this.trainerDetailsProducts.filter(
-          (val) => val.id !== trainerDetailsproduct.id
-        );
-        this.trainerDetailsproduct = {};
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Trainer Detail Deleted',
-          life: 3000,
-        });
-      },
-    });
-  }
 
   hideDialog() {
     this.productDialog = false;
@@ -127,7 +109,8 @@ export class TrainerDetailsComponent implements OnInit {
   }
 
   redirectOnEdit(id: string) {
-    this.router.navigate(['/trainer/trainerRegistration/' + id]);
+    console.log(id);
+    this.router.navigate(['/trainer/trainerRegistration'], { queryParams: { id: id } });
   }
 
   findIndexById(id: string): number {
@@ -161,11 +144,24 @@ export class TrainerDetailsComponent implements OnInit {
     }
   }
 
-  get calculateTotalQty() {
-    let total = 0;
-    for (let qty of this.TrainerDetailsData) {
-      total += qty.id;
-    }
-    return total;
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // get calculateTotalQty() {
+  //   let total = 0;
+  //   for (let qty of this.TrainerDetailsData) {
+  //     total += qty.id;
+  //   }
+  //   return total;
+  // }
 }

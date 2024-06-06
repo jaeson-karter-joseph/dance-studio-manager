@@ -22,6 +22,24 @@ export interface Student {
   addNotes?: string;
 }
 
+export interface Trainer {
+  firstName: string;
+  lastName: string;
+  mobile: number;
+  whatsappNo: number;
+  gender: string;
+  email: string;
+  couresEnrolled: string[];
+  conductedCourse: number;
+  dob: Date;
+  address: string;
+  status: boolean;
+  trainerId: string;
+  id: string;
+  trainerSalary: number;
+  
+}
+
 export interface Fees {
   date: string;
   studentName: string;

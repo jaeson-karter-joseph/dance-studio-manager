@@ -5,6 +5,8 @@ import { StudentService } from '../../student-registration/services/student.serv
 import { Router } from '@angular/router';
 
 
+
+
 export interface StudentDetails {
   id: number;
   firstName: string;
@@ -50,8 +52,8 @@ export class StudentDetailsComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private studentService: StudentService,
-    private router : Router,
-  ) {}
+    private router: Router,
+  ) { }
 
   ngOnInit() {
     this.statuses = [
@@ -144,7 +146,7 @@ export class StudentDetailsComponent implements OnInit {
     console.log('Date of Birth:', dob);
     console.log('Courses Enrolled:', couresEnrolled);
     console.log('Class Dates:', classDate);
-  
+
     this.router.navigate(['/student/attendanceManagement'], {
       queryParams: {
         id: id,
@@ -155,7 +157,7 @@ export class StudentDetailsComponent implements OnInit {
       }
     });
   }
-  
+
 
   findIndexById(id: string): number {
     let index = -1;
@@ -187,12 +189,6 @@ export class StudentDetailsComponent implements OnInit {
         return '';
     }
   }
+  // Rest of the code...
 
-  get calculateTotalQty() {
-    let total = 0;
-    for (let qty of this.StudentDetailsData) {
-      total += qty.id;
-    }
-    return total;
-  }
 }
